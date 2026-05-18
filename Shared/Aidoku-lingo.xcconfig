@@ -18,3 +18,7 @@ UBIQUITY_KVSTORE_ID         = $(TeamIdentifierPrefix)$(PRODUCT_BUNDLE_IDENTIFIER
 // Store build
 // Dev / sideload build (leave flag 'CANONICAL_BUILD' undefined)
 OTHER_SWIFT_FLAGS = $(inherited) -DCANONICAL_BUILD
+
+// ----- Deployment targets (hard-bumped for Foundation Models) -----
+IPHONEOS_DEPLOYMENT_TARGET  = 26.0
+MACOSX_DEPLOYMENT_TARGET    = 26.0

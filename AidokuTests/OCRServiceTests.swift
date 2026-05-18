@@ -141,12 +141,12 @@ import UIKit
         let newKey = "Learner.ocrLanguagesList"
 
         // Setup legacy state
-        UserDefaults.standard.set("ja-JP", forKey: legacyKey)
+        UserDefaults.standard.set("tr-TR", forKey: legacyKey)
         UserDefaults.standard.removeObject(forKey: newKey)
 
         let result = LearnerOverlayCoordinator.shared.ocrLanguages()
 
-        #expect(result == ["ja-JP"], "Migrated value should be the old single language")
+        #expect(result == ["tr-TR"], "Migrated value should be the old single language")
         #expect(UserDefaults.standard.object(forKey: legacyKey) == nil, "Old key should be removed after migration")
         #expect(UserDefaults.standard.data(forKey: newKey) != nil, "New key should be written as JSON data")
 
@@ -168,33 +168,32 @@ import UIKit
     // Multi-language array round-trips correctly
     @Test @MainActor func ocrLanguages_multipleLanguages_roundTrip() {
         let newKey = "Learner.ocrLanguagesList"
-        let langs = ["de-DE", "ja-JP"]
+        let langs = ["de-DE", "tr-TR"]
         if let data = try? JSONEncoder().encode(langs) {
             UserDefaults.standard.set(data, forKey: newKey)
         }
 
         let result = LearnerOverlayCoordinator.shared.ocrLanguages()
-        #expect(result == ["de-DE", "ja-JP"])
+        #expect(result == ["de-DE", "tr-TR"])
 
         UserDefaults.standard.removeObject(forKey: newKey)
     }
 
-    // Lock-in for review I2: the picker must save selections in display order
+    // Lock-in: the picker must save selections in display order
     // (Vision uses recognitionLanguages order as a priority hint).
-    // Alphabetical sort would put "es-ES" before "ja-JP"; display order puts ja-JP first.
+    // Picker display order is en-US, de-DE, tr-TR (alphabetical by display name).
     @Test @MainActor func picker_saveToDefaults_preservesDisplayOrder() throws {
         let key = LearnerOCRLanguagesPicker.defaultsKey
         UserDefaults.standard.removeObject(forKey: key)
 
-        // Toggle on in non-alphabetical order: ja-JP, then es-ES.
-        // Alphabetical would yield ["es-ES", "ja-JP"]; display order yields ["ja-JP", "es-ES"].
-        LearnerOCRLanguagesPicker.saveToDefaults(["ja-JP", "es-ES"])
+        // Toggle on in non-display order; saveToDefaults must canonicalise to display order.
+        LearnerOCRLanguagesPicker.saveToDefaults(["tr-TR", "en-US"])
 
         let data = try #require(UserDefaults.standard.data(forKey: key))
         let saved = try JSONDecoder().decode([String].self, from: data)
 
-        #expect(saved == ["ja-JP", "es-ES"],
-                "Expected display order [ja-JP, es-ES]; got \(saved)")
+        #expect(saved == ["en-US", "tr-TR"],
+                "Expected display order [en-US, tr-TR]; got \(saved)")
 
         UserDefaults.standard.removeObject(forKey: key)
     }
@@ -204,11 +203,11 @@ import UIKit
         let key = LearnerOCRLanguagesPicker.defaultsKey
         UserDefaults.standard.removeObject(forKey: key)
 
-        LearnerOCRLanguagesPicker.saveToDefaults(["fr-FR"])
+        LearnerOCRLanguagesPicker.saveToDefaults(["tr-TR"])
 
         let data = try #require(UserDefaults.standard.data(forKey: key))
         let saved = try JSONDecoder().decode([String].self, from: data)
-        #expect(saved == ["fr-FR"])
+        #expect(saved == ["tr-TR"])
 
         UserDefaults.standard.removeObject(forKey: key)
     }

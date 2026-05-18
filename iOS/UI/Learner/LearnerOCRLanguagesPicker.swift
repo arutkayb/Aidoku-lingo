@@ -18,11 +18,8 @@ struct LearnerOCRLanguagesPicker: View {
     // coordinator's default and ReaderSettingsView's old select list).
     // `internal` so tests can verify ordering behaviour.
     static let languages: [(code: String, display: String)] = [
-        ("de-DE", "German (de-DE)"),
         ("en-US", "English (en-US)"),
-        ("ja-JP", "Japanese (ja-JP)"),
-        ("fr-FR", "French (fr-FR)"),
-        ("es-ES", "Spanish (es-ES)"),
+        ("de-DE", "German (de-DE)"),
         ("tr-TR", "Turkish (tr-TR)")
     ]
 

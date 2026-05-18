@@ -6,3 +6,5 @@
 //
 
 #include "../Shared/Aidoku-lingo.xcconfig"
+
+MACOSX_DEPLOYMENT_TARGET = 26.0
