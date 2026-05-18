@@ -45,14 +45,43 @@ public struct OCRLineBox: Sendable, Hashable {
     }
 }
 
+/// A detected multi-word expression spanning one or more `OCRWordBox` entries.
+/// `wordIndices` are absolute indices into `OCRResult.words`, ascending and contiguous.
+public struct OCRPhrase: Sendable, Hashable {
+    public let text: String
+    public let kind: PhraseKind
+    public let wordIndices: [Int]
+    public let lineIndices: [Int]
+    public let boundingBox: CGRect
+    public let confidence: Float
+
+    public init(
+        text: String,
+        kind: PhraseKind,
+        wordIndices: [Int],
+        lineIndices: [Int],
+        boundingBox: CGRect,
+        confidence: Float
+    ) {
+        self.text = text
+        self.kind = kind
+        self.wordIndices = wordIndices
+        self.lineIndices = lineIndices
+        self.boundingBox = boundingBox
+        self.confidence = confidence
+    }
+}
+
 /// The complete OCR result for one image.
 public struct OCRResult: Sendable, Hashable {
     public let words: [OCRWordBox]
     public let lines: [OCRLineBox]
+    public let phrases: [OCRPhrase]
 
-    public init(words: [OCRWordBox], lines: [OCRLineBox]) {
+    public init(words: [OCRWordBox], lines: [OCRLineBox], phrases: [OCRPhrase] = []) {
         self.words = words
         self.lines = lines
+        self.phrases = phrases
     }
 }
 

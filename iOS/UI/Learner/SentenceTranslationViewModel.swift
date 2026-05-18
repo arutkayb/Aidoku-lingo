@@ -205,48 +205,8 @@ extension SentenceTranslationViewModel {
     ///
     /// Marked `internal` so `SentenceTranslationViewModelTests` can call it directly.
     static func bubbleGroupedFallback(from lines: [OCRLineBox]) -> [SentenceGroup] {
-        guard !lines.isEmpty else { return [] }
-
-        // Thresholds — conservative to err on the side of more (smaller) groups.
-        let verticalFactor: CGFloat = 1.5
-        let horizontalOverlapFactor: CGFloat = 0.5
-
-        let avgHeight = lines.map(\.boundingBox.height).reduce(0, +) / CGFloat(lines.count)
-
-        var groups: [[Int]] = []   // each element = list of line indices in one group
-        var currentGroup: [Int] = [0]
-
-        for i in 1 ..< lines.count {
-            let prev = lines[i - 1].boundingBox
-            let curr = lines[i].boundingBox
-
-            // Vertical centre distance (Vision uses bottom-left origin, so centre.y = minY + height/2)
-            let prevCentreY = prev.minY + prev.height / 2
-            let currCentreY = curr.minY + curr.height / 2
-            let vertDist = abs(prevCentreY - currCentreY)
-
-            // Horizontal overlap
-            let overlapLeft = max(prev.minX, curr.minX)
-            let overlapRight = min(prev.maxX, curr.maxX)
-            let overlap = max(0, overlapRight - overlapLeft)
-            let minWidth = min(prev.width, curr.width)
-            let hOverlapRatio = minWidth > 0 ? overlap / minWidth : 0
-
-            let sameBubble = vertDist <= verticalFactor * avgHeight
-                && hOverlapRatio >= horizontalOverlapFactor
-
-            if sameBubble {
-                currentGroup.append(i)
-            } else {
-                groups.append(currentGroup)
-                currentGroup = [i]
-            }
-        }
-        groups.append(currentGroup)
-
-        // Convert index groups → SentenceGroup values.
-        // Fragment indices map 1-to-1 with line indices so we reuse them directly.
-        return groups.enumerated().map { _, indices in
+        let groups = BubbleGrouping.groupLinesIntoBubbles(lines)
+        return groups.map { indices in
             let text = indices.map { lines[$0].text }.joined(separator: " ")
             return SentenceGroup(fragmentIndices: indices, combinedText: text)
         }

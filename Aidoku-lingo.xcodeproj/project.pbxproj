@@ -637,6 +637,8 @@
 		LC900002000000000000001A /* FoundationModelsMWEDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */; };
 		LC900003000000000000001A /* CachingMWEDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900013000000000000001A /* CachingMWEDetectionService.swift */; };
 		LC900004000000000000001A /* MWEDetectionServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900014000000000000001A /* MWEDetectionServiceFactory.swift */; };
+		LC900005000000000000001A /* BubbleGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900015000000000000001A /* BubbleGrouping.swift */; };
+		LC900006000000000000001A /* MWEEnrichingOCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900016000000000000001A /* MWEEnrichingOCRService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1154,6 +1156,8 @@
 		LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsMWEDetectionService.swift; sourceTree = "<group>"; };
 		LC900013000000000000001A /* CachingMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingMWEDetectionService.swift; sourceTree = "<group>"; };
 		LC900014000000000000001A /* MWEDetectionServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEDetectionServiceFactory.swift; sourceTree = "<group>"; };
+		LC900015000000000000001A /* BubbleGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleGrouping.swift; sourceTree = "<group>"; };
+		LC900016000000000000001A /* MWEEnrichingOCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEEnrichingOCRService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2448,6 +2452,8 @@
 				LC0001C3000000000000001A /* OCRService.swift */,
 				LC0001C6000000000000001A /* OCRResultCache.swift */,
 				LC0001C8000000000000001A /* VisionOCRService.swift */,
+				LC900015000000000000001A /* BubbleGrouping.swift */,
+				LC900016000000000000001A /* MWEEnrichingOCRService.swift */,
 			);
 			path = OCR;
 			sourceTree = "<group>";
@@ -2996,6 +3002,8 @@
 				LC900002000000000000001A /* FoundationModelsMWEDetectionService.swift in Sources */,
 				LC900003000000000000001A /* CachingMWEDetectionService.swift in Sources */,
 				LC900004000000000000001A /* MWEDetectionServiceFactory.swift in Sources */,
+				LC900005000000000000001A /* BubbleGrouping.swift in Sources */,
+				LC900006000000000000001A /* MWEEnrichingOCRService.swift in Sources */,
 				LC0001C0000000000000001A /* OCRService.swift in Sources */,
 				LC0001C4000000000000001A /* OCRResultCache.swift in Sources */,
 				LC0001C7000000000000001A /* VisionOCRService.swift in Sources */,

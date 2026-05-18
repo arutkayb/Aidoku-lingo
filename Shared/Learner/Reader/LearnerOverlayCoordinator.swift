@@ -40,7 +40,13 @@ final class LearnerOverlayCoordinator {
     private init() {}
 
     private let ocrCache = OCRResultCache()
-    private lazy var ocr: OCRService = VisionOCRService(cache: ocrCache)
+    private lazy var ocr: OCRService = MWEEnrichingOCRService(
+        underlying: VisionOCRService(cache: ocrCache),
+        detector: MWEDetectionServiceFactory.shared,
+        isEnabled: {
+            UserDefaults.standard.object(forKey: "Learner.detectPhrases") as? Bool ?? true
+        }
+    )
     private var pageStates: [PageKey: PageState] = [:]
 
     // MARK: — Public API
