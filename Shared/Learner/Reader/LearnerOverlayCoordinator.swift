@@ -93,6 +93,7 @@ final class LearnerOverlayCoordinator {
 
             overlay.update(
                 words: result.words,
+                phrases: result.phrases,
                 vocabIndex: .shared,
                 language: languages.first ?? "de-DE",
                 pageContext: context
@@ -120,6 +121,7 @@ final class LearnerOverlayCoordinator {
         // Refresh badges with updated vocab index
         overlay.update(
             words: result.words,
+            phrases: result.phrases,
             vocabIndex: .shared,
             language: ocrLanguages().first ?? "de-DE",
             pageContext: context

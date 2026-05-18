@@ -59,6 +59,20 @@ final class WordLookupViewModel: ObservableObject {
         loadVocabState()
     }
 
+    /// Init for a phrase tap. Seeds `phraseKind` so the chip renders immediately,
+    /// and uses the cleaned phrase text as both surface form and lemma normalisation
+    /// source. The translation pipeline must be kicked off by the view via `loadPhraseTranslation()`.
+    init(phraseEvent: PhraseTapEvent) {
+        let phrase = phraseEvent.phrase
+        self.surfaceForm = VocabularyEntryObject.cleanSurfaceForm(phrase.text)
+        self.lemma = VocabularyEntryObject.normalize(phrase.text)
+        self.language = phraseEvent.language
+        self.mangaId = phraseEvent.pageContext.mangaId
+        self.sourceId = phraseEvent.pageContext.sourceId
+        self.phraseKind = phrase.kind
+        loadVocabState()
+    }
+
     /// Init for vocab-only mode (from Vocabulary list — no page context needed).
     init(entry: VocabularyEntryObject) {
         self.surfaceForm = entry.surfaceForm
@@ -120,7 +134,8 @@ final class WordLookupViewModel: ObservableObject {
                     surfaceForm: surfaceForm,
                     translation: result.translation,
                     sourceMangaId: mangaId.isEmpty ? nil : mangaId,
-                    sourceMangaSourceId: sourceId.isEmpty ? nil : sourceId
+                    sourceMangaSourceId: sourceId.isEmpty ? nil : sourceId,
+                    kind: phraseKind?.rawValue
                 )
             }
         } catch let err as TranslationError {
@@ -175,7 +190,8 @@ final class WordLookupViewModel: ObservableObject {
                 surfaceForm: surfaceForm,
                 translation: translation?.translation,
                 sourceMangaId: mangaId.isEmpty ? nil : mangaId,
-                sourceMangaSourceId: sourceId.isEmpty ? nil : sourceId
+                sourceMangaSourceId: sourceId.isEmpty ? nil : sourceId,
+                kind: phraseKind?.rawValue
             )
             isInVocab = true
         }
@@ -263,7 +279,8 @@ final class WordLookupViewModel: ObservableObject {
                     surfaceForm: surfaceForm,
                     translation: result.translation,
                     sourceMangaId: mangaId.isEmpty ? nil : mangaId,
-                    sourceMangaSourceId: sourceId.isEmpty ? nil : sourceId
+                    sourceMangaSourceId: sourceId.isEmpty ? nil : sourceId,
+                    kind: phraseKind?.rawValue
                 )
             }
         } catch {

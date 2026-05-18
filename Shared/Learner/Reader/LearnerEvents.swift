@@ -30,6 +30,19 @@ public struct WordTapEvent: Sendable {
     }
 }
 
+/// Carries the data emitted when the user taps a detected multi-word expression.
+public struct PhraseTapEvent: Sendable {
+    public let phrase: OCRPhrase
+    public let language: String
+    public let pageContext: LearnerPageContext
+
+    public init(phrase: OCRPhrase, language: String, pageContext: LearnerPageContext) {
+        self.phrase = phrase
+        self.language = language
+        self.pageContext = pageContext
+    }
+}
+
 /// Identifies a specific page in the reader.
 public struct LearnerPageContext: Sendable, Hashable {
     public let sourceId: String
@@ -56,6 +69,9 @@ public final class LearnerEvents {
 
     /// Fired when the user taps a recognized word region.
     public let wordTapped = PassthroughSubject<WordTapEvent, Never>()
+
+    /// Fired when the user single-taps a word that belongs to a detected phrase.
+    public let phraseTapped = PassthroughSubject<PhraseTapEvent, Never>()
 
     /// Fired when a sentence-translation is requested (from word sheet or long-press).
     /// `WordTapEvent?` is non-nil when triggered from a word lookup sheet.

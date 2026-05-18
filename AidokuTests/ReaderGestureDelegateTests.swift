@@ -43,14 +43,14 @@ import Testing
     // Tapping directly on a WordRegionControl should suppress the gesture
     @Test @MainActor func wordRegionControl_shouldNotReceive() {
         let box = OCRWordBox(text: "Test", boundingBox: .zero, confidence: 0.9, lineIndex: 0)
-        let control = WordRegionControl(wordBox: box)
+        let control = WordRegionControl(wordBox: box, wordIndex: 0)
         #expect(shouldReceiveTouch(on: control) == false)
     }
 
     // Tapping a child of a WordRegionControl (e.g. a badge label) should suppress
     @Test @MainActor func childOfWordRegionControl_shouldNotReceive() {
         let box = OCRWordBox(text: "Test", boundingBox: .zero, confidence: 0.9, lineIndex: 0)
-        let control = WordRegionControl(wordBox: box)
+        let control = WordRegionControl(wordBox: box, wordIndex: 0)
         let child = UILabel(frame: .zero)
         control.addSubview(child)
         #expect(shouldReceiveTouch(on: child) == false)

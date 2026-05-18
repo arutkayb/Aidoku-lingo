@@ -81,6 +81,42 @@ import Testing
     }
 }
 
+// MARK: — Phrase lookup map tests (Task 6)
+
+@Suite struct LearnerOverlayPhraseLookupTests {
+
+    private func phrase(_ kind: PhraseKind, indices: [Int]) -> OCRPhrase {
+        OCRPhrase(
+            text: indices.map { "w\($0)" }.joined(separator: " "),
+            kind: kind,
+            wordIndices: indices,
+            lineIndices: [0],
+            boundingBox: CGRect(x: 0, y: 0, width: 1, height: 0.1),
+            confidence: 0.9
+        )
+    }
+
+    @Test func buildPhraseLookup_singlePhrase_mapsAllIndices() {
+        let p = phrase(.idiom, indices: [1, 2, 3])
+        let map = LearnerOverlayView.buildPhraseLookup([p])
+        #expect(map.count == 3)
+        #expect(map[1] == p)
+        #expect(map[2] == p)
+        #expect(map[3] == p)
+        #expect(map[0] == nil)
+    }
+
+    @Test func buildPhraseLookup_overlap_leftmostWins() {
+        let leftmost = phrase(.idiom, indices: [2, 3])
+        let rightmost = phrase(.compound, indices: [3, 4])
+        let map = LearnerOverlayView.buildPhraseLookup([rightmost, leftmost])
+        // Both claim index 3; the one whose leftmost (2) is smaller wins.
+        #expect(map[3] == leftmost)
+        #expect(map[2] == leftmost)
+        #expect(map[4] == rightmost)
+    }
+}
+
 // MARK: — LearnerEvents tests
 
 @Suite struct LearnerEventsTests {
@@ -97,6 +133,30 @@ import Testing
             let ctx = LearnerPageContext(sourceId: "s", mangaId: "m", chapterId: "c", pageIndex: 0)
             let event = WordTapEvent(surfaceForm: "Buch", lemma: "buch", language: "de-DE", pageContext: ctx)
             LearnerEvents.shared.wordTapped.send(event)
+        }
+        #expect(expectationMet == true)
+    }
+
+    // Test 5b: phraseTapped publisher fires
+    @Test @MainActor func phraseTapped_publisherFires() async {
+        let expectationMet = await withCheckedContinuation { continuation in
+            var cancellable: AnyCancellable?
+            cancellable = LearnerEvents.shared.phraseTapped
+                .first()
+                .sink { _ in continuation.resume(returning: true) }
+            _ = cancellable
+
+            let ctx = LearnerPageContext(sourceId: "s", mangaId: "m", chapterId: "c", pageIndex: 0)
+            let phrase = OCRPhrase(
+                text: "kick the bucket",
+                kind: .idiom,
+                wordIndices: [0, 1, 2],
+                lineIndices: [0],
+                boundingBox: CGRect(x: 0, y: 0, width: 0.5, height: 0.05),
+                confidence: 0.9
+            )
+            let event = PhraseTapEvent(phrase: phrase, language: "en-US", pageContext: ctx)
+            LearnerEvents.shared.phraseTapped.send(event)
         }
         #expect(expectationMet == true)
     }

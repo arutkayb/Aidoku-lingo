@@ -61,6 +61,7 @@ class ReaderViewController: BaseObservingViewController {
 
     // MARK: — Learner
     private var wordTapSubscription: AnyCancellable?
+    private var phraseTapSubscription: AnyCancellable?
     private var sentenceTranslateSubscription: AnyCancellable?
 
     private lazy var reOCRBarButton: UIBarButtonItem = {
@@ -334,6 +335,11 @@ class ReaderViewController: BaseObservingViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] event in self?.presentWordLookup(event) }
 
+        // Subscribe to Learner phrase-tap events (single-tap on a word inside a detected phrase)
+        phraseTapSubscription = LearnerEvents.shared.phraseTapped
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in self?.presentPhraseLookup(event) }
+
         // Subscribe to sentence-translation requests (from word sheet button or long-press)
         sentenceTranslateSubscription = LearnerEvents.shared.sentenceTranslateRequested
             .receive(on: DispatchQueue.main)
@@ -361,6 +367,7 @@ class ReaderViewController: BaseObservingViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         wordTapSubscription?.cancel()
+        phraseTapSubscription?.cancel()
         sentenceTranslateSubscription?.cancel()
 
         if !chaptersToRemoveDownload.isEmpty {
@@ -547,6 +554,23 @@ class ReaderViewController: BaseObservingViewController {
 
     private func showWordLookupSheet(_ event: WordTapEvent) {
         let vc = UIHostingController(rootView: WordLookupSheet(event: event))
+        vc.sheetPresentationController?.detents = [.medium(), .large()]
+        vc.sheetPresentationController?.prefersGrabberVisible = true
+        present(vc, animated: true)
+    }
+
+    func presentPhraseLookup(_ event: PhraseTapEvent) {
+        if presentedViewController != nil {
+            dismiss(animated: true) { [weak self] in
+                self?.showPhraseLookupSheet(event)
+            }
+        } else {
+            showPhraseLookupSheet(event)
+        }
+    }
+
+    private func showPhraseLookupSheet(_ event: PhraseTapEvent) {
+        let vc = UIHostingController(rootView: WordLookupSheet(phraseEvent: event))
         vc.sheetPresentationController?.detents = [.medium(), .large()]
         vc.sheetPresentationController?.prefersGrabberVisible = true
         present(vc, animated: true)

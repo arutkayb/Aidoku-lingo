@@ -25,6 +25,14 @@ struct WordLookupSheet: View {
         self.vocabOnly = false
     }
 
+    // Init from a reader phrase-tap event. The view triggers `lookup(phrase:...)`
+    // on appear so the same translation pipeline runs.
+    init(phraseEvent: PhraseTapEvent) {
+        self._viewModel = StateObject(wrappedValue: WordLookupViewModel(phraseEvent: phraseEvent))
+        self.wordTapEvent = nil
+        self.vocabOnly = false
+    }
+
     // Init for vocab-list mode (no sentence translation button)
     init(entry: VocabularyEntryObject, vocabOnly: Bool = true) {
         self._viewModel = StateObject(wrappedValue: WordLookupViewModel(entry: entry))
@@ -39,6 +47,15 @@ struct WordLookupSheet: View {
 
                     // MARK: — Word header
                     VStack(alignment: .leading, spacing: 4) {
+                        if let kind = viewModel.phraseKind {
+                            Text(kind.displayName)
+                                .font(.caption.weight(.semibold))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(Color.accentColor.opacity(0.15))
+                                .foregroundColor(.accentColor)
+                                .clipShape(Capsule())
+                        }
                         if isEditing {
                             // The lemma (lookup key) stays immutable, so it's shown read-only
                             // above the editable surface-form field for context.

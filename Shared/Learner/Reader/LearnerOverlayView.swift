@@ -25,6 +25,8 @@ final class LearnerOverlayView: UIView {
 
     private var pageContext: LearnerPageContext?
     private var wordBoxes: [OCRWordBox] = []
+    private var phrases: [OCRPhrase] = []
+    private var wordIndexToPhrase: [Int: OCRPhrase] = [:]
     private var vocabIndex: VocabIndex = .shared
     private var language: String = "de-DE"
 
@@ -48,11 +50,14 @@ final class LearnerOverlayView: UIView {
     /// Updates the overlay with a fresh OCR result and vocab index snapshot.
     func update(
         words: [OCRWordBox],
+        phrases: [OCRPhrase] = [],
         vocabIndex: VocabIndex,
         language: String,
         pageContext: LearnerPageContext
     ) {
         self.wordBoxes = words
+        self.phrases = phrases
+        self.wordIndexToPhrase = Self.buildPhraseLookup(phrases)
         self.vocabIndex = vocabIndex
         self.language = language
         self.pageContext = pageContext
@@ -62,8 +67,35 @@ final class LearnerOverlayView: UIView {
     /// Removes all word regions and badges.
     func clear() {
         wordBoxes = []
+        phrases = []
+        wordIndexToPhrase = [:]
         pageContext = nil
         rebuild()
+    }
+
+    /// Builds the wordIndex → OCRPhrase lookup map. If multiple phrases claim the same
+    /// index (defensive: Task 2's overlap resolution should prevent this), the phrase
+    /// whose `wordIndices.first` is smallest wins.
+    static func buildPhraseLookup(_ phrases: [OCRPhrase]) -> [Int: OCRPhrase] {
+        var map: [Int: OCRPhrase] = [:]
+        for phrase in phrases {
+            guard let leftmost = phrase.wordIndices.first else { continue }
+            for index in phrase.wordIndices {
+                if let existing = map[index] {
+                    guard let existingLeftmost = existing.wordIndices.first else { continue }
+                    if leftmost < existingLeftmost {
+                        map[index] = phrase
+                    } else if leftmost == existingLeftmost {
+                        LogManager.logger.warn(
+                            "LearnerOverlayView: word index \(index) matched by two phrases with identical leftmost"
+                        )
+                    }
+                } else {
+                    map[index] = phrase
+                }
+            }
+        }
+        return map
     }
 
     /// Triggers an immediate rebuild of word regions after a zoom-scale change.
@@ -108,12 +140,28 @@ final class LearnerOverlayView: UIView {
 
         let viewSize = bounds.size
 
-        for box in wordBoxes {
+        // Phrase underlines render beneath the word tap targets (added to layer first).
+        for phrase in phrases {
+            let frame = visionToView(phrase.boundingBox, in: viewSize)
+            guard frame.width > 2, frame.height > 2 else { continue }
+            let underline = CAShapeLayer()
+            let underlineRect = CGRect(
+                x: frame.minX,
+                y: frame.maxY - 2,
+                width: frame.width,
+                height: 2
+            )
+            underline.path = UIBezierPath(rect: underlineRect).cgPath
+            underline.fillColor = UIColor.systemTeal.withAlphaComponent(0.55).cgColor
+            layer.addSublayer(underline)
+        }
+
+        for (index, box) in wordBoxes.enumerated() {
             let frame = visionToView(box.boundingBox, in: viewSize)
             guard frame.width > 2, frame.height > 2 else { continue }
 
             // Tappable word region
-            let control = WordRegionControl(wordBox: box)
+            let control = WordRegionControl(wordBox: box, wordIndex: index)
             control.frame = frame
             control.backgroundColor = UIColor.systemYellow.withAlphaComponent(0.25)
             control.layer.cornerRadius = 2
@@ -121,6 +169,9 @@ final class LearnerOverlayView: UIView {
             control.layer.borderColor = UIColor.systemYellow.withAlphaComponent(0.5).cgColor
             control.addTarget(self, action: #selector(wordTapped(_:)), for: .touchUpInside)
             control.accessibilityLabel = box.text
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(wordLongPressed(_:)))
+            longPress.minimumPressDuration = 0.5
+            control.addGestureRecognizer(longPress)
             addSubview(control)
 
             // Familiarity badge
@@ -138,6 +189,24 @@ final class LearnerOverlayView: UIView {
     @objc private func wordTapped(_ sender: WordRegionControl) {
         guard let pageContext else { return }
         let box = sender.wordBox
+        if let phrase = wordIndexToPhrase[sender.wordIndex] {
+            let event = PhraseTapEvent(phrase: phrase, language: language, pageContext: pageContext)
+            Task { @MainActor in
+                LearnerEvents.shared.phraseTapped.send(event)
+            }
+            return
+        }
+        sendWordTapEvent(for: box, pageContext: pageContext)
+    }
+
+    @objc private func wordLongPressed(_ recognizer: UILongPressGestureRecognizer) {
+        guard recognizer.state == .began,
+              let control = recognizer.view as? WordRegionControl,
+              let pageContext else { return }
+        sendWordTapEvent(for: control.wordBox, pageContext: pageContext)
+    }
+
+    private func sendWordTapEvent(for box: OCRWordBox, pageContext: LearnerPageContext) {
         let lemma = VocabularyEntryObject.normalize(box.text)
         let event = WordTapEvent(
             surfaceForm: box.text,
@@ -222,9 +291,12 @@ final class LearnerOverlayView: UIView {
 /// filtering without a back-reference to the overlay. (Task 2)
 final class WordRegionControl: UIControl {
     let wordBox: OCRWordBox
+    /// Absolute index into the OCRResult.words array; used to look up phrase membership.
+    let wordIndex: Int
 
-    init(wordBox: OCRWordBox) {
+    init(wordBox: OCRWordBox, wordIndex: Int) {
         self.wordBox = wordBox
+        self.wordIndex = wordIndex
         super.init(frame: .zero)
     }
 

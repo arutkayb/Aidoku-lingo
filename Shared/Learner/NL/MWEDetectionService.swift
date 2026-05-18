@@ -17,6 +17,16 @@ public enum PhraseKind: String, Codable, Sendable, Hashable {
     case idiom
     case phrasalVerb
     case namedEntity
+
+    /// Localized display name for chip rendering in `WordLookupSheet`.
+    public var displayName: String {
+        switch self {
+        case .compound:    return NSLocalizedString("LEARNER_PHRASE_KIND_COMPOUND", comment: "")
+        case .idiom:       return NSLocalizedString("LEARNER_PHRASE_KIND_IDIOM", comment: "")
+        case .phrasalVerb: return NSLocalizedString("LEARNER_PHRASE_KIND_PHRASAL_VERB", comment: "")
+        case .namedEntity: return NSLocalizedString("LEARNER_PHRASE_KIND_NAMED_ENTITY", comment: "")
+        }
+    }
 }
 
 // MARK: — Input types
