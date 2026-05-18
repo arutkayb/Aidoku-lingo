@@ -148,7 +148,6 @@
 		FB1DD8592EF049210007FC78 /* LiquidLensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1DD8582EF0491C0007FC78 /* LiquidLensView.swift */; };
 		FB1DD8932EF057EF0007FC78 /* AddSourceFilterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1DD8922EF057EB0007FC78 /* AddSourceFilterMenu.swift */; };
 		FB1DD89B2EF0C7710007FC78 /* IncognitoBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1DD89A2EF0C7700007FC78 /* IncognitoBannerView.swift */; };
-
 		FB1F553228AFC9FD00CFE182 /* ReadingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1F553128AFC9FD00CFE182 /* ReadingMode.swift */; };
 		FB1F553428AFE78600CFE182 /* ReaderDoublePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1F553328AFE78600CFE182 /* ReaderDoublePageViewController.swift */; };
 		FB2202142F69DE2F008DD26A /* LibraryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2202132F69DE28008DD26A /* LibraryFilter.swift */; };
@@ -627,13 +626,17 @@
 		LC00020D000000000000001A /* LearnerStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000208000000000000001A /* LearnerStrings.swift */; };
 		LC00020E000000000000001A /* LearnerStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000208000000000000001A /* LearnerStrings.swift */; };
 		LC000211000000000000001A /* SentenceTranslationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC00020F000000000000001A /* SentenceTranslationSheet.swift */; };
-		LC000225000000000000001A /* LearnerOCRLanguagesPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000224000000000000001A /* LearnerOCRLanguagesPicker.swift */; };
 		LC000213000000000000001A /* SentenceTranslationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000210000000000000001A /* SentenceTranslationViewModel.swift */; };
 		LC00021A000000000000001A /* VocabularyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000215000000000000001A /* VocabularyListViewModel.swift */; };
 		LC00021C000000000000001A /* VocabularyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000216000000000000001A /* VocabularyListView.swift */; };
 		LC00021E000000000000001A /* FlashcardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000217000000000000001A /* FlashcardsViewModel.swift */; };
 		LC000220000000000000001A /* FlashcardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000218000000000000001A /* FlashcardsView.swift */; };
 		LC000222000000000000001A /* LearnerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000219000000000000001A /* LearnerTabView.swift */; };
+		LC000225000000000000001A /* LearnerOCRLanguagesPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC000224000000000000001A /* LearnerOCRLanguagesPicker.swift */; };
+		LC900001000000000000001A /* MWEDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900011000000000000001A /* MWEDetectionService.swift */; };
+		LC900002000000000000001A /* FoundationModelsMWEDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */; };
+		LC900003000000000000001A /* CachingMWEDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900013000000000000001A /* CachingMWEDetectionService.swift */; };
+		LC900004000000000000001A /* MWEDetectionServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900014000000000000001A /* MWEDetectionServiceFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -730,8 +733,8 @@
 		FB1B482C277CE18D0056D02C /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		FB1B482D277CE18D0056D02C /* AidokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AidokuApp.swift; sourceTree = "<group>"; };
 		FB1B4830277CE1920056D02C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FB1B4835277CE1920056D02C /* Aidoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aidoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB1B483B277CE1920056D02C /* Aidoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aidoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB1B4835277CE1920056D02C /* Aidoku-lingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aidoku-lingo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB1B483B277CE1920056D02C /* Aidoku-lingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aidoku-lingo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1B483D277CE1920056D02C /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		FB1B4850277CE2300056D02C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB1B4852277CE4510056D02C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -751,7 +754,6 @@
 		FB1DD8582EF0491C0007FC78 /* LiquidLensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidLensView.swift; sourceTree = "<group>"; };
 		FB1DD8922EF057EB0007FC78 /* AddSourceFilterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSourceFilterMenu.swift; sourceTree = "<group>"; };
 		FB1DD89A2EF0C7700007FC78 /* IncognitoBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncognitoBannerView.swift; sourceTree = "<group>"; };
-
 		FB1F553128AFC9FD00CFE182 /* ReadingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingMode.swift; sourceTree = "<group>"; };
 		FB1F553328AFE78600CFE182 /* ReaderDoublePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderDoublePageViewController.swift; sourceTree = "<group>"; };
 		FB2202132F69DE28008DD26A /* LibraryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryFilter.swift; sourceTree = "<group>"; };
@@ -1132,7 +1134,6 @@
 		LC0001F4000000000000001A /* CoreDataManager+Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Vocabulary.swift"; sourceTree = "<group>"; };
 		LC0001F5000000000000001A /* BackupVocabularyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupVocabularyEntry.swift; sourceTree = "<group>"; };
 		LC0001F7000000000000001A /* 0.9.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.0.xcdatamodel; sourceTree = "<group>"; };
-		LC000227000000000000001A /* 0.9.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.1.xcdatamodel; sourceTree = "<group>"; };
 		LC000200000000000000001A /* LearnerEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerEvents.swift; sourceTree = "<group>"; };
 		LC000201000000000000001A /* VocabIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabIndex.swift; sourceTree = "<group>"; };
 		LC000202000000000000001A /* LearnerOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerOverlayView.swift; sourceTree = "<group>"; };
@@ -1142,12 +1143,17 @@
 		LC000208000000000000001A /* LearnerStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerStrings.swift; sourceTree = "<group>"; };
 		LC00020F000000000000001A /* SentenceTranslationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceTranslationSheet.swift; sourceTree = "<group>"; };
 		LC000210000000000000001A /* SentenceTranslationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceTranslationViewModel.swift; sourceTree = "<group>"; };
-		LC000224000000000000001A /* LearnerOCRLanguagesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerOCRLanguagesPicker.swift; sourceTree = "<group>"; };
 		LC000215000000000000001A /* VocabularyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListViewModel.swift; sourceTree = "<group>"; };
 		LC000216000000000000001A /* VocabularyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyListView.swift; sourceTree = "<group>"; };
 		LC000217000000000000001A /* FlashcardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsViewModel.swift; sourceTree = "<group>"; };
 		LC000218000000000000001A /* FlashcardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsView.swift; sourceTree = "<group>"; };
 		LC000219000000000000001A /* LearnerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerTabView.swift; sourceTree = "<group>"; };
+		LC000224000000000000001A /* LearnerOCRLanguagesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerOCRLanguagesPicker.swift; sourceTree = "<group>"; };
+		LC000227000000000000001A /* 0.9.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.1.xcdatamodel; sourceTree = "<group>"; };
+		LC900011000000000000001A /* MWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEDetectionService.swift; sourceTree = "<group>"; };
+		LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsMWEDetectionService.swift; sourceTree = "<group>"; };
+		LC900013000000000000001A /* CachingMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingMWEDetectionService.swift; sourceTree = "<group>"; };
+		LC900014000000000000001A /* MWEDetectionServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEDetectionServiceFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -1454,7 +1460,6 @@
 				FBD6A40128525C77007116C9 /* Localization */,
 				FB16E6262DF4D85500E09ED5 /* Utilities */,
 				FB1B4830277CE1920056D02C /* Assets.xcassets */,
-
 				FB1B482B277CE18D0056D02C /* Aidoku.xcdatamodeld */,
 				LC0001BD000000000000001A /* Learner */,
 			);
@@ -1464,8 +1469,8 @@
 		FB1B4836277CE1920056D02C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FB1B4835277CE1920056D02C /* Aidoku.app */,
-				FB1B483B277CE1920056D02C /* Aidoku.app */,
+				FB1B4835277CE1920056D02C /* Aidoku-lingo.app */,
+				FB1B483B277CE1920056D02C /* Aidoku-lingo.app */,
 				FBB44E722EC635620032EFBB /* AidokuTests.xctest */,
 			);
 			name = Products;
@@ -2417,6 +2422,7 @@
 			children = (
 				LC0001CA000000000000001A /* OCR */,
 				LC0001BF000000000000001A /* Translation */,
+				LC900020000000000000001A /* NL */,
 				LC000204000000000000001A /* Reader */,
 				LC000208000000000000001A /* LearnerStrings.swift */,
 			);
@@ -2474,6 +2480,17 @@
 			path = Learner;
 			sourceTree = "<group>";
 		};
+		LC900020000000000000001A /* NL */ = {
+			isa = PBXGroup;
+			children = (
+				LC900011000000000000001A /* MWEDetectionService.swift */,
+				LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */,
+				LC900013000000000000001A /* CachingMWEDetectionService.swift */,
+				LC900014000000000000001A /* MWEDetectionServiceFactory.swift */,
+			);
+			path = NL;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2503,7 +2520,7 @@
 				FB2C83982E43F074003CA85F /* SwiftSoup */,
 			);
 			productName = "Aidoku (iOS)";
-			productReference = FB1B4835277CE1920056D02C /* Aidoku.app */;
+			productReference = FB1B4835277CE1920056D02C /* Aidoku-lingo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FB1B483A277CE1920056D02C /* Aidoku (macOS) */ = {
@@ -2525,7 +2542,7 @@
 				FBFDF5F92DF799340064F603 /* AidokuRunner */,
 			);
 			productName = "Aidoku (macOS)";
-			productReference = FB1B483B277CE1920056D02C /* Aidoku.app */;
+			productReference = FB1B483B277CE1920056D02C /* Aidoku-lingo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FBB44E712EC635620032EFBB /* AidokuTests */ = {
@@ -2575,7 +2592,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FB1B4829277CE18D0056D02C /* Build configuration list for PBXProject "Aidoku" */;
+			buildConfigurationList = FB1B4829277CE18D0056D02C /* Build configuration list for PBXProject "Aidoku-lingo" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -2654,7 +2671,6 @@
 				FB1B4846277CE1920056D02C /* Assets.xcassets in Resources */,
 				FB4ADCA72815A75700F6D7FB /* InfoPlist.strings in Resources */,
 				FB4ADCA22814DD4600F6D7FB /* Localizable.strings in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2663,7 +2679,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB1B4847277CE1920056D02C /* Assets.xcassets in Resources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2977,6 +2992,10 @@
 				LC0001B4000000000000001A /* CompositeTranslationService.swift in Sources */,
 				LC0001B6000000000000001A /* CachingTranslationService.swift in Sources */,
 				LC0001BA000000000000001A /* TranslationServiceFactory.swift in Sources */,
+				LC900001000000000000001A /* MWEDetectionService.swift in Sources */,
+				LC900002000000000000001A /* FoundationModelsMWEDetectionService.swift in Sources */,
+				LC900003000000000000001A /* CachingMWEDetectionService.swift in Sources */,
+				LC900004000000000000001A /* MWEDetectionServiceFactory.swift in Sources */,
 				LC0001C0000000000000001A /* OCRService.swift in Sources */,
 				LC0001C4000000000000001A /* OCRResultCache.swift in Sources */,
 				LC0001C7000000000000001A /* VisionOCRService.swift in Sources */,
@@ -3557,6 +3576,7 @@
 				);
 				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.aidoku.Aidoku-lingo";
+				PRODUCT_MODULE_NAME = Aidoku;
 				PRODUCT_NAME = "Aidoku-lingo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -3602,6 +3622,7 @@
 				);
 				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.aidoku.Aidoku-lingo";
+				PRODUCT_MODULE_NAME = Aidoku;
 				PRODUCT_NAME = "Aidoku-lingo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -3743,7 +3764,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FB1B4829277CE18D0056D02C /* Build configuration list for PBXProject "Aidoku" */ = {
+		FB1B4829277CE18D0056D02C /* Build configuration list for PBXProject "Aidoku-lingo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB1B4848277CE1920056D02C /* Debug */,
