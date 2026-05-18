@@ -1152,6 +1152,7 @@
 		LC000219000000000000001A /* LearnerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerTabView.swift; sourceTree = "<group>"; };
 		LC000224000000000000001A /* LearnerOCRLanguagesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerOCRLanguagesPicker.swift; sourceTree = "<group>"; };
 		LC000227000000000000001A /* 0.9.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.1.xcdatamodel; sourceTree = "<group>"; };
+		LC900030000000000000001A /* 0.9.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.2.xcdatamodel; sourceTree = "<group>"; };
 		LC900011000000000000001A /* MWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEDetectionService.swift; sourceTree = "<group>"; };
 		LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsMWEDetectionService.swift; sourceTree = "<group>"; };
 		LC900013000000000000001A /* CachingMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingMWEDetectionService.swift; sourceTree = "<group>"; };
@@ -3946,6 +3947,7 @@
 		FB1B482B277CE18D0056D02C /* Aidoku.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				LC900030000000000000001A /* 0.9.2.xcdatamodel */,
 				LC000227000000000000001A /* 0.9.1.xcdatamodel */,
 				LC0001F7000000000000001A /* 0.9.0.xcdatamodel */,
 				FB0AB8922F50B81800AF1451 /* 0.8.2.xcdatamodel */,
@@ -3959,7 +3961,7 @@
 				FBCA1B2228889F1D007149C5 /* 0.5.xcdatamodel */,
 				FB1B482C277CE18D0056D02C /* Shared.xcdatamodel */,
 			);
-			currentVersion = LC000227000000000000001A /* 0.9.1.xcdatamodel */;
+			currentVersion = LC900030000000000000001A /* 0.9.2.xcdatamodel */;
 			path = Aidoku.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

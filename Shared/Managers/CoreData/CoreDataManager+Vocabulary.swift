@@ -74,6 +74,7 @@ extension CoreDataManager {
         translation: String?,
         sourceMangaId: String?,
         sourceMangaSourceId: String?,
+        kind: String? = nil,
         context: NSManagedObjectContext? = nil
     ) -> VocabularyEntryObject {
         let ctx = context ?? self.context
@@ -102,7 +103,8 @@ extension CoreDataManager {
             surfaceForm: displaySurface,
             translation: translation,
             sourceMangaId: sourceMangaId,
-            sourceMangaSourceId: sourceMangaSourceId
+            sourceMangaSourceId: sourceMangaSourceId,
+            kind: kind
         )
         try? ctx.save()
         return entry

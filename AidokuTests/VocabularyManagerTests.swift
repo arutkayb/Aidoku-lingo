@@ -260,5 +260,76 @@ import Testing
         #expect(VocabularyEntryObject.cleanSurfaceForm("!!!") == "")
         #expect(VocabularyEntryObject.cleanSurfaceForm("") == "")
     }
+
+    // MARK: — Phrase support (Task 5)
+
+    @Test func upsert_phraseEntry_storesKind() throws {
+        let container = makeInMemoryContainer()
+        let ctx = container.viewContext
+        let entry = CoreDataManager.shared.upsertVocabularyEntry(
+            language: "en-US",
+            lemma: "kick the bucket",
+            surfaceForm: "Kick the Bucket",
+            translation: "ölmek",
+            sourceMangaId: nil,
+            sourceMangaSourceId: nil,
+            kind: "idiom",
+            context: ctx
+        )
+        #expect(entry.kind == "idiom")
+        let fetched = CoreDataManager.shared.getVocabularyEntry(language: "en-US", lemma: "kick the bucket", context: ctx)
+        #expect(fetched?.kind == "idiom")
+    }
+
+    @Test func upsert_phraseEntry_dedupesByLanguageAndLemma() throws {
+        let container = makeInMemoryContainer()
+        let ctx = container.viewContext
+        _ = CoreDataManager.shared.upsertVocabularyEntry(
+            language: "en-US", lemma: "kick the bucket", surfaceForm: "kick the bucket",
+            translation: "ölmek", sourceMangaId: nil, sourceMangaSourceId: nil,
+            kind: "idiom", context: ctx
+        )
+        _ = CoreDataManager.shared.upsertVocabularyEntry(
+            language: "en-US", lemma: "kick the bucket", surfaceForm: "KICK the BUCKET",
+            translation: "ölmek (revised)", sourceMangaId: nil, sourceMangaSourceId: nil,
+            kind: "idiom", context: ctx
+        )
+        let req = VocabularyEntryObject.fetchRequest()
+        req.predicate = NSPredicate(format: "language == %@ AND lemma == %@", "en-US", "kick the bucket")
+        let rows = try ctx.fetch(req)
+        #expect(rows.count == 1)
+    }
+
+    @Test func normalize_preservesWhitespace() {
+        #expect(VocabularyEntryObject.normalize("Kick the Bucket") == "kick the bucket")
+        #expect(VocabularyEntryObject.normalize("  the  cat  ") == "the cat")
+        // Single-word backwards compat.
+        #expect(VocabularyEntryObject.normalize("Wort") == "wort")
+        #expect(VocabularyEntryObject.normalize(" Wort ") == "wort")
+    }
+
+    @Test func cleanSurfaceForm_preservesWhitespaceMultiToken() {
+        #expect(VocabularyEntryObject.cleanSurfaceForm("Kick the Bucket..!") == "Kick the Bucket")
+        #expect(VocabularyEntryObject.cleanSurfaceForm("the cat") == "the cat")
+        // Single-token backwards compat.
+        #expect(VocabularyEntryObject.cleanSurfaceForm("NEIN..!") == "NEIN")
+    }
+
+    @Test func isPhrase_trueForWhitespaceLemma() throws {
+        let container = makeInMemoryContainer()
+        let ctx = container.viewContext
+        let phrase = CoreDataManager.shared.upsertVocabularyEntry(
+            language: "en-US", lemma: "kick the bucket", surfaceForm: "Kick the Bucket",
+            translation: nil, sourceMangaId: nil, sourceMangaSourceId: nil,
+            kind: "idiom", context: ctx
+        )
+        let word = CoreDataManager.shared.upsertVocabularyEntry(
+            language: "en-US", lemma: "buch", surfaceForm: "Buch",
+            translation: nil, sourceMangaId: nil, sourceMangaSourceId: nil,
+            context: ctx
+        )
+        #expect(phrase.isPhrase == true)
+        #expect(word.isPhrase == false)
+    }
 }
 

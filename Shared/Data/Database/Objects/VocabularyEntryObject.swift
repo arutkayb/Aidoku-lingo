@@ -31,13 +31,50 @@ public class VocabularyEntryObject: NSManagedObject {
         Identifier(language: language, lemma: lemma)
     }
 
+    /// Returns true if the raw string looks like a multi-word phrase: contains
+    /// internal whitespace between two letter runs (after trimming edges).
+    static func looksLikePhrase(_ raw: String) -> Bool {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmed.count >= 3 else { return false }
+        let scalars = Array(trimmed.unicodeScalars)
+        for i in 1 ..< (scalars.count - 1) where CharacterSet.whitespaces.contains(scalars[i]) {
+            let leftIsLetter = CharacterSet.letters.contains(scalars[i - 1])
+            let rightIsLetter = CharacterSet.letters.contains(scalars[i + 1])
+            if leftIsLetter && rightIsLetter { return true }
+        }
+        return false
+    }
+
+    /// Collapses internal whitespace runs to single spaces and trims edges.
+    static func collapseWhitespace(_ raw: String) -> String {
+        raw.trimmingCharacters(in: .whitespacesAndNewlines)
+            .split(whereSeparator: { $0.isWhitespace })
+            .joined(separator: " ")
+    }
+
     /// Returns the largest "word-shaped" segment of `raw`, preserving case.
     /// Splits on any character that is not a letter, digit, apostrophe, or hyphen,
     /// keeps the longest remaining segment, and trims edge apostrophes/hyphens.
     /// Used for the visible surface form on a vocab entry — strips OCR/stutter
     /// junk like "NEIN..!" → "NEIN" while keeping "auto-mobile", "it's" intact.
     /// Returns an empty string if `raw` contains no usable letter/digit run.
+    ///
+    /// For multi-word phrases (whitespace between letter runs), preserves
+    /// whitespace and applies the per-token cleanup individually so
+    /// "Kick the Bucket..!" → "Kick the Bucket".
     static func cleanSurfaceForm(_ raw: String) -> String {
+        if looksLikePhrase(raw) {
+            let collapsed = collapseWhitespace(raw)
+            let cleanedTokens = collapsed
+                .split(separator: " ")
+                .map { cleanSingleSegment(String($0)) }
+                .filter { !$0.isEmpty }
+            return cleanedTokens.joined(separator: " ")
+        }
+        return cleanSingleSegment(raw)
+    }
+
+    private static func cleanSingleSegment(_ raw: String) -> String {
         let inWord: Set<Unicode.Scalar> = ["'", "\u{2019}", "-"]
         var segments: [String] = []
         var current = String.UnicodeScalarView()
@@ -62,9 +99,16 @@ public class VocabularyEntryObject: NSManagedObject {
 
     /// Normalises a lemma for storage: same split/longest-segment rule as
     /// `cleanSurfaceForm` but lowercased. Used as the row's primary lookup key
-    /// (case-insensitive identity).
+    /// (case-insensitive identity). Multi-word phrases preserve whitespace.
     static func normalize(_ lemma: String) -> String {
         cleanSurfaceForm(lemma).lowercased()
+    }
+
+    /// True for entries that store a multi-word expression. Belt-and-suspenders
+    /// check: trusts either the explicit `kind` raw value or the lemma's shape.
+    public var isPhrase: Bool {
+        if let k = kind, !k.isEmpty { return true }
+        return lemma.contains(" ")
     }
 
     /// Upserts fields from caller-supplied values. Does NOT save the context.
@@ -74,7 +118,8 @@ public class VocabularyEntryObject: NSManagedObject {
         surfaceForm: String,
         translation: String?,
         sourceMangaId: String?,
-        sourceMangaSourceId: String?
+        sourceMangaSourceId: String?,
+        kind: String? = nil
     ) {
         self.language = language
         self.lemma = lemma
@@ -83,6 +128,9 @@ public class VocabularyEntryObject: NSManagedObject {
         self.sourceMangaId = sourceMangaId
         self.sourceMangaSourceId = sourceMangaSourceId
         self.dateLastSeen = Date()
+        if let kind {
+            self.kind = kind
+        }
     }
 }
 
@@ -102,6 +150,8 @@ extension VocabularyEntryObject {
     @NSManaged public var sourceMangaId: String?
     @NSManaged public var sourceMangaSourceId: String?
     @NSManaged public var notes: String?
+    /// Raw value of `PhraseKind` for multi-word-expression entries; nil for single words.
+    @NSManaged public var kind: String?
 
     @NSManaged public var progress: FamiliarityProgressObject?
     @NSManaged public var flashcardState: FlashcardStateObject?
