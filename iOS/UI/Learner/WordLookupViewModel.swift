@@ -33,6 +33,9 @@ final class WordLookupViewModel: ObservableObject {
     @Published var isDone: Bool = false
     @Published var loadError: TranslationError?
     @Published var isLoading: Bool = false
+    /// Set when the lookup represents a phrase (idiom, compound, phrasal verb, named entity).
+    /// `nil` for single-word lookups. Drives the sheet's chip rendering.
+    @Published var phraseKind: PhraseKind?
 
     // MARK: — Edit state (vocab-only mode)
 
@@ -92,13 +95,21 @@ final class WordLookupViewModel: ObservableObject {
 
     // MARK: — Translation
 
+    /// Optional service injection for tests. Production reads
+    /// `TranslationServiceFactory.shared.service` per call.
+    var translationService: (any TranslationService)?
+
+    private func resolveService() -> any TranslationService {
+        translationService ?? TranslationServiceFactory.shared.service
+    }
+
     func loadTranslation() async {
         guard translation == nil else { return }
         isLoading = true
         loadError = nil
         do {
             let targetLang = UserDefaults.standard.string(forKey: "Learner.targetLanguage") ?? "en"
-            let result = try await TranslationServiceFactory.shared.service
+            let result = try await resolveService()
                 .translateWord(lemma, sourceLanguage: language, targetLanguage: targetLang)
             translation = result
             // Cache in CoreData if word is in vocab
@@ -112,6 +123,31 @@ final class WordLookupViewModel: ObservableObject {
                     sourceMangaSourceId: sourceId.isEmpty ? nil : sourceId
                 )
             }
+        } catch let err as TranslationError {
+            loadError = err
+        } catch {
+            loadError = .networkError(underlying: error)
+        }
+        isLoading = false
+    }
+
+    // MARK: — Phrase lookup
+
+    /// Translate a phrase (verbatim text including whitespace) and publish the result
+    /// alongside `phraseKind` so the sheet renders the appropriate chip.
+    func lookup(
+        phrase: String,
+        kind: PhraseKind,
+        sourceLanguage: String,
+        targetLanguage: String
+    ) async {
+        phraseKind = kind
+        isLoading = true
+        loadError = nil
+        do {
+            let result = try await resolveService()
+                .translateWord(phrase, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage)
+            translation = result
         } catch let err as TranslationError {
             loadError = err
         } catch {

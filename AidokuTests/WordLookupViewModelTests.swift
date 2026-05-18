@@ -150,6 +150,48 @@ private func makeEvent(word: String = "Buch", manga: String = "test-manga-wlvm")
         #expect(entry == nil)
     }
 
+    // Test 7: phrase lookup calls translateWord with the verbatim phrase string. (Task 4)
+    @Test @MainActor func phraseLookup_callsTranslateWordWithVerbatimPhrase() async {
+        let stub = StubTranslationService()
+        stub.wordResult = WordTranslation(lemma: "kick the bucket", translation: "ölmek")
+        let vm = WordLookupViewModel(event: makeEvent(word: "kick"))
+        vm.translationService = stub
+
+        await vm.lookup(
+            phrase: "kick the bucket",
+            kind: .idiom,
+            sourceLanguage: "en-US",
+            targetLanguage: "tr-TR"
+        )
+        #expect(stub.wordCallCount == 1)
+        #expect(vm.translation?.translation == "ölmek")
+        #expect(vm.phraseKind == .idiom)
+    }
+
+    // Test 8: cache hit short-circuits via CachingTranslationService. (Task 4)
+    @Test @MainActor func phraseLookup_cachedSecondCall_returnsImmediately() async {
+        let stub = StubTranslationService()
+        stub.wordResult = WordTranslation(lemma: "kick the bucket", translation: "ölmek")
+        let caching = CachingTranslationService(wrapping: stub)
+        let vm1 = WordLookupViewModel(event: makeEvent(word: "kick"))
+        vm1.translationService = caching
+        let vm2 = WordLookupViewModel(event: makeEvent(word: "kick"))
+        vm2.translationService = caching
+
+        await vm1.lookup(phrase: "kick the bucket", kind: .idiom, sourceLanguage: "en-US", targetLanguage: "tr-TR")
+        await vm2.lookup(phrase: "kick the bucket", kind: .idiom, sourceLanguage: "en-US", targetLanguage: "tr-TR")
+        #expect(stub.wordCallCount == 1, "Caching layer should reuse the phrase translation")
+    }
+
+    // Test 9: phraseKind is published verbatim. (Task 4)
+    @Test @MainActor func phraseLookup_publishedKindEqualsInput() async {
+        let stub = StubTranslationService()
+        let vm = WordLookupViewModel(event: makeEvent(word: "look"))
+        vm.translationService = stub
+        await vm.lookup(phrase: "look out", kind: .phrasalVerb, sourceLanguage: "en-US", targetLanguage: "tr-TR")
+        #expect(vm.phraseKind == .phrasalVerb)
+    }
+
     // Test 6 (original): requestSentenceTranslation emits event
     @Test @MainActor func requestSentenceTranslation_emitsEvent() async {
         let vm = WordLookupViewModel(event: makeEvent())
