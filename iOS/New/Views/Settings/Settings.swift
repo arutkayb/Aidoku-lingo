@@ -623,6 +623,11 @@ extension Settings {
                 value: .toggle(.init())
             ),
             .init(
+                key: "Learner.detectPhrases",
+                title: NSLocalizedString("LEARNER_DETECT_PHRASES"),
+                value: .toggle(.init(defaultValue: true))
+            ),
+            .init(
                 key: "Learner.targetLanguage",
                 title: NSLocalizedString("LEARNER_TARGET_LANGUAGE"),
                 value: .select(.init(

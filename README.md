@@ -17,6 +17,7 @@ A personal-use fork of [Aidoku/Aidoku](https://github.com/Aidoku/Aidoku) focused
 - **OCR overlay** — tap any panel to extract text via on-device Vision
 - **Dictionary lookup** — tap a word for definition, reading, and pitch accent
 - **Sentence translation** — translate full dialogue using Apple Translation (requires iOS 18+)
+- **Phrase and idiom detection** — on-device Foundation Models scan each page for compound nouns, idioms, phrasal verbs, and multi-word named entities (English, German, Turkish). Single-tap a phrase to translate it as a unit; long-press the same word to translate the single word instead. Toggle in Settings → Learner → "Detect phrases and idioms" (default on).
 - **Vocabulary flashcards** — save looked-up words and review them with spaced repetition
 
 ## Screenshots
@@ -28,7 +29,7 @@ A personal-use fork of [Aidoku/Aidoku](https://github.com/Aidoku/Aidoku) focused
 ## Limitations
 
 - **Reader**: iOS 15+
-- **Learner mode**: iOS 18+ — depends on the [Apple Translation framework](https://developer.apple.com/documentation/translation), which requires iOS 18 and a downloaded language pack
+- **Learner mode**: iOS 26+ — phrase detection runs on Apple Foundation Models, and sentence translation depends on the [Apple Translation framework](https://developer.apple.com/documentation/translation) (downloaded language pack required)
 - Personal-use only — not distributed via any app marketplace or beta platform
 
 ## Setup
