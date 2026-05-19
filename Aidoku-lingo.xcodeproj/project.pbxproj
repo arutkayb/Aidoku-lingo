@@ -3547,6 +3547,7 @@
 				);
 				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.aidoku.Aidoku-lingo";
+				PRODUCT_MODULE_NAME = Aidoku;
 				PRODUCT_NAME = "Aidoku-lingo";
 				SWIFT_MODULE_NAME = Aidoku;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3593,6 +3594,7 @@
 				);
 				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.aidoku.Aidoku-lingo";
+				PRODUCT_MODULE_NAME = Aidoku;
 				PRODUCT_NAME = "Aidoku-lingo";
 				SWIFT_MODULE_NAME = Aidoku;
 				PROVISIONING_PROFILE_SPECIFIER = "";
