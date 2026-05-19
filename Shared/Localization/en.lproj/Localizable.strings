@@ -828,3 +828,6 @@
 "LEARNER_DISABLE_LANG_CORRECTION" = "Disable Language Correction";
 "LEARNER_RE_OCR_PAGE" = "Re-OCR This Page";
 "LEARNER_OCR_LANGUAGES_FOOTER" = "Select languages to recognize. More languages may slow OCR and reduce per-language accuracy. Enable \"Disable Language Correction\" if uppercase words with umlauts are mangled.";
+"LEARNER_CLEAR_CACHE_BUTTON" = "Clear Learner Cache";
+"LEARNER_CLEAR_CACHE_TITLE" = "Clear Learner Cache";
+"LEARNER_CLEAR_CACHE_CONFIRM_MESSAGE" = "This will permanently delete your saved vocabulary, flashcard progress, and OCR/translation caches. Settings will be preserved. This cannot be undone.";

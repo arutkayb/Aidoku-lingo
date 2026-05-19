@@ -198,4 +198,20 @@ extension CoreDataManager {
         progress.level = 3
         try? ctx.save()
     }
+
+    // MARK: — Bulk delete
+
+    /// Removes all vocabulary entries and their associated progress and flashcard state rows.
+    /// Uses context-level deletion (not NSBatchDeleteRequest) so cascade rules are respected
+    /// and the method works correctly against in-memory stores (e.g., during unit tests).
+    func clearVocabulary(context: NSManagedObjectContext? = nil) {
+        let ctx = context ?? self.context
+        let entries = (try? ctx.fetch(VocabularyEntryObject.fetchRequest())) ?? []
+        for entry in entries { ctx.delete(entry) }
+        let progress = (try? ctx.fetch(FamiliarityProgressObject.fetchRequest())) ?? []
+        for row in progress { ctx.delete(row) }
+        let flashcards = (try? ctx.fetch(FlashcardStateObject.fetchRequest())) ?? []
+        for row in flashcards { ctx.delete(row) }
+        try? ctx.save()
+    }
 }

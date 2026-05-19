@@ -260,5 +260,33 @@ import Testing
         #expect(VocabularyEntryObject.cleanSurfaceForm("!!!") == "")
         #expect(VocabularyEntryObject.cleanSurfaceForm("") == "")
     }
+
+    // MARK: — Clear vocabulary
+
+    @Test func testClearVocabularyRemovesEntriesAndCascades() throws {
+        let container = makeInMemoryContainer()
+        let ctx = container.viewContext
+
+        // Arrange: insert one vocab entry (upsert auto-creates FamiliarityProgressObject).
+        _ = CoreDataManager.shared.upsertVocabularyEntry(
+            language: "de-DE", lemma: "buch", surfaceForm: "Buch",
+            translation: "book", sourceMangaId: nil, sourceMangaSourceId: nil, context: ctx
+        )
+
+        // Sanity: entry was created.
+        let before = try ctx.count(for: VocabularyEntryObject.fetchRequest())
+        #expect(before == 1)
+
+        // Act.
+        CoreDataManager.shared.clearVocabulary(context: ctx)
+
+        // Assert: all three tables are empty.
+        let entryCount = try ctx.count(for: VocabularyEntryObject.fetchRequest())
+        let progressCount = try ctx.count(for: FamiliarityProgressObject.fetchRequest())
+        let flashcardCount = try ctx.count(for: FlashcardStateObject.fetchRequest())
+        #expect(entryCount == 0, "VocabularyEntryObject table should be empty after clearVocabulary")
+        #expect(progressCount == 0, "FamiliarityProgressObject table should be empty after clearVocabulary")
+        #expect(flashcardCount == 0, "FlashcardStateObject table should be empty after clearVocabulary")
+    }
 }
 

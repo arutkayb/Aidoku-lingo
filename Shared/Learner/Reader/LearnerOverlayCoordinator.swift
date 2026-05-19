@@ -168,6 +168,23 @@ final class LearnerOverlayCoordinator {
         // If enabling, the next imageDidLoad call from the page view controller will attach overlays
     }
 
+    /// Resets the per-page OCR cache and detaches all live overlays. Does not touch UserDefaults.
+    func clearCaches() {
+        ocrCache.removeAll()
+        for state in pageStates.values {
+            state.overlay?.removeFromSuperview()
+        }
+        pageStates.removeAll()
+    }
+
+    /// One-shot purge of every in-memory learner cache. CoreData wipe is the caller's job.
+    @MainActor
+    static func clearAllLearnerCaches() {
+        shared.clearCaches()
+        TranslationServiceFactory.clearCache()
+        VocabIndex.shared.rebuild()
+    }
+
     // MARK: — Helpers
 
     private func isLearnerEnabled(for mangaId: String) -> Bool {

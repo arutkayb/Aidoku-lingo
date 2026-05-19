@@ -610,13 +610,11 @@ extension Settings {
                 notification: .init("Learner.globallyEnabled"),
                 value: .toggle(.init(subtitle: NSLocalizedString("LEARNER_MODE_GLOBAL_SUBTITLE")))
             ),
-            // Task 7: multi-select OCR languages via custom picker
             .init(
                 key: "Learner.ocrLanguagesList",
                 title: NSLocalizedString("LEARNER_OCR_LANGUAGES"),
                 value: .custom
             ),
-            // Task 7: disable Vision language correction (fixes umlaut mangling)
             .init(
                 key: "Learner.disableLanguageCorrection",
                 title: NSLocalizedString("LEARNER_DISABLE_LANG_CORRECTION"),
@@ -630,6 +628,13 @@ extension Settings {
                     titles: ["English", "German"]
                 ))
             ),
+        ]))),
+        .init(value: .group(.init(items: [
+            .init(
+                key: "Learner.clearCache",
+                title: NSLocalizedString("LEARNER_CLEAR_CACHE_BUTTON"),
+                value: .button(.init())
+            )
         ])))
     ]
 
