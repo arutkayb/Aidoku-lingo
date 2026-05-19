@@ -92,3 +92,35 @@ public enum MWEDetectionError: Error, Sendable {
 public protocol MWEDetectionService: Sendable {
     func detect(page: MWEDetectionPage, sourceLanguage: String) async throws -> [DetectedPhraseSpan]
 }
+
+// MARK: — Overlap resolution
+
+extension DetectedPhraseSpan {
+    /// Of any set of spans sharing at least one `(bubbleIndex, wordIndex)` cell,
+    /// only the longest survives; ties broken by smallest `(bubbleIndex, startWordIndex)`.
+    /// Output is sorted by `(bubbleIndex, startWordIndex)` for stable downstream use.
+    public static func resolveOverlaps(_ spans: [DetectedPhraseSpan]) -> [DetectedPhraseSpan] {
+        guard spans.count > 1 else { return spans }
+        let sorted = spans.sorted { lhs, rhs in
+            let lhsLen = lhs.endWordIndex - lhs.startWordIndex
+            let rhsLen = rhs.endWordIndex - rhs.startWordIndex
+            if lhsLen != rhsLen { return lhsLen > rhsLen }
+            if lhs.bubbleIndex != rhs.bubbleIndex { return lhs.bubbleIndex < rhs.bubbleIndex }
+            return lhs.startWordIndex < rhs.startWordIndex
+        }
+        struct Cell: Hashable { let bubble: Int; let word: Int }
+        var claimed: Set<Cell> = []
+        var kept: [DetectedPhraseSpan] = []
+        for span in sorted {
+            let cells = (span.startWordIndex ... span.endWordIndex)
+                .map { Cell(bubble: span.bubbleIndex, word: $0) }
+            if cells.contains(where: { claimed.contains($0) }) { continue }
+            claimed.formUnion(cells)
+            kept.append(span)
+        }
+        return kept.sorted { lhs, rhs in
+            if lhs.bubbleIndex != rhs.bubbleIndex { return lhs.bubbleIndex < rhs.bubbleIndex }
+            return lhs.startWordIndex < rhs.startWordIndex
+        }
+    }
+}

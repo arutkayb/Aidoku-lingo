@@ -639,6 +639,10 @@
 		LC900004000000000000001A /* MWEDetectionServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900014000000000000001A /* MWEDetectionServiceFactory.swift */; };
 		LC900005000000000000001A /* BubbleGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900015000000000000001A /* BubbleGrouping.swift */; };
 		LC900006000000000000001A /* MWEEnrichingOCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900016000000000000001A /* MWEEnrichingOCRService.swift */; };
+		LC900007000000000000001A /* IdiomDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900017000000000000001A /* IdiomDictionary.swift */; };
+		LC900008000000000000001A /* NLTaggerLemmatizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900018000000000000001A /* NLTaggerLemmatizer.swift */; };
+		LC900009000000000000001A /* HeuristicMWEDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC900019000000000000001A /* HeuristicMWEDetectionService.swift */; };
+		LC90000A000000000000001A /* CompositeMWEDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC90001A000000000000001A /* CompositeMWEDetectionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1152,13 +1156,17 @@
 		LC000219000000000000001A /* LearnerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerTabView.swift; sourceTree = "<group>"; };
 		LC000224000000000000001A /* LearnerOCRLanguagesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerOCRLanguagesPicker.swift; sourceTree = "<group>"; };
 		LC000227000000000000001A /* 0.9.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.1.xcdatamodel; sourceTree = "<group>"; };
-		LC900030000000000000001A /* 0.9.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.2.xcdatamodel; sourceTree = "<group>"; };
 		LC900011000000000000001A /* MWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEDetectionService.swift; sourceTree = "<group>"; };
 		LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsMWEDetectionService.swift; sourceTree = "<group>"; };
 		LC900013000000000000001A /* CachingMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingMWEDetectionService.swift; sourceTree = "<group>"; };
 		LC900014000000000000001A /* MWEDetectionServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEDetectionServiceFactory.swift; sourceTree = "<group>"; };
 		LC900015000000000000001A /* BubbleGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleGrouping.swift; sourceTree = "<group>"; };
 		LC900016000000000000001A /* MWEEnrichingOCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWEEnrichingOCRService.swift; sourceTree = "<group>"; };
+		LC900017000000000000001A /* IdiomDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdiomDictionary.swift; sourceTree = "<group>"; };
+		LC900018000000000000001A /* NLTaggerLemmatizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLTaggerLemmatizer.swift; sourceTree = "<group>"; };
+		LC900019000000000000001A /* HeuristicMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeuristicMWEDetectionService.swift; sourceTree = "<group>"; };
+		LC90001A000000000000001A /* CompositeMWEDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeMWEDetectionService.swift; sourceTree = "<group>"; };
+		LC900030000000000000001A /* 0.9.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.9.2.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2494,6 +2502,10 @@
 				LC900012000000000000001A /* FoundationModelsMWEDetectionService.swift */,
 				LC900013000000000000001A /* CachingMWEDetectionService.swift */,
 				LC900014000000000000001A /* MWEDetectionServiceFactory.swift */,
+				LC900017000000000000001A /* IdiomDictionary.swift */,
+				LC900018000000000000001A /* NLTaggerLemmatizer.swift */,
+				LC900019000000000000001A /* HeuristicMWEDetectionService.swift */,
+				LC90001A000000000000001A /* CompositeMWEDetectionService.swift */,
 			);
 			path = NL;
 			sourceTree = "<group>";
@@ -3005,6 +3017,10 @@
 				LC900004000000000000001A /* MWEDetectionServiceFactory.swift in Sources */,
 				LC900005000000000000001A /* BubbleGrouping.swift in Sources */,
 				LC900006000000000000001A /* MWEEnrichingOCRService.swift in Sources */,
+				LC900007000000000000001A /* IdiomDictionary.swift in Sources */,
+				LC900008000000000000001A /* NLTaggerLemmatizer.swift in Sources */,
+				LC900009000000000000001A /* HeuristicMWEDetectionService.swift in Sources */,
+				LC90000A000000000000001A /* CompositeMWEDetectionService.swift in Sources */,
 				LC0001C0000000000000001A /* OCRService.swift in Sources */,
 				LC0001C4000000000000001A /* OCRResultCache.swift in Sources */,
 				LC0001C7000000000000001A /* VisionOCRService.swift in Sources */,
