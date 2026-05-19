@@ -1,0 +1,4 @@
+module wasm3_support {
+umbrella "/Users/rutkay/workspace/mangadict/Wasm3/Sources/wasm3-support/include"
+export *
+}

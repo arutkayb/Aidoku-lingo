@@ -1,0 +1,4 @@
+module Wasm3 {
+header "Wasm3-Swift.h"
+export *
+}

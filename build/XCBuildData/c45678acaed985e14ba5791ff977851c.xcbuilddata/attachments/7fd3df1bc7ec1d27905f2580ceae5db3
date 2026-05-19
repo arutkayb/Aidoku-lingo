@@ -1,0 +1,109 @@
+{
+  "" : {
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Gifu-primary.dia",
+    "emit-module-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Gifu-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Gifu-primary-emit-module.dia",
+    "pch" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Gifu-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Gifu-primary.swiftdeps"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Classes/AnimatedFrame.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/AnimatedFrame~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Classes/Animator.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Animator~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Classes/FrameStore.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/FrameStore~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Classes/GIFAnimatable.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFAnimatable~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Classes/GIFImageView.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/GIFImageView~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Extensions/Array.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/Array~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Extensions/CGSize.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/CGSize~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Extensions/UIImage.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImage~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Extensions/UIImageView.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/UIImageView~partial.swiftmodule"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/Sources/Gifu/Helpers/ImageSourceHelpers.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers.dia",
+    "index-unit-output-path" : "/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/Gifu/build/Gifu.build/Debug-iphoneos/Gifu.build/Objects-normal/arm64/ImageSourceHelpers~partial.swiftmodule"
+  }
+}

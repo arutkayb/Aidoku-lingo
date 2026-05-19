@@ -1,0 +1,422 @@
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/myanimelist/MyAnimeListModels.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/SourceHomeContentView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/mangabaka/MangaBakaModels.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Paged/ReaderPagedViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/ImagePicker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Browse/SourceSectionHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/ReadingMode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/ClearFieldButton.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/HistoryObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/WKWebView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupChapter.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Library/DownloadQueueView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Settings/LogViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/ChapterObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Paged/ReaderDoublePageViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/String+Color.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/CircularProgressView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/anilist/AniListQueries.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/ReaderSliderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/Modifiers/Shimmer.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Library/LibraryCategorySelectionHeader.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/PageBackground.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Komga/KomgaHelper.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/ChapterListHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/ButtonStyles/MangaGridButtonStyle.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/AidokuRunner.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/EdgeInsets.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/ButtonStyles/ListButtonStyle.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/Insights/InsightsData.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/IncognitoBannerView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/UIApplication.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/DocumentPickerView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/Modifiers/InterfaceOrientationsViewModifier.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/ButtonStyles/DarkOverlayButtonStyle.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Downloads/DownloadsView+ViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/DownsampleProcessor.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/ObjectActorSerialExecutor.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/LargeButton.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/myanimelist/MyAnimeListApi.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Source/SourceViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/komga/KomgaTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Models/TrackerInfo.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/ReaderTextViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupCategory.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/Settings/TextInputTableViewCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupSource.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/JsonAnyValue.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Categories/FilterGroupsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupUpdate.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/MangaInfo.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WasmStd.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Upscaling/ImageModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/PageInterceptorProcessor.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/SourceSearchViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/URL.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Downloads/Models/Download.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+LibraryManga.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupLibraryManga.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/MangaCollectionViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Auth/OAuthResponse.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/LoginShimViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/Collection.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/ComicInfo.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WasmDefaults.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Search/SearchContentView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/LAPolicy.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UICollectionView+CellRegistration.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Browse/Info/SourceInfoViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/Settings/SettingSelectViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/Scroll/ReaderTextViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Old\ Models/MangaModels.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Updates/MangaUpdateItemView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/Sequence.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Page/ReaderPageDescriptionButtonView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/ExternalSourceInfo.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/ChapterFlagMask.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/kavita/KavitaTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/TabBarController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/WasmGlobalStore.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/ExternalSourceTableCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Reader/ZoomableScrollView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/SceneDelegate.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/ReaderViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Library/AddToCategoryViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/anilist/AniListTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Logging/Logger.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/ReaderChapterListView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/SettingsAboutView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/BaseCollectionViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Backups/BackupCreateView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupTrackItem.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Komga/KomgaSource.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UIStepper.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Browse/Filters/FilterStackView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Manga/Tracking/TrackerListView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Manga/Tracking/TrackerSettingOptionView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Page/ReaderTransitionNode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/SettingItem.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/EnhancedTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Page/CropBordersProcessor.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/Settings/WebView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/SourceImageView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/anilist/AniListApi.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WasmHtml.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/NewSourceViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/Settings/StepperTableViewCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/shikimori/ShikimoriApi.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UIToolbar.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Local/LocalModels.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/bangumi/BangumiModels.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Old\ Models/Listing.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/SettingsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/SourceListsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/LocalSetupView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Source/SourceViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Downloads/DownloadedMangaView+ViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/LockedPageStackView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/UpscaleModelListView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Insights/YearlyMonthChartView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/MangaViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/ReaderToolbarView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/NSPersistentContainer.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Paged/ReaderPageViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/shikimori/ShikimoriTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/bangumi/BangumiTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Insights/HeatmapView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/ChapterSortOption.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/MangaToMangaView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Tracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/MoreIcon.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/Backup.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Library/LibraryViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/Models/MigrationStrategy.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Backups/BackupsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/Reachability.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupReadingSession.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/MangaView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/CollectionView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/Carousel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/History/HistoryView+ViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/PopupWebViewHandler.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/MangaView+ViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Upscaling/MultiArrayModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/ChapterTableCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/MangaCoverPageView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/CloseButton.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Browse/BrowseViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Old\ Models/Page.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/ChapterFilterOption.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Models/TrackUpdate.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Kavita/KavitaModels.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/Manga/MangaListSelectionHeader.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/TrackObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Auth/OAuthClient.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/LocalFileImportView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Kavita/KavitaSource.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Reader/ReaderSettingsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Logging/LogManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Browse/SourceTableViewCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/MangaListCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/UIKitShim.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UISwitch.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/kavita/KavitaApi.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/BaseViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/mangabaka/MangaBakaTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/String.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/Manga.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/SourceList.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/LibraryMangaObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/BaseTableViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+History.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/MangaUpdateObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/OAuthTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Local/LocalFileDataManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Source.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/Manga/OldMangaCollectionViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/BaseObservingViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/ButtonStyles/BetterBorderedButtonStyle.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/MigrateSearchMatchView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/MigrateMangaView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/Insights/HeatmapData.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/CloudflareHandler.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/ReaderWebtoonTransitionNode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/MangaObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+Category.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/MigrateSourceSelectionView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/Manga/MangaGridCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Downloads/DownloadManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/Paged/ReaderPagedTextViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/Paged/TextPaginator.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Search/SearchViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/Manga/MangaCoverCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Models/TrackScoreType.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Old\ Models/KVCObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Local/LocalFileNameParser.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Insights/InsightPlatterView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/Zooming/ZoomableCollectionView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Categories/CategoriesView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/SelectionCheckView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/History/Models/HistoryEntry.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/UserAgentProvider.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/ReaderHoldingDelegate.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/OIDCLoginController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Insights/InsightsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/SourceActor.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/View.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/NSLocalizedString.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Library/LibraryViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/UnavailableView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+Track.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/GIFImageNode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Settings.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Logging/LogStore.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Backups/AutomaticBackupsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/Settings/SegmentTableViewCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/SourceErrorView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Reader/ReaderInfoPageView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Downloads/DownloadsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Downloads/DownloadedMangaView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WasmAidoku.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UIKeyModifierFlags.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Manga/Tracking/TrackerView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/Modifiers/KeyboardOffsetDetector.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/Scroll/ReaderTextView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/Dictionary.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UIViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/UpscaleProcessor.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Browse/BrowseViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Downloads/DownloadQueue.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UINavigationItem.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/MiniModalViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/shikimori/ShikimoriQueries.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/NavigationController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Browse/SourceCell/GetButtonView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/UserDefaultsObserver.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/SourceManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/History/HistoryView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Models/TrackStatus.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/FileManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/ReaderWebtoonViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/ReaderWebtoonPageNode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/Manga/MangaUpdateManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/SettingSearchResult.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Browse/Filters/FilterModalViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/Models/MigrationState.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/AppDelegate.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/DoneButton.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Browse/Info/SourceInfoHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Models/TrackItem.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/myanimelist/MyAnimeListTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Page/MarkdownView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/MangaListViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupManga.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/NotificationName.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Categories/FilterGroupCreateView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WasmJson.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/DoubleBadgeView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/WasmImports.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/MangaIdentifier.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/HostingNode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/SourceSearchViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupHistory.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/VocabularyEntryObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/FamiliarityProgressObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/FlashcardStateObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+Vocabulary.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupVocabularyEntry.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/Models/BackupFamiliarityProgress.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Models/TrackSearchItem.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Database/Objects/SourceObject.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/Settings/SettingHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/UIHostingController+SafeArea.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Kavita/KavitaHelper.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/ButtonStyles/SelectHighlightButtonStyle.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Old\ Models/DeepLink.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/SelectFilterView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/HomeLinksView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/SourceHomeSkeletonView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeGridView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/FilterBadgeView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/TitleView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/IconView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/SourceTableCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/SortFilterView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/HomeScrollerView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Downloads/Models/DownloadedMangaInfo.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Local/LocalFileManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/WrappingHStack.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/SourceListingViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/PlatformNavigationStack.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/CustomSearchable.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Logging/LogType.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/AddSourceFilterMenu.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/MangaCoverView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Manga/Tracking/TrackerUnavailableItemView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/FilterLabelView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/ListingsHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/FilterHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/Insights/SmallStatsData.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/bangumi/BangumiApi.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/HomeChapterListView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/Settings/SettingView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/HomeListView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/SourceSettingsView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/AddSourceView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/HomeFiltersView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/SearchFilterHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/ExpandableTextView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/HomeBigScrollerView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/komga/KomgaApi.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/Modifiers/OnReportScrollVisibilityChange.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/ErrorView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Utilities/NavigationCoordinator.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/ChapterTitleDisplayMode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/CheckFilterView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/HCollectionGrid.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/PageTracker.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/MangaGridItem.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/BlockingTask.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/ListDivider.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/ImageProcessingSettingsKey.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/MangaDetailsHeaderView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/UINavigationController+DismissGestures.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Logging/LogEntry.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/LibraryFilter.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/MultiSelectFilterView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/Settings/SettingsTableViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Old\ Models/Filter.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Browse/SmallSectionHeaderConfiguration.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/SearchBar.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/MangaGridView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Utilities/SemanticVersion.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Komga/KomgaModels.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/LegacySource.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/HostingController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/GetButton.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Paged/ReaderPagedViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/BaseObservingCellNode.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/SettingsTrackingView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Manga/Tracking/TrackerModalViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UIView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Downloads/DownloadCache.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Search/SearchContentView+ViewModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+Chapter.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/Manga/HistoryManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Reader/ReaderNavigationController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WasmNet.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Manga/Tracking/TrackerSettingOptionViewCoordinator.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Trackers/mangabaka/MangaBakaApi.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/Color.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/GIFImage.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/Models/TrackState.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/URLSession.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Sources/Local/LocalSource.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/ChapterIdentifier.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Extensions/UIImage.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Browse/Filters/FilterCell.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Browse/SelfHostedSourceSetupView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Insights/StatsGridView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/ReaderWebtoonViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+Source.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Page/ReaderPageView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/TapZonesSelectView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/Array.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Upscaling/ImageProcessingModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/EmptyPageStackView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+MangaUpdates.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/VerticalContentOffsetPreservingLayout.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/SourceInfo.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/ReaderReaderDelegate.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Manga/Tracking/TrackerSearchView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/Settings/SettingView+Environment.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/Zooming/ZoomableLayoutProtocol.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/Zooming/ZoomableCollectionViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Manga/Tracking/TrackerAddView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/Filter/FilterListSheetView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/Insights/YearlyMonthData.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Extensions/String+Highlight.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/EditedKeys.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/Manga/MangaManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Old\ Models/Chapter.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Upscaling/ModelManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/SavedSearch.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Settings/Backups/BackupContentView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/CustomSourceConfig.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Extensions/Date.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/Paged/TextDoublePageViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/Paged/TextSinglePageViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Text/Paged/ChapterTransitionViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Migration/MigrateSourcesView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Common/TextFieldWrapper.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+Manga.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/History/Models/HistorySection.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Downloads/DownloadTask.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/FilterGroup.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Common/SwiftUINavigationView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WebView/WasmNetWebViewHandler.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Managers/CoreData/CoreDataManager+ReadingSession.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/Readers/Webtoon/HeightQueryable.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Tracking/TrackerManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Updates/MangaUpdatesView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/Old\ UI/Base/CategorySelectViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/UI/Reader/LiquidLensView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/iOS/New/Views/Source/HomeComponents/HomeImageScrollerView.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Models/TapZone.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Wasm/Imports/WebView/WebViewViewController.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/Shared/Data/Backup/BackupManager.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/CategoryObject+CoreDataClass.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/CategoryObject+CoreDataProperties.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/LocalFileInfoObject+CoreDataClass.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/LocalFileInfoObject+CoreDataProperties.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/MangaUpdateObject+CoreDataClass.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/MangaUpdateObject+CoreDataProperties.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/ReadingSessionObject+CoreDataClass.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/ReadingSessionObject+CoreDataProperties.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/SourceObject+CoreDataClass.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/SourceObject+CoreDataProperties.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/TrackObject+CoreDataClass.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/TrackObject+CoreDataProperties.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/CoreDataGenerated/Aidoku/Aidoku+CoreDataModel.swift
+/Users/rutkay/workspace/mangadict/Aidoku-with-learner/build/Aidoku.build/Debug-iphoneos/Aidoku\ (iOS).build/DerivedSources/GeneratedAssetSymbols.swift

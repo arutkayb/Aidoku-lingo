@@ -602,9 +602,6 @@
 		LC0001AB000000000000001A /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B1000000000000001A /* TranslationService.swift */; };
 		LC0001AC000000000000001A /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B1000000000000001A /* TranslationService.swift */; };
 		LC0001AD000000000000001A /* FoundationModelsTranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B2000000000000001A /* FoundationModelsTranslationService.swift */; };
-		LC0001AF000000000000001A /* DeepLTranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B3000000000000001A /* DeepLTranslationService.swift */; };
-		LC0001B0000000000000001A /* DeepLTranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B3000000000000001A /* DeepLTranslationService.swift */; };
-		LC0001B4000000000000001A /* CompositeTranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B8000000000000001A /* CompositeTranslationService.swift */; };
 		LC0001B6000000000000001A /* CachingTranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B9000000000000001A /* CachingTranslationService.swift */; };
 		LC0001B7000000000000001A /* CachingTranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001B9000000000000001A /* CachingTranslationService.swift */; };
 		LC0001BA000000000000001A /* TranslationServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = LC0001BB000000000000001A /* TranslationServiceFactory.swift */; };
@@ -1119,8 +1116,6 @@
 		FBFF58942E807280009367B7 /* DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneButton.swift; sourceTree = "<group>"; };
 		LC0001B1000000000000001A /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
 		LC0001B2000000000000001A /* FoundationModelsTranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsTranslationService.swift; sourceTree = "<group>"; };
-		LC0001B3000000000000001A /* DeepLTranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLTranslationService.swift; sourceTree = "<group>"; };
-		LC0001B8000000000000001A /* CompositeTranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeTranslationService.swift; sourceTree = "<group>"; };
 		LC0001B9000000000000001A /* CachingTranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingTranslationService.swift; sourceTree = "<group>"; };
 		LC0001BB000000000000001A /* TranslationServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationServiceFactory.swift; sourceTree = "<group>"; };
 		LC0001C3000000000000001A /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
@@ -2428,8 +2423,6 @@
 			children = (
 				LC0001B1000000000000001A /* TranslationService.swift */,
 				LC0001B2000000000000001A /* FoundationModelsTranslationService.swift */,
-				LC0001B3000000000000001A /* DeepLTranslationService.swift */,
-				LC0001B8000000000000001A /* CompositeTranslationService.swift */,
 				LC0001B9000000000000001A /* CachingTranslationService.swift */,
 				LC0001BB000000000000001A /* TranslationServiceFactory.swift */,
 			);
@@ -2973,8 +2966,6 @@
 				LC0001A9000000000000001A /* BackupVocabularyEntry.swift in Sources */,
 				LC0001AB000000000000001A /* TranslationService.swift in Sources */,
 				LC0001AD000000000000001A /* FoundationModelsTranslationService.swift in Sources */,
-				LC0001AF000000000000001A /* DeepLTranslationService.swift in Sources */,
-				LC0001B4000000000000001A /* CompositeTranslationService.swift in Sources */,
 				LC0001B6000000000000001A /* CachingTranslationService.swift in Sources */,
 				LC0001BA000000000000001A /* TranslationServiceFactory.swift in Sources */,
 				LC0001C0000000000000001A /* OCRService.swift in Sources */,
@@ -3306,7 +3297,6 @@
 				LC0001A8000000000000001A /* CoreDataManager+Vocabulary.swift in Sources */,
 				LC0001AA000000000000001A /* BackupVocabularyEntry.swift in Sources */,
 				LC0001AC000000000000001A /* TranslationService.swift in Sources */,
-				LC0001B0000000000000001A /* DeepLTranslationService.swift in Sources */,
 				LC0001B7000000000000001A /* CachingTranslationService.swift in Sources */,
 				LC0001C1000000000000001A /* OCRService.swift in Sources */,
 				LC0001C5000000000000001A /* OCRResultCache.swift in Sources */,

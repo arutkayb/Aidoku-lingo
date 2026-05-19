@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache-primary.dia",
+    "emit-module-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache-primary-emit-module.dia",
+    "pch" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache-primary.swiftdeps"
+  },
+  "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/Sources/LRUCache.swift" : {
+    "const-values" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache.swiftconstvalues",
+    "dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache.d",
+    "diagnostics" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache.dia",
+    "index-unit-output-path" : "/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache.o",
+    "llvm-bc" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache.bc",
+    "object" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache.o",
+    "swift-dependencies" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache.swiftdeps",
+    "swiftmodule" : "/Users/rutkay/Library/Developer/Xcode/DerivedData/Aidoku-ecdxsmldxjtfouayqsfwaffwxnhg/SourcePackages/checkouts/LRUCache/build/LRUCache.build/Debug-iphoneos/LRUCache.build/Objects-normal/arm64/LRUCache~partial.swiftmodule"
+  }
+}

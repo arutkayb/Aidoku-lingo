@@ -1,0 +1,4 @@
+module Gifu {
+header "Gifu-Swift.h"
+export *
+}
