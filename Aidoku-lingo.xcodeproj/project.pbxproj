@@ -3548,6 +3548,7 @@
 				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.aidoku.Aidoku-lingo";
 				PRODUCT_NAME = "Aidoku-lingo";
+				SWIFT_MODULE_NAME = Aidoku;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -3593,6 +3594,7 @@
 				MARKETING_VERSION = 0.8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.aidoku.Aidoku-lingo";
 				PRODUCT_NAME = "Aidoku-lingo";
+				SWIFT_MODULE_NAME = Aidoku;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
