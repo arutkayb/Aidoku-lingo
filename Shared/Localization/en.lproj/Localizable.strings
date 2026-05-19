@@ -782,6 +782,7 @@
 "LEARNER_NOTES_LABEL" = "Notes";
 "LEARNER_NOTES_EMPTY" = "No notes yet.";
 "LEARNER_DETECT_PHRASES" = "Detect phrases and idioms";
+"LEARNER_DETECT_PHRASES_SUBTITLE" = "Requires Apple Intelligence (iPhone 15 Pro or newer, M-series iPad, iOS 26).";
 "LEARNER_CLEAR_DATA" = "Clear Learner Data";
 "LEARNER_CLEAR_DATA_TEXT" = "This deletes every vocabulary entry, familiarity progress, flashcard state, and the OCR cache. Settings and preferences are kept. This cannot be undone.";
 "LEARNER_PHRASE_KIND_COMPOUND" = "Compound";

@@ -625,7 +625,10 @@ extension Settings {
             .init(
                 key: "Learner.detectPhrases",
                 title: NSLocalizedString("LEARNER_DETECT_PHRASES"),
-                value: .toggle(.init(defaultValue: true))
+                value: .toggle(.init(
+                    subtitle: NSLocalizedString("LEARNER_DETECT_PHRASES_SUBTITLE"),
+                    defaultValue: true
+                ))
             ),
             .init(
                 key: "Learner.targetLanguage",

@@ -15,6 +15,19 @@ import FoundationModels
 /// Foundation Models implementation of `MWEDetectionService`.
 final class FoundationModelsMWEDetectionService: MWEDetectionService {
 
+    /// Set once per process after the first `assetsUnavailable` error so subsequent
+    /// detect calls skip the network entirely. Apple Intelligence eligibility is a
+    /// device-level property; if it's off at app launch it stays off for the session.
+    private static let stateLock = NSLock()
+    nonisolated(unsafe) private static var modelUnavailable = false
+
+    static var isModelKnownUnavailable: Bool {
+        stateLock.withLock { modelUnavailable }
+    }
+    private static func markModelUnavailable() {
+        stateLock.withLock { modelUnavailable = true }
+    }
+
     /// Per-call closure runner. Production default opens a fresh `LanguageModelSession`
     /// and asks it to fill in an `MWEDetectionResult`. Tests inject a closure for
     /// deterministic behaviour without touching FoundationModels.
@@ -77,6 +90,7 @@ final class FoundationModelsMWEDetectionService: MWEDetectionService {
         sourceLanguage: String
     ) async throws -> [DetectedPhraseSpan] {
         guard !page.bubbles.isEmpty else { return [] }
+        if Self.isModelKnownUnavailable { return [] }
 
         let prompt = Self.buildPrompt(page: page, sourceLanguage: sourceLanguage)
 
@@ -88,7 +102,16 @@ final class FoundationModelsMWEDetectionService: MWEDetectionService {
                 prompt: prompt
             )
         } catch {
-            print("[Learner MWE] FM call timed out lang=\(sourceLanguage) error=\(error)")
+            let description = String(describing: error)
+            if description.contains("assetsUnavailable")
+                || description.contains("does not support Apple Intelligence") {
+                Self.markModelUnavailable()
+                print("[Learner MWE] Apple Intelligence unavailable; phrase detection disabled for this session")
+            } else if description.contains("timedOut") || description.contains("TimedOut") {
+                print("[Learner MWE] FM call timed out lang=\(sourceLanguage)")
+            } else {
+                print("[Learner MWE] FM call failed lang=\(sourceLanguage) error=\(error)")
+            }
             return []
         }
 
