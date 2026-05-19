@@ -1,4 +1,0 @@
-module SwiftUIIntrospect {
-header "SwiftUIIntrospect-Swift.h"
-export *
-}

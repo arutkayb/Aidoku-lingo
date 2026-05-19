@@ -1,4 +1,0 @@
-module AidokuRunner {
-header "AidokuRunner-Swift.h"
-export *
-}

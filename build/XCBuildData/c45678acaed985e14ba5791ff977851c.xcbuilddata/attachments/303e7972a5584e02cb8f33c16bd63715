@@ -1,4 +1,0 @@
-module wasm3_c {
-umbrella "/Users/rutkay/workspace/mangadict/Wasm3/Sources/wasm3-c/include"
-export *
-}
