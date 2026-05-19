@@ -131,22 +131,23 @@ import UIKit
     }
 }
 
-// MARK: — Task 7: OCR language migration + passthrough tests
+// MARK: — OCR language migration + passthrough tests
 
 @Suite struct OCRLanguageMigrationTests {
 
-    // Migration: old Learner.ocrLanguages (String) → new Learner.ocrLanguagesList ([String] JSON)
+    // Migration: old Learner.ocrLanguages (String) → new Learner.ocrLanguagesList ([String] JSON).
+    // A legacy allowed code (de-DE) migrates and survives the allowed-set filter.
     @Test @MainActor func ocrLanguages_migratesLegacyStringKey() {
         let legacyKey = "Learner.ocrLanguages"
         let newKey = "Learner.ocrLanguagesList"
 
-        // Setup legacy state
-        UserDefaults.standard.set("ja-JP", forKey: legacyKey)
+        // Setup legacy state with an allowed code.
+        UserDefaults.standard.set("de-DE", forKey: legacyKey)
         UserDefaults.standard.removeObject(forKey: newKey)
 
         let result = LearnerOverlayCoordinator.shared.ocrLanguages()
 
-        #expect(result == ["ja-JP"], "Migrated value should be the old single language")
+        #expect(result == ["de-DE"], "Migrated allowed value should pass through the filter")
         #expect(UserDefaults.standard.object(forKey: legacyKey) == nil, "Old key should be removed after migration")
         #expect(UserDefaults.standard.data(forKey: newKey) != nil, "New key should be written as JSON data")
 
@@ -165,36 +166,35 @@ import UIKit
         #expect(result == ["de-DE"])
     }
 
-    // Multi-language array round-trips correctly
+    // Multi-language array round-trips correctly with allowed codes.
     @Test @MainActor func ocrLanguages_multipleLanguages_roundTrip() {
         let newKey = "Learner.ocrLanguagesList"
-        let langs = ["de-DE", "ja-JP"]
+        let langs = ["de-DE", "en-US"]
         if let data = try? JSONEncoder().encode(langs) {
             UserDefaults.standard.set(data, forKey: newKey)
         }
 
         let result = LearnerOverlayCoordinator.shared.ocrLanguages()
-        #expect(result == ["de-DE", "ja-JP"])
+        #expect(result == ["de-DE", "en-US"])
 
         UserDefaults.standard.removeObject(forKey: newKey)
     }
 
-    // Lock-in for review I2: the picker must save selections in display order
+    // Lock-in: the picker saves selections in display order
     // (Vision uses recognitionLanguages order as a priority hint).
-    // Alphabetical sort would put "es-ES" before "ja-JP"; display order puts ja-JP first.
+    // de-DE appears first in languages array, en-US second — display order preserved.
     @Test @MainActor func picker_saveToDefaults_preservesDisplayOrder() throws {
         let key = LearnerOCRLanguagesPicker.defaultsKey
         UserDefaults.standard.removeObject(forKey: key)
 
-        // Toggle on in non-alphabetical order: ja-JP, then es-ES.
-        // Alphabetical would yield ["es-ES", "ja-JP"]; display order yields ["ja-JP", "es-ES"].
-        LearnerOCRLanguagesPicker.saveToDefaults(["ja-JP", "es-ES"])
+        // Pass both allowed codes. Display order is de-DE, en-US (matches languages array).
+        LearnerOCRLanguagesPicker.saveToDefaults(["en-US", "de-DE"])
 
         let data = try #require(UserDefaults.standard.data(forKey: key))
         let saved = try JSONDecoder().decode([String].self, from: data)
 
-        #expect(saved == ["ja-JP", "es-ES"],
-                "Expected display order [ja-JP, es-ES]; got \(saved)")
+        #expect(saved == ["de-DE", "en-US"],
+                "Expected display order [de-DE, en-US]; got \(saved)")
 
         UserDefaults.standard.removeObject(forKey: key)
     }
@@ -204,11 +204,48 @@ import UIKit
         let key = LearnerOCRLanguagesPicker.defaultsKey
         UserDefaults.standard.removeObject(forKey: key)
 
-        LearnerOCRLanguagesPicker.saveToDefaults(["fr-FR"])
+        LearnerOCRLanguagesPicker.saveToDefaults(["en-US"])
 
         let data = try #require(UserDefaults.standard.data(forKey: key))
         let saved = try JSONDecoder().decode([String].self, from: data)
-        #expect(saved == ["fr-FR"])
+        #expect(saved == ["en-US"])
+
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
+    // Stored list containing a removed code is filtered; surviving allowed codes are returned and persisted.
+    @Test @MainActor func testStoredListWithRemovedCodeIsFilteredAndPersisted() throws {
+        let key = "Learner.ocrLanguagesList"
+        // Pre-seed with one removed code and one allowed code.
+        if let data = try? JSONEncoder().encode(["ja-JP", "de-DE"]) {
+            UserDefaults.standard.set(data, forKey: key)
+        }
+
+        let result = LearnerOverlayCoordinator.shared.ocrLanguages()
+
+        #expect(result == ["de-DE"], "Removed code ja-JP should be stripped; de-DE survives")
+
+        let stored = try #require(UserDefaults.standard.data(forKey: key))
+        let persisted = try JSONDecoder().decode([String].self, from: stored)
+        #expect(persisted == ["de-DE"], "Persisted value should be rewritten to only de-DE")
+
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
+    // All-removed stored list falls back to ["de-DE"] and rewrites the key.
+    @Test @MainActor func testAllRemovedStoredListFallsBackToDefault() throws {
+        let key = "Learner.ocrLanguagesList"
+        if let data = try? JSONEncoder().encode(["fr-FR"]) {
+            UserDefaults.standard.set(data, forKey: key)
+        }
+
+        let result = LearnerOverlayCoordinator.shared.ocrLanguages()
+
+        #expect(result == ["de-DE"], "All-removed list should fall back to de-DE")
+
+        let stored = try #require(UserDefaults.standard.data(forKey: key))
+        let persisted = try JSONDecoder().decode([String].self, from: stored)
+        #expect(persisted == ["de-DE"], "Key should be rewritten to [de-DE]")
 
         UserDefaults.standard.removeObject(forKey: key)
     }

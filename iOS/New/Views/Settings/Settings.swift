@@ -626,8 +626,8 @@ extension Settings {
                 key: "Learner.targetLanguage",
                 title: NSLocalizedString("LEARNER_TARGET_LANGUAGE"),
                 value: .select(.init(
-                    values: ["en", "de", "ja", "fr", "es", "tr"],
-                    titles: ["English", "German", "Japanese", "French", "Spanish", "Turkish"]
+                    values: ["en", "de"],
+                    titles: ["English", "German"]
                 ))
             ),
             .init(
