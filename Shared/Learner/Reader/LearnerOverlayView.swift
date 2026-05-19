@@ -115,10 +115,10 @@ final class LearnerOverlayView: UIView {
             // Tappable word region
             let control = WordRegionControl(wordBox: box)
             control.frame = frame
-            control.backgroundColor = UIColor.systemYellow.withAlphaComponent(0.25)
+            control.backgroundColor = UIColor.systemYellow.withAlphaComponent(0.08)
             control.layer.cornerRadius = 2
             control.layer.borderWidth = 0.5
-            control.layer.borderColor = UIColor.systemYellow.withAlphaComponent(0.5).cgColor
+            control.layer.borderColor = UIColor.systemYellow.withAlphaComponent(0.20).cgColor
             control.addTarget(self, action: #selector(wordTapped(_:)), for: .touchUpInside)
             control.accessibilityLabel = box.text
             addSubview(control)
