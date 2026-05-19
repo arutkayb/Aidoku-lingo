@@ -80,7 +80,7 @@ final class SentenceTranslationViewModel: ObservableObject {
             return
         }
 
-        let service = TranslationServiceFactory.shared.service
+        let service = TranslationServiceFactory.shared
         let sourceLanguage = context.language
 
         // Step 1: group fragments into sentences. Failure isn't fatal — we fall back to
@@ -120,7 +120,7 @@ final class SentenceTranslationViewModel: ObservableObject {
     /// Step 2: translates each sentence concurrently via the composite service.
     /// Used on pre-iOS-18 where Apple Translation is unavailable.
     private func translateAllViaService() async {
-        let service = TranslationServiceFactory.shared.service
+        let service = TranslationServiceFactory.shared
         let sourceLanguage = context.language
         let targetLanguage = UserDefaults.standard.string(forKey: "Learner.targetLanguage") ?? "en"
 
@@ -175,7 +175,7 @@ final class SentenceTranslationViewModel: ObservableObject {
         guard let idx = sentences.firstIndex(where: { $0.id == id }) else { return }
         guard sentences[idx].simplified == nil else { return }
 
-        let service = TranslationServiceFactory.shared.service
+        let service = TranslationServiceFactory.shared
         let sourceLanguage = context.language
         let rawLevel = UserDefaults.standard.string(forKey: "Learner.simplificationLevel") ?? "A2"
         let level = CEFRLevel(rawValue: rawLevel) ?? .a2

@@ -259,8 +259,6 @@ struct WordLookupSheet: View {
             return "LEARNER_TRANSLATION_UNAVAILABLE".localized
         case .networkError:
             return "LEARNER_TRANSLATION_NETWORK_ERROR".localized
-        case .invalidKey:
-            return "LEARNER_TRANSLATION_INVALID_KEY".localized
         default:
             return "LEARNER_TRANSLATION_NETWORK_ERROR".localized
         }
@@ -276,7 +274,7 @@ private extension String {
 // MARK: — Translation driver
 
 /// Routes translation through Apple's Translation framework on iOS 18+,
-/// falling back to the composite TranslationService (DeepL → Foundation Models) below that.
+/// falling back to `TranslationServiceFactory.shared` below that.
 private struct WordLookupTranslationDriver: ViewModifier {
     @ObservedObject var viewModel: WordLookupViewModel
 

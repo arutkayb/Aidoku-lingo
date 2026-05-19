@@ -78,12 +78,10 @@ public struct SentenceGroup: Sendable, Hashable {
 public enum TranslationError: Error, Sendable {
     /// Apple Foundation Models unavailable (iOS < 26 or not downloaded yet).
     case unavailable
-    /// This provider does not support this method (e.g. DeepL can't simplify).
+    /// This provider does not support this method.
     case notSupportedByProvider
     /// Network-level failure — see `underlying` for the raw error.
     case networkError(underlying: Error)
-    /// The API key was rejected (HTTP 403).
-    case invalidKey
     /// The provider returned a response we couldn't parse.
     case unexpectedResponse(String)
 }
@@ -91,8 +89,7 @@ public enum TranslationError: Error, Sendable {
 // MARK: — Protocol
 
 /// The single interface for all translation operations.
-/// Implementations include `FoundationModelsTranslationService`, `DeepLTranslationService`,
-/// `CompositeTranslationService`, and `CachingTranslationService`.
+/// Implementations include `FoundationModelsTranslationService` and `CachingTranslationService`.
 public protocol TranslationService: Sendable {
 
     /// Translate a single word or lemma.
