@@ -88,12 +88,13 @@ final class FoundationModelsMWEDetectionService: MWEDetectionService {
                 prompt: prompt
             )
         } catch {
-            print("[Learner] MWE detection timed out: \(error)")
+            print("[Learner MWE] FM call timed out lang=\(sourceLanguage) error=\(error)")
             return []
         }
 
         let validated = Self.validate(rawItems, against: page)
         let resolved = Self.resolveOverlaps(validated)
+        print("[Learner MWE] FM lang=\(sourceLanguage) raw=\(rawItems.count) validated=\(validated.count) resolved=\(resolved.count)")
         return resolved
     }
 

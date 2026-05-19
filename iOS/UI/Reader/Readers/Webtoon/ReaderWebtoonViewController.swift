@@ -248,6 +248,10 @@ extension ReaderWebtoonViewController: UIContextMenuInteractionDelegate {
         else {
             return nil
         }
+        if let host = interaction.view,
+           host.hitTest(location, with: nil) is WordRegionControl {
+            return nil
+        }
         // disable when live text highlighting is active
         if
             #available(iOS 16.0, *),

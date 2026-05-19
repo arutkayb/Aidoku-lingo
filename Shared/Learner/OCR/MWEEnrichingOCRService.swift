@@ -32,10 +32,17 @@ final class MWEEnrichingOCRService: OCRService {
 
     func recognize(image: UIImage, languages: [String]) async throws -> OCRResult {
         let base = try await underlying.recognize(image: image, languages: languages)
-        guard isEnabled(), !base.words.isEmpty else { return base }
+        let enabled = isEnabled()
+        guard enabled, !base.words.isEmpty else {
+            print("[Learner MWE] skip enabled=\(enabled) words=\(base.words.count)")
+            return base
+        }
 
         let bubbles = BubbleGrouping.groupWordsByBubble(words: base.words, lines: base.lines)
-        guard !bubbles.isEmpty else { return base }
+        guard !bubbles.isEmpty else {
+            print("[Learner MWE] skip bubbles=0 words=\(base.words.count)")
+            return base
+        }
 
         // Build detector input (per-bubble token lists local to each bubble).
         let detectionBubbles = bubbles.map { wordIndices in
@@ -48,13 +55,14 @@ final class MWEEnrichingOCRService: OCRService {
         do {
             spans = try await detector.detect(page: page, sourceLanguage: sourceLanguage)
         } catch {
-            print("[Learner] MWE detection failed: \(error)")
+            print("[Learner MWE] detection failed lang=\(sourceLanguage) error=\(error)")
             return base
         }
 
         let phrases = spans.compactMap { span -> OCRPhrase? in
             Self.mapSpanToPhrase(span, bubbleWordIndices: bubbles, words: base.words)
         }
+        print("[Learner MWE] lang=\(sourceLanguage) bubbles=\(bubbles.count) spans=\(spans.count) phrases=\(phrases.count)")
         return OCRResult(words: base.words, lines: base.lines, phrases: phrases)
     }
 

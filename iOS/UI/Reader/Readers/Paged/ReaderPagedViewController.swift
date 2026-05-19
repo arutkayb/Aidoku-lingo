@@ -1166,6 +1166,9 @@ extension ReaderPagedViewController: UIContextMenuInteractionDelegate {
         else {
             return nil
         }
+        if pageView.hitTest(location, with: nil) is WordRegionControl {
+            return nil
+        }
         // disable when live text highlighting is active
         if
             #available(iOS 16.0, *),
