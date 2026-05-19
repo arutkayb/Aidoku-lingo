@@ -249,6 +249,25 @@ extension SettingsView {
                 ) {
                     self.resetSettings()
                 }
+            case "Learner.clearCache":
+                // Do not mutate any Learner.* UserDefaults keys here — settings must survive the wipe (AC-3.4).
+                confirmAction(
+                    title: NSLocalizedString("LEARNER_CLEAR_CACHE_TITLE"),
+                    message: NSLocalizedString("LEARNER_CLEAR_CACHE_CONFIRM_MESSAGE"),
+                    continueActionName: NSLocalizedString("CLEAR")
+                ) {
+                    Task {
+                        await CoreDataManager.shared.container.performBackgroundTask { context in
+                            CoreDataManager.shared.clearVocabulary(context: context)
+                            try? context.save()
+                        }
+                        await MainActor.run {
+                            LearnerOverlayCoordinator.clearAllLearnerCaches()
+                            LearnerEvents.shared.vocabChanged.send()
+                        }
+                    }
+                }
+
             case "Advanced.reset":
                 confirmAction(
                     title: NSLocalizedString("RESET"),

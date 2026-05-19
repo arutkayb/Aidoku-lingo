@@ -73,81 +73,7 @@ final class StubTranslationService: TranslationService, @unchecked Sendable {
         #expect(stub.wordCallCount == 2)
     }
 
-    // The production CompositeTranslationService already accepts stub services via its
-    // init (CompositeTranslationService.swift:19-25). Tests 3-6 exercise it directly.
-    // Note: only StubTranslationService doubles are used; the real init types
-    // (FoundationModelsTranslationService / DeepLTranslationService) are concrete but
-    // CompositeTranslationService stores the protocol-typed `any TranslationService`
-    // members internally for the routing logic. To stay on the production class we
-    // construct it with default args and then mutate routing via a thin shim below.
-
-    // MARK: 3. DeepL preferred when key is set
-
-    @Test func deepLPreferred_whenKeyIsSet() async throws {
-        let deepLStub = StubTranslationService()
-        let fmStub = StubTranslationService()
-
-        UserDefaults.standard.set("fake-key", forKey: "Learner.deepLAPIKey")
-        defer { UserDefaults.standard.removeObject(forKey: "Learner.deepLAPIKey") }
-
-        let composite = makeComposite(fm: fmStub, deepL: deepLStub)
-        _ = try await composite.translateWord("Buch", sourceLanguage: "de-DE", targetLanguage: "en")
-
-        #expect(deepLStub.wordCallCount == 1)
-        #expect(fmStub.wordCallCount == 0)
-    }
-
-    // MARK: 4. Foundation Models used when no key
-
-    @Test func foundationModels_usedWhenNoKey() async throws {
-        let deepLStub = StubTranslationService()
-        let fmStub = StubTranslationService()
-
-        UserDefaults.standard.removeObject(forKey: "Learner.deepLAPIKey")
-
-        let composite = makeComposite(fm: fmStub, deepL: deepLStub)
-        _ = try await composite.translateWord("Buch", sourceLanguage: "de-DE", targetLanguage: "en")
-
-        #expect(fmStub.wordCallCount == 1)
-        #expect(deepLStub.wordCallCount == 0)
-    }
-
-    // MARK: 5. DeepL failure falls back to Foundation Models
-
-    @Test func deepLFailure_fallsBackToFoundationModels() async throws {
-        let deepLStub = StubTranslationService()
-        deepLStub.shouldFailWord = true
-        let fmStub = StubTranslationService()
-
-        UserDefaults.standard.set("fake-key", forKey: "Learner.deepLAPIKey")
-        defer { UserDefaults.standard.removeObject(forKey: "Learner.deepLAPIKey") }
-
-        let composite = makeComposite(fm: fmStub, deepL: deepLStub)
-        let result = try await composite.translateWord("Buch", sourceLanguage: "de-DE", targetLanguage: "en")
-
-        #expect(deepLStub.wordCallCount == 1) // DeepL was tried
-        #expect(fmStub.wordCallCount == 1)    // Fell back to FM
-        #expect(result.lemma == "buch")        // FM's stub result
-    }
-
-    // MARK: 6. Simplification always uses Foundation Models (even when DeepL key is set)
-
-    @Test func simplification_alwaysUsesFoundationModels() async throws {
-        let deepLStub = StubTranslationService()
-        let fmStub = StubTranslationService()
-        fmStub.simplifyResult = "Einfacher Text."
-
-        UserDefaults.standard.set("fake-key", forKey: "Learner.deepLAPIKey")
-        defer { UserDefaults.standard.removeObject(forKey: "Learner.deepLAPIKey") }
-
-        let composite = makeComposite(fm: fmStub, deepL: deepLStub)
-        let result = try await composite.simplifyToCEFR("Komplizierterer Text.", level: .a2, language: "de-DE")
-
-        #expect(result == "Einfacher Text.")
-        #expect(deepLStub.wordCallCount == 0)
-    }
-
-    // MARK: 7. Grouping: returned groups' fragment indices are a partition of input indices
+    // MARK: 3. Grouping: returned groups' fragment indices are a partition of input indices
 
     @Test func grouping_fragmentIndices_coverInput() async throws {
         let stub = StubTranslationService()
@@ -166,12 +92,16 @@ final class StubTranslationService: TranslationService, @unchecked Sendable {
         #expect(allReturnedIndices == inputIndices,
                 "All fragment indices must appear exactly once in the grouped output")
     }
-}
 
-// MARK: — Helpers
+    // MARK: 4. Caching wraps Foundation Models stub correctly
 
-/// Builds the production CompositeTranslationService with stub services.
-/// `CompositeTranslationService.init` accepts `any TranslationService` for both args.
-private func makeComposite(fm: any TranslationService, deepL: any TranslationService) -> CompositeTranslationService {
-    CompositeTranslationService(foundationModels: fm, deepL: deepL)
+    @Test func cachingService_wrapsFoundationModelsStub() async throws {
+        let stub = StubTranslationService()
+        let caching = CachingTranslationService(wrapping: stub, countLimit: 500)
+
+        _ = try await caching.translateWord("Buch", sourceLanguage: "de-DE", targetLanguage: "en")
+        _ = try await caching.translateWord("Buch", sourceLanguage: "de-DE", targetLanguage: "en")
+
+        #expect(stub.wordCallCount == 1, "Cache should deduplicate the second call")
+    }
 }

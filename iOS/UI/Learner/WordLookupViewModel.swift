@@ -98,7 +98,7 @@ final class WordLookupViewModel: ObservableObject {
         loadError = nil
         do {
             let targetLang = UserDefaults.standard.string(forKey: "Learner.targetLanguage") ?? "en"
-            let result = try await TranslationServiceFactory.shared.service
+            let result = try await TranslationServiceFactory.shared
                 .translateWord(lemma, sourceLanguage: language, targetLanguage: targetLang)
             translation = result
             // Cache in CoreData if word is in vocab

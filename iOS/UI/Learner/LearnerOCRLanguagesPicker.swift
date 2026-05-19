@@ -4,27 +4,23 @@
 //
 //  SwiftUI multi-select picker for OCR recognition languages.
 //  Reads/writes JSON-encoded [String] under the UserDefaults key
-//  "Learner.ocrLanguagesList". (Task 7)
+//  "Learner.ocrLanguagesList".
 //
 
 import SwiftUI
 
-/// Five-row toggle list bound to the JSON-encoded OCR language list.
+/// Two-row toggle list bound to the JSON-encoded OCR language list.
 /// At least one language must remain selected (the last toggle is disabled
 /// when it would remove the only remaining language).
 struct LearnerOCRLanguagesPicker: View {
 
-    // Available language codes and their display names (must stay in sync with
-    // coordinator's default and ReaderSettingsView's old select list).
     // `internal` so tests can verify ordering behaviour.
     static let languages: [(code: String, display: String)] = [
         ("de-DE", "German (de-DE)"),
-        ("en-US", "English (en-US)"),
-        ("ja-JP", "Japanese (ja-JP)"),
-        ("fr-FR", "French (fr-FR)"),
-        ("es-ES", "Spanish (es-ES)"),
-        ("tr-TR", "Turkish (tr-TR)")
+        ("en-US", "English (en-US)")
     ]
+
+    static let allowedOCRCodes: Set<String> = Set(languages.map(\.code))
 
     static let defaultsKey = "Learner.ocrLanguagesList"
 
@@ -66,7 +62,15 @@ struct LearnerOCRLanguagesPicker: View {
     static func loadFromDefaults() -> Set<String> {
         if let data = UserDefaults.standard.data(forKey: defaultsKey),
            let langs = try? JSONDecoder().decode([String].self, from: data), !langs.isEmpty {
-            return Set(langs)
+            let filtered = Set(langs).intersection(allowedOCRCodes)
+            if filtered.isEmpty {
+                saveToDefaults(["de-DE"])
+                return ["de-DE"]
+            }
+            if filtered.count != langs.count {
+                saveToDefaults(filtered)
+            }
+            return filtered
         }
         return ["de-DE"]
     }

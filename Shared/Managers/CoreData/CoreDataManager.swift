@@ -66,6 +66,7 @@ final class CoreDataManager {
         localDescription.configuration = "Local"
         localDescription.shouldMigrateStoreAutomatically = true
         localDescription.shouldInferMappingModelAutomatically = true
+        localDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 
         if shouldUseiCloud {
             cloudDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(

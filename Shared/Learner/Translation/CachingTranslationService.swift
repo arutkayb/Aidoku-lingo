@@ -88,4 +88,9 @@ final class CachingTranslationService: TranslationService {
         store(result, key: key)
         return result
     }
+
+    /// Removes all cached translation results.
+    func clearCache() {
+        cache.removeAllObjects()
+    }
 }

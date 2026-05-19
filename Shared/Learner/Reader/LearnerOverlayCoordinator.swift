@@ -168,6 +168,23 @@ final class LearnerOverlayCoordinator {
         // If enabling, the next imageDidLoad call from the page view controller will attach overlays
     }
 
+    /// Resets the per-page OCR cache and detaches all live overlays. Does not touch UserDefaults.
+    func clearCaches() {
+        ocrCache.removeAll()
+        for state in pageStates.values {
+            state.overlay?.removeFromSuperview()
+        }
+        pageStates.removeAll()
+    }
+
+    /// One-shot purge of every in-memory learner cache. CoreData wipe is the caller's job.
+    @MainActor
+    static func clearAllLearnerCaches() {
+        shared.clearCaches()
+        TranslationServiceFactory.clearCache()
+        VocabIndex.shared.rebuild()
+    }
+
     // MARK: — Helpers
 
     private func isLearnerEnabled(for mangaId: String) -> Bool {
@@ -185,7 +202,7 @@ final class LearnerOverlayCoordinator {
     /// Returns the list of OCR recognition languages to use.
     /// On first call after an upgrade from the old single-select UI, migrates
     /// `Learner.ocrLanguages` (String) → `Learner.ocrLanguagesList` ([String] JSON).
-    /// Defaults to `["de-DE"]` when no setting is present. (Task 7)
+    /// Defaults to `["de-DE"]` when no setting is present.
     func ocrLanguages() -> [String] {
         let newKey = "Learner.ocrLanguagesList"
         let legacyKey = "Learner.ocrLanguages"
@@ -202,7 +219,19 @@ final class LearnerOverlayCoordinator {
 
         if let data = UserDefaults.standard.data(forKey: newKey),
            let langs = try? JSONDecoder().decode([String].self, from: data), !langs.isEmpty {
-            return langs
+            let allowed = LearnerOCRLanguagesPicker.allowedOCRCodes
+            let filtered = langs.filter { allowed.contains($0) }
+            if filtered.isEmpty {
+                if let rewriteData = try? JSONEncoder().encode(["de-DE"]) {
+                    UserDefaults.standard.set(rewriteData, forKey: newKey)
+                }
+                return ["de-DE"]
+            }
+            if filtered.count != langs.count,
+               let rewriteData = try? JSONEncoder().encode(filtered) {
+                UserDefaults.standard.set(rewriteData, forKey: newKey)
+            }
+            return filtered
         }
         return ["de-DE"]
     }

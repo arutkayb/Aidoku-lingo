@@ -765,7 +765,6 @@
 "LEARNER_VOCAB_DONE" = "Done";
 "LEARNER_TRANSLATION_UNAVAILABLE" = "Translation unavailable on this device.";
 "LEARNER_TRANSLATION_NETWORK_ERROR" = "Translation request failed. Check your connection.";
-"LEARNER_TRANSLATION_INVALID_KEY" = "Invalid DeepL API key.";
 
 // MARK: — Learner Word Lookup (Task 6)
 "LEARNER_WORD_LOOKUP" = "Word Lookup";
@@ -826,8 +825,9 @@
 "LEARNER_OVERLAY_TOGGLE" = "Learner";
 "LEARNER_MODE_GLOBAL_SUBTITLE" = "Show vocabulary overlays in every paged manga.";
 "LEARNER_TARGET_LANGUAGE" = "Translate Into";
-"LEARNER_DEEPL_API_KEY" = "DeepL API Key";
-"LEARNER_DEEPL_API_KEY_PLACEHOLDER" = "Paste your DeepL key";
 "LEARNER_DISABLE_LANG_CORRECTION" = "Disable Language Correction";
 "LEARNER_RE_OCR_PAGE" = "Re-OCR This Page";
 "LEARNER_OCR_LANGUAGES_FOOTER" = "Select languages to recognize. More languages may slow OCR and reduce per-language accuracy. Enable \"Disable Language Correction\" if uppercase words with umlauts are mangled.";
+"LEARNER_CLEAR_CACHE_BUTTON" = "Clear Learner Cache";
+"LEARNER_CLEAR_CACHE_TITLE" = "Clear Learner Cache";
+"LEARNER_CLEAR_CACHE_CONFIRM_MESSAGE" = "This will permanently delete your saved vocabulary, flashcard progress, and OCR/translation caches. Settings will be preserved. This cannot be undone.";
