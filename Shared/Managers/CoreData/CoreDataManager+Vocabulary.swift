@@ -110,6 +110,18 @@ extension CoreDataManager {
         return entry
     }
 
+    /// Deletes every `VocabularyEntry` (and via cascade, its `FamiliarityProgress`
+    /// and `FlashcardState`). Used by the Learner "Clear Data" button to wipe
+    /// learner-specific state without touching library/history.
+    func clearLearnerData(context: NSManagedObjectContext? = nil) {
+        let ctx = context ?? self.context
+        let request = VocabularyEntryObject.fetchRequest()
+        let entries = (try? ctx.fetch(request)) ?? []
+        for entry in entries {
+            ctx.delete(entry)
+        }
+    }
+
     /// Returns true if at least one vocab entry exists in the store. Used by the
     /// tab bar to decide whether to show the Learner tab regardless of the global
     /// toggle (a user with saved vocab should always be able to reach it).

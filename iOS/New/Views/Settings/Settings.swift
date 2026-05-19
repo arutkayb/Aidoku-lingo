@@ -644,6 +644,15 @@ extension Settings {
                     autocorrectionDisabled: true,
                     secure: true
                 ))
+            ),
+            .init(
+                key: "Learner.clearData",
+                title: NSLocalizedString("LEARNER_CLEAR_DATA"),
+                value: .button(.init(
+                    destructive: true,
+                    confirmTitle: NSLocalizedString("LEARNER_CLEAR_DATA"),
+                    confirmText: NSLocalizedString("LEARNER_CLEAR_DATA_TEXT")
+                ))
             )
         ])))
     ]

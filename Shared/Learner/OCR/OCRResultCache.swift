@@ -40,6 +40,11 @@ final class OCRResultCache: @unchecked Sendable {
         cache.removeObject(forKey: key(imageData: imageData, languages: languages))
     }
 
+    /// Drops every cached entry.
+    func removeAll() {
+        cache.removeAllObjects()
+    }
+
     // MARK: — Private
 
     private func key(imageData: Data, languages: [String]) -> NSString {

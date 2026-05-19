@@ -169,6 +169,19 @@ extension SettingsView {
             case "Logs.display":
                 path.push(LogViewController())
 
+            case "Learner.clearData":
+                Task {
+                    await CoreDataManager.shared.container.performBackgroundTask { context in
+                        CoreDataManager.shared.clearLearnerData(context: context)
+                        try? context.save()
+                    }
+                    await MainActor.run {
+                        LearnerOverlayCoordinator.shared.clearAllCaches()
+                        VocabIndex.shared.rebuild()
+                        LearnerEvents.shared.vocabChanged.send()
+                    }
+                }
+
             case "Advanced.clearTrackedManga":
                 confirmAction(
                     title: NSLocalizedString("CLEAR_TRACKED_MANGA"),

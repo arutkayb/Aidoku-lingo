@@ -163,6 +163,17 @@ final class LearnerOverlayCoordinator {
         pageStates[PageKey(context)]?.overlay?.setNeedsRebuild()
     }
 
+    /// Wipes the OCR result cache and removes every attached overlay. Used by the
+    /// Learner "Clear Data" button so a fresh OCR + MWE detection pass runs on the
+    /// next page load.
+    func clearAllCaches() {
+        ocrCache.removeAll()
+        for state in pageStates.values {
+            state.overlay?.removeFromSuperview()
+        }
+        pageStates.removeAll()
+    }
+
     /// Called when the global Learner toggle changes for a manga.
     func setEnabled(_ enabled: Bool, for mangaId: String) {
         if !enabled {
