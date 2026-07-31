@@ -16,7 +16,6 @@
 "RENAME_CATEGORY_FAIL_INFO" = "ឈ្មោះធ្នើសៀវភៅត្រូវតែប្លែក។";
 "CATEGORY_NAME" = "ឈ្មោះធ្នើសៀវភៅ";
 "MIGRATE_SOURCES" = "ផ្ទេរប្រភព";
-"MIGRATION" = "ផ្ទេរ";
 "MOST_CHAPTERS_SLOWER" = "វគ្គភាគច្រើន (យឺត)";
 "SELECTED" = "បានជ្រើសរើស";
 "MIGRATE_ONE_ITEM?" = "តើអ្នកចង់ផ្ទេរ 1 ធាតុ?";
@@ -45,7 +44,7 @@
 "REMOVE_FROM_LIBRARY" = "លុបចេញពីបណ្ណាល័យ";
 "MANGA_INFO" = "ព័ត៌មានបន្ថែមពីម៉ានហ្គា";
 "SORT_BY" = "តម្រៀបដោយ";
-"LATEST_CHAPTER" = "វគ្គចេញចុងក្រោយបង្អស់";
+"SORT_LATEST_CHAPTER" = "វគ្គចេញចុងក្រោយបង្អស់";
 "NONE" = "គ្មាន";
 "CATEGORIES" = "ធ្នើសៀវភៅ";
 "CATEGORY_ADD_TEXT" = "បញ្ចូលឈ្មោះធ្នើសៀវភៅថ្មី។";
@@ -57,7 +56,7 @@
 "BUILD" = "Build";
 "BUTTON_FILTER" = "តម្រង់";
 "LIST_HEADER" = "បញ្ជី";
-"ONGOING" = "បច្ចុប្បន្ន​កំពុង​បន្ត";
+"STATUS_ONGOING" = "បច្ចុប្បន្ន​កំពុង​បន្ត";
 "SOURCE_ORDER" = "លំដាប់ប្រភព";
 "MISSING_SOURCE" = "ប្រភពដែលបាត់";
 "SELECT_CHAPTERS" = "ជ្រើសរើសវគ្គ";
@@ -165,9 +164,9 @@
 "REMOVE_ALL_DOWNLOADS_CONFIRM" = "តើអ្នកប្រាកដថាចង់លុបការទាញយកទាំងអស់មែនទេ?";
 "CACHE_SIZE_%@" = "ទំហំឃ្លាំងសម្ងាត់: %@";
 "SUPPORT_VIA_KOFI" = "ការបរិច្ចាគតាមរយ Ko-Fi";
-"UNREAD_CHAPTERS" = "វគ្គមិនទាន់អាន";
-"LAST_UPDATED" = "បានអាប់ដេតចុងក្រោយ";
-"TOTAL_CHAPTERS" = "វគ្គសរុប";
+"SORT_UNREAD_CHAPTERS" = "វគ្គមិនទាន់អាន";
+"SORT_LAST_UPDATED" = "បានអាប់ដេតចុងក្រោយ";
+"SORT_TOTAL_CHAPTERS" = "វគ្គសរុប";
 "PINNED" = "បានខ្ទាស់";
 "%i_CHAPTERS" = "វគ្គ %i​";
 "1_CHAPTER" = "វគ្គ 1";
@@ -176,11 +175,9 @@
 "ADD_TO_CATEGORIES" = "បន្ថែមទៅធ្នើសៀវភៅ";
 "RENAME_CATEGORY_FAIL" = "បរាជ័យក្នុងការផ្លាស់ប្តូរឈ្មោះធ្នើសៀវភៅ";
 "RENAME_CATEGORY" = "ប្តូរឈ្មោះសៀវភៅ";
-"START_MATCHING" = "ចាប់ផ្តើមការផ្គូផ្គង";
 "SYNC_LOCAL_HISTORY" = "សមកាលកម្មប្រវត្តិមូលដ្ឋាន";
 "MIGRATE" = "ផ្ទេរ";
 "OPTIONS" = "ជម្រើស";
-"TITLES" = "ចំណងជើង";
 "DESTINATION" = "គោលដៅ";
 "AVAILABLE" = "ការប្រើប្រាស់អាចធ្វើទៅបាន";
 "NOT_FOUND" = "រក​មិន​ឃើញ";
@@ -211,10 +208,10 @@
 "REMOVE_DOWNLOADS_CONFIRM" = "លុបការទាញយកដែលបានជ្រើសរើសទាំងអស់ចេញ?";
 "NO_WIFI_ALERT_MESSAGE" = "អ្នកត្រូវភ្ជាប់ Wi-Fi ដើម្បីទាញយកឯកសារនេះ។ សូមភ្ជាប់ Wi-Fi និងព្យាយាមម្តងទៀត។";
 "FILTER_BY" = "តម្រង់ដោយ";
-"TITLE" = "ចំណងជើង";
-"LAST_OPENED" = "ដែលបានបើកចុងក្រោយ";
-"LAST_READ" = "ដែលបានអានចុងក្រោយ";
-"DATE_ADDED" = "កាលបរិច្ឆេទ​ដែល​បាន​បន្ថែម";
+"SORT_TITLE" = "ចំណងជើង";
+"SORT_LAST_OPENED" = "ដែលបានបើកចុងក្រោយ";
+"SORT_LAST_READ" = "ដែលបានអានចុងក្រោយ";
+"SORT_DATE_ADDED" = "កាលបរិច្ឆេទ​ដែល​បាន​បន្ថែម";
 "COVER" = "ផ្ទាំងរូបភាព";
 
 // Categories
@@ -232,7 +229,7 @@
 
 // Manga
 "UNTITLED" = "គ្មានចំណងជើង";
-"CANCELLED" = "បានបោះបង់ចោល";
+"STATUS_CANCELLED" = "បានបោះបង់ចោល";
 "INSTALLED" = "បានដំឡើង";
 "BUTTON_GET" = "ទទួលយក";
 "BUTTON_ERROR" = "មានកំហុស ERROR";
@@ -242,8 +239,8 @@
 
 // Source
 "SOURCE_INFO" = "ព័ត៌មានបន្ថែមពីប្រភព";
-"COMPLETED" = "បានបញ្ចប់";
-"HIATUS" = "ផ្អាក";
+"STATUS_COMPLETED" = "បានបញ្ចប់";
+"STATUS_HIATUS" = "ផ្អាក";
 "SUGGESTIVE" = "សម្រាប់​អ្នក";
 "MORE" = "ច្រើនទៀត";
 "NSFW" = "NSFW";
@@ -291,7 +288,7 @@
 "FINISHED" = "អានរួចហើយ";
 "TRACK_PLANNING" = "កាលវិភាគអាន";
 "STOP_TRACKING" = "បញ្ឈប់ការតាមដាន";
-"NOT_PUBLISHED" = "មិនបានផ្សព្វផ្សាយ";
+"STATUS_NOT_PUBLISHED" = "មិនបានផ្សព្វផ្សាយ";
 "RESET_TEXT" = "ប្រតិបត្តិការនេះមិនអាចត្រឡប់វិញបានទេ។ ទិន្នន័យ ការកំណត់ និងឃ្លាំងសម្ងាត់ទាំងអស់នឹងត្រូវបានសម្អាត និងកំណត់ឡើងវិញ។";
 "CLEAR_NETWORK_CACHE_TEXT" = "ប្រតិបត្តិការនេះមិនអាចត្រឡប់វិញបានទេ។ សំណើបណ្តាញដែលបានរក្សាទុក និងរូបភាពត្រូវបានសម្អាត។";
 "CLEAR_READ_HISTORY" = "ជម្រះប្រវត្តិអាន";

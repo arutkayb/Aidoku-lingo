@@ -13,6 +13,7 @@ struct HomeScrollerView: View {
     let source: AidokuRunner.Source
     let component: HomeComponent
     let partial: Bool
+    let pressAction: ((AidokuRunner.Manga) -> Void)?
 
     private let entries: [HomeComponent.Value.Link]
     private let listing: AidokuRunner.Listing?
@@ -28,11 +29,13 @@ struct HomeScrollerView: View {
     init(
         source: AidokuRunner.Source,
         component: HomeComponent,
-        partial: Bool = false
+        partial: Bool = false,
+        pressAction: ((AidokuRunner.Manga) -> Void)? = nil
     ) {
         self.source = source
         self.component = component
         self.partial = partial
+        self.pressAction = pressAction
 
         guard case let .scroller(entries, listing) = component.value else {
             fatalError("invalid component type")
@@ -115,25 +118,65 @@ struct HomeScrollerView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                             }
                             .frame(width: Self.coverHeight * 2/3)
+
                             if let value = entry.value {
-                                Button {
+                                let tapAction = {
                                     switch value {
                                         case .url(let urlString):
                                             guard
                                                 let url = URL(string: urlString),
                                                 url.scheme == "http" || url.scheme == "https"
-                                            else { return }
+                                            else {
+                                                return
+                                            }
                                             path.present(SFSafariViewController(url: url))
                                         case .listing(let listing):
                                             path.push(SourceListingViewController(source: source, listing: listing))
                                         case .manga(let manga):
-                                            path.push(MangaViewController(source: source, manga: manga, parent: path.rootViewController))
+                                            if let pressAction {
+                                                pressAction(manga)
+                                            } else {
+                                                path.push(MangaViewController(source: source, manga: manga, parent: path.rootViewController))
+                                            }
                                     }
-                                } label: {
-                                    label
                                 }
-                                .foregroundStyle(.primary)
-                                .buttonStyle(.borderless)
+                                let longPressAction = {
+                                    switch value {
+                                        case .manga(let manga):
+                                            path.push(MangaViewController(source: source, manga: manga, parent: path.rootViewController))
+                                        default:
+                                            break
+                                    }
+                                }
+                                if #unavailable(iOS 18.0), pressAction != nil {
+                                    // there's a bug on <= ios 17 where the scroll view won't scroll if there's a long press gesture on a button
+                                    label
+                                        .onTapGesture {
+                                            tapAction()
+                                        }
+                                        .onLongPressGesture {
+                                            longPressAction()
+                                        }
+                                } else {
+                                    let button = Button {
+                                        tapAction()
+                                    } label: {
+                                        label
+                                    }
+                                    .foregroundStyle(.primary)
+                                    .buttonStyle(.borderless)
+
+                                    if pressAction != nil {
+                                        button.simultaneousGesture(
+                                            LongPressGesture()
+                                                .onEnded { _ in
+                                                    longPressAction()
+                                                }
+                                        )
+                                    } else {
+                                        button
+                                    }
+                                }
                             } else {
                                 label
                             }
@@ -233,6 +276,7 @@ struct PlaceholderMangaScroller: View {
                 }
             }
             .padding(.horizontal)
+            .scrollTargetLayoutPlease()
         }
         .scrollViewAlignedPlease()
     }

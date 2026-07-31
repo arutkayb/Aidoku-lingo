@@ -42,9 +42,9 @@ actor DownloadManager {
             Self.directory.createDirectory()
         }
         Task {
-            await self.queue.setOnCompletion { @Sendable [weak self] in
+            await self.queue.setOnCompletion { @Sendable in
                 Task { @MainActor in
-                    await self?.invalidateDownloadedMangaCache()
+                    await self.invalidateDownloadedMangaCache()
                 }
             }
         }
@@ -77,7 +77,7 @@ actor DownloadManager {
                     guard !url.lastPathComponent.hasPrefix(".") else {
                         return nil
                     }
-                    if url.pathExtension == "txt" {
+                    if LocalFileManager.allowedTextExtensions.contains(url.pathExtension) {
                         // add description file to list
                         if url.lastPathComponent.hasSuffix("desc.txt") {
                             descriptionFiles.append(url)
