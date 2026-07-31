@@ -67,6 +67,7 @@
 // Library
 "LIBRARY" = "Library";
 "LIBRARY_SEARCH" = "Find in Library";
+"CATEGORY_SEARCH" = "Find in Category";
 "LIBRARY_EMPTY" = "Library Empty";
 "LIBRARY_ADD_CONTENT" = "Add content from the browse tab.";
 "LIBRARY_ADJUST_FILTERS" = "Adjust your filters to see more content.";
@@ -76,11 +77,11 @@
 "SORT_BY" = "Sort By";
 "FILTER_BY" = "Filter By";
 "REMOVE_FILTER" = "Remove Filter";
-"TITLE" = "Title";
-"LAST_OPENED" = "Last Opened";
-"LAST_READ" = "Last Read";
-"LATEST_CHAPTER" = "Latest Chapter";
-"DATE_ADDED" = "Date Added";
+"SORT_TITLE" = "Title";
+"SORT_LAST_OPENED" = "Last Opened";
+"SORT_LAST_READ" = "Last Read";
+"SORT_LATEST_CHAPTER" = "Latest Chapter";
+"SORT_DATE_ADDED" = "Date Added";
 "AND_MORE" = "and more";
 "NOT_%@" = "Not %@";
 "FILTER_SEPARATOR" = ", ";
@@ -216,7 +217,7 @@
 "IMPORT" = "Import";
 "IMPORT_FILE" = "Import File";
 "LOCAL_FILE_IMPORT" = "Local File Import";
-"LOCAL_FILE_IMPORT_TEXT" = "Import a CBZ or ZIP file containing images to read.";
+"LOCAL_FILE_IMPORT_TEXT" = "Import a CBZ, ePub, or ZIP file containing images to read.";
 "CHAPTER_TITLE" = "Chapter Title";
 "SERIES_TITLE" = "Series Title";
 "DESCRIPTION" = "Description";
@@ -234,6 +235,7 @@
 "1_PAGE" = "1 page";
 "CBZ_NAME" = "Comic Book Zip Archive";
 "ZIP_NAME" = "Zip Archive";
+"EPUB_NAME" = "EPUB";
 
 // Komga
 "KOMGA" = "Komga";
@@ -272,14 +274,12 @@
 "ARTIST" = "Artist";
 "SORT" = "Sort";
 "SORT_NAME" = "Name";
-"SORT_DATE_ADDED" = "Date added";
-"SORT_DATE_UPDATED" = "Date updated";
-"SORT_DATE_READ" = "Date read";
-"SORT_RELEASE_DATE" = "Release date";
-"SORT_FOLDER_NAME" = "Folder name";
-"SORT_BOOKS_COUNT" = "Books count";
+"SORT_DATE_UPDATED" = "Date Updated";
+"SORT_DATE_READ" = "Date Read";
+"SORT_RELEASE_DATE" = "Release Date";
+"SORT_FOLDER_NAME" = "Folder Name";
+"SORT_BOOKS_COUNT" = "Books Count";
 "SORT_RANDOM" = "Random";
-"STATUS_ONGOING" = "Random";
 "GENRE" = "Genre";
 "TAG" = "Tag";
 "PUBLISHER" = "Publisher";
@@ -301,7 +301,7 @@
 "SORT_CHAPTER_ADDED" = "Chapter Added";
 "SORT_TIME_TO_READ" = "Time to Read";
 "SORT_AVERAGE_RATING" = "Average Rating";
-"ENDED" = "Ended";
+"STATUS_ENDED" = "Ended";
 "FORMAT" = "Format";
 "FORMAT_IMAGE" = "Image";
 "FORMAT_EPUB" = "EPUB";
@@ -313,12 +313,23 @@
 "BASIC_LOGIN" = "Basic Login";
 "API_KEY_LOGIN_INFO" = "Manually providing an API key for login will override other login methods. You can leave it blank to use other login methods.";
 
+// Suwayomi
+"SUWAYOMI" = "Suwayomi";
+"SUWAYOMI_TAGLINE" = "Manga reader server";
+"SUWAYOMI_INFO" = "Suwayomi is a self-hosted manga reader server that runs extensions built for Mihon (Tachiyomi). You will need a Suwayomi server set up and running in order to use this source.";
+"SUWAYOMI_SETUP" = "Suwayomi Setup";
+"STATUS_LICENSED" = "Licensed";
+"STATUS_PUBLISHING_FINISHED" = "Publishing Finished";
+"AUTHOR_NAME" = "Author name";
+"ARTIST_NAME" = "Aritst name";
+"INVALID_KEY" = "Invalid Key";
+
 // Manga
 "UNTITLED" = "Untitled";
-"ONGOING" = "Ongoing";
-"CANCELLED" = "Cancelled";
-"COMPLETED" = "Completed";
-"HIATUS" = "Hiatus";
+"STATUS_ONGOING" = "Ongoing";
+"STATUS_CANCELLED" = "Canceled";
+"STATUS_COMPLETED" = "Completed";
+"STATUS_HIATUS" = "Hiatus";
 "SUGGESTIVE" = "Suggestive";
 "NSFW" = "NSFW";
 "MORE" = "more";
@@ -465,6 +476,12 @@
 "REFRESH_METADATA" = "Refresh Metadata";
 "BACKGROUND_REFRESH" = "Background Refresh";
 "BACKGROUND_REFRESH_TEXT" = "When starting a library refresh manually, allow the refresh to complete even if the app is backgrounded.";
+"NEW_CHAPTER_NOTIFICATIONS" = "New Chapter Notifications";
+"NEW_CHAPTER_NOTIFICATIONS_TEXT" = "Send notifications when the library is refreshed in the background.";
+"1_NEW_CHAPTER_AVAILABLE" = "New chapter available";
+"X_NEW_CHAPTERS_AVAILABLE" = "%d new chapters available";
+"NEW_CHAPTERS_AVAILABLE" = "New Chapters Available";
+"X_SERIES_HAVE_NEW_CHAPTERS" = "%d series have new chapters";
 "DELETE_DOWNLOAD_AFTER_READING" = "Delete Download After Reading";
 "NEVER" = "Never";
 "EVERY_6_HOURS" = "Every 6 hours";
@@ -648,8 +665,10 @@
 "STARTED" = "Started";
 "FINISHED" = "Finished";
 "STOP_TRACKING" = "Stop Tracking";
+"SET_TRACK_CHAPTER_OFFSET" = "Set Chapter Offset";
+"TRACK_CHAPTER_OFFSET_TEXT" = "Adjust automatic tracker chapter updates for this title when source chapter numbers differ from tracker chapter numbers.";
 "TITLE_DISPLAY_MODE" = "Title Display Mode";
-"NOT_PUBLISHED" = "Not Published";
+"STATUS_NOT_PUBLISHED" = "Not Published";
 "MANGA" = "Manga";
 "MANHWA" = "Manhwa";
 "MANHUA" = "Manhua";
@@ -682,7 +701,7 @@
 
 "CACHE_SIZE_%@" = "Cache size: %@";
 "SUPPORT_VIA_KOFI" = "Support via Ko-Fi";
-"UNREAD_CHAPTERS" = "Unread Chapters";
+"SORT_UNREAD_CHAPTERS" = "Unread Chapters";
 "SET_AS_SINGLE_PAGE" = "Set as Single Page";
 "UNSET_AS_SINGLE_PAGE" = "Unset as Single Page";
 "RELOAD" = "Reload";
@@ -692,8 +711,8 @@
 "%i_PAGES_LEFT" = "%i pages left";
 "ONE_PAGE_LEFT" = "1 page left";
 "FAILED_CHAPTER_LOAD" = "Failed to Load Chapter";
-"LAST_UPDATED" = "Last Updated";
-"TOTAL_CHAPTERS" = "Total Chapters";
+"SORT_LAST_UPDATED" = "Last Updated";
+"SORT_TOTAL_CHAPTERS" = "Total Chapters";
 "FAILED_CHAPTER_LOAD_INFO" = "You might be offline or the source may be having issues.";
 "WEBTOON" = "Webtoon";
 "CONTINUOUS_WITH_GAPS" = "Continuous with Gaps";
@@ -709,12 +728,9 @@
 
 // Migration
 "MIGRATE_SOURCES" = "Migrate Sources";
-"START_MATCHING" = "Start Matching";
 "SYNC_LOCAL_HISTORY" = "Sync Local History";
 "MIGRATE" = "Migrate";
-"MIGRATION" = "Migration";
 "OPTIONS" = "Options";
-"TITLES" = "Titles";
 "DESTINATION" = "Destination";
 "SELECTED" = "Selected";
 "AVAILABLE" = "Available";
@@ -723,6 +739,14 @@
 "FIRST_ALTERNATIVE" = "First Alternative";
 "MIGRATE_%i_ITEMS?" = "Migrate %i items?";
 "MIGRATE_ONE_ITEM?" = "Migrate 1 item?";
+"MIGRATE_CONFIRM_TEXT" = "Reading history for the original entries will be removed when migrating to a different source.";
+"SELECT_PINNED_SOURCES" = "Select Pinned Sources";
+"SEARCH_MANUALLY" = "Search Manually";
+"DONT_MIGRATE" = "Don't Migrate";
+"SELECTED_%i_OF_%i" = "Selected (%i/%i)";
+"MIGRATE_%i_OF_%i" = "Migrate (%i/%i)";
+"SHOW_ENTRY" = "Show Entry";
+
 "SOURCE_BREAKING_CHANGE" = "Source Breaking Change";
 "SOURCE_BREAKING_CHANGE_TEXT" = "This source had a breaking change and requires migration to keep your library and history.";
 "UPLOAD_DATE" = "Upload Date";

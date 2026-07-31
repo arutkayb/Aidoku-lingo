@@ -119,7 +119,9 @@ class LibraryViewController: OldMangaCollectionViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = NSLocalizedString("LIBRARY_SEARCH")
+        searchController.searchBar.placeholder = viewModel.currentCategory == nil
+            ? NSLocalizedString("LIBRARY_SEARCH")
+            : NSLocalizedString("CATEGORY_SEARCH")
         navigationItem.searchController = searchController
 
         // navbar buttons
@@ -162,7 +164,8 @@ class LibraryViewController: OldMangaCollectionViewController {
         let registration = UICollectionView.SupplementaryRegistration<LibraryCategorySelectionHeader>(
             elementKind: UICollectionView.elementKindSectionHeader
         ) { [weak self] header, _, _ in
-            guard let self else { return }
+            guard let self, header.options.isEmpty else { return }
+
             header.delegate = self
             var options: [LibraryCategorySelectionHeader.Section] = []
             if UserDefaults.standard.bool(forKey: "Library.showUncategorizedCategory") {
@@ -186,7 +189,6 @@ class LibraryViewController: OldMangaCollectionViewController {
                     header.setSelectedOption(.init(row: 1, section: 0))
                 }
             }
-            header.updateMenu()
 
             // load locked icons
             if UserDefaults.standard.bool(forKey: "Library.lockLibrary") {
@@ -602,6 +604,10 @@ extension LibraryViewController {
         emptyStackView.text = viewModel.actuallyEmpty
             ? NSLocalizedString("LIBRARY_ADD_CONTENT")
             : NSLocalizedString("LIBRARY_ADJUST_FILTERS")
+
+        navigationItem.searchController?.searchBar.placeholder = viewModel.currentCategory == nil
+            ? NSLocalizedString("LIBRARY_SEARCH")
+            : NSLocalizedString("CATEGORY_SEARCH")
     }
 
     @objc func stopEditing() {
@@ -1492,10 +1498,16 @@ extension LibraryViewController {
             actions.append(UIAction(
                 title: NSLocalizedString("MIGRATE"),
                 image: UIImage(systemName: "arrow.left.arrow.right")
-            ) { [weak self] _ in
-                let manga = mangaInfo.map { $0.toManga() }
-                let migrateView = MigrateMangaView(manga: manga)
-                self?.present(UIHostingController(rootView: SwiftUINavigationView(rootView: migrateView)), animated: true)
+            ) { _ in
+                let manga = mangaInfo.map { $0.toManga().toNew() }
+                let migrateView = MigrateSelectDestinationView(
+                    selectedSeries: manga,
+                    selectedSources: manga.count == 1
+                        ? SourceManager.shared.source(for: manga[0].sourceKey).flatMap { [$0.toInfo()] } ?? []
+                        : []
+                )
+                let viewController = SwiftUINavigationViewController(rootView: migrateView)
+                self.present(viewController, animated: true)
             })
 
             var bottomMenuChildren: [UIMenuElement] = []

@@ -24,21 +24,12 @@ extension InterpreterConfiguration {
                 do {
                     let (data, response) = try await URLSession.shared.data(for: request)
 
-                    let isCloudflare = (response as? HTTPURLResponse)?.value(forHTTPHeaderField: "Server") == "cloudflare"
-                    let code = (response as? HTTPURLResponse)?.statusCode ?? -1
-
-                    // check if cloudflare blocked the request
-                    if isCloudflare && (code == 503 || code == 403 || code == 429) {
-                        // handle cloudflare
-                        await CloudflareHandler.shared.handle(request: request)
-
-                        // retry request
-                        let newRequest = if let url = originalRequest.url {
-                            await AidokuRunner.Source.modify(url: url, request: originalRequest)
-                        } else {
-                            originalRequest
+                    let httpResponse = response as? HTTPURLResponse
+                    if let httpResponse {
+                        // check if cloudflare blocked the request
+                        if CloudflareHandler.shared.shouldHandle(response: httpResponse, data: data) {
+                            return try await CloudflareHandler.shared.handle(request: request)
                         }
-                        return try await URLSession.shared.data(for: newRequest)
                     }
 
                     return (data, response)
@@ -212,10 +203,10 @@ extension AidokuRunner.PublishingStatus {
     var title: String {
         switch self {
             case .unknown: NSLocalizedString("UNKNOWN")
-            case .ongoing: NSLocalizedString("ONGOING")
-            case .completed: NSLocalizedString("COMPLETED")
-            case .cancelled: NSLocalizedString("CANCELLED")
-            case .hiatus: NSLocalizedString("HIATUS")
+            case .ongoing: NSLocalizedString("STATUS_ONGOING")
+            case .completed: NSLocalizedString("STATUS_COMPLETED")
+            case .cancelled: NSLocalizedString("STATUS_CANCELLED")
+            case .hiatus: NSLocalizedString("STATUS_HIATUS")
         }
     }
 }

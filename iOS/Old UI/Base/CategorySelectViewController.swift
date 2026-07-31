@@ -73,9 +73,9 @@ class CategorySelectViewController: UITableViewController {
             }
             if !inLibrary {
                 await MangaManager.shared.addToLibrary(
-                    sourceId: manga.sourceKey,
                     manga: manga,
-                    chapters: manga.chapters ?? []
+                    chapters: manga.chapters ?? [],
+                    fetchMangaDetails: true
                 )
             }
             await MangaManager.shared.setCategories(

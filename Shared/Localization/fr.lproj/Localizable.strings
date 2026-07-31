@@ -19,9 +19,9 @@
 "MANGA_INFO" = "Infos sur le manga";
 "SORT_BY" = "Trier par";
 "FILTER_BY" = "Filtrer par";
-"TITLE" = "Titre";
-"LAST_OPENED" = "Dernier accès";
-"LATEST_CHAPTER" = "Dernier chapitre";
+"SORT_TITLE" = "Titre";
+"SORT_LAST_OPENED" = "Dernier accès";
+"SORT_LATEST_CHAPTER" = "Dernier chapitre";
 "ALWAYS_ASK" = "Toujours demander";
 
 // Browse
@@ -40,9 +40,9 @@
 
 // Manga
 "UNTITLED" = "Sans titre";
-"CANCELLED" = "Annulé";
-"COMPLETED" = "Terminé";
-"HIATUS" = "Hiatus";
+"STATUS_CANCELLED" = "Annulé";
+"STATUS_COMPLETED" = "Terminé";
+"STATUS_HIATUS" = "Hiatus";
 "SUGGESTIVE" = "Osé";
 "NSFW" = "Érotique";
 "MORE" = "plus";
@@ -129,8 +129,8 @@
 // Library
 "LIBRARY" = "Bibliothèque";
 "LIBRARY_EMPTY" = "Bibliothèque vide";
-"LAST_READ" = "Dernière lecture";
-"DATE_ADDED" = "Date d'ajout";
+"SORT_LAST_READ" = "Dernière lecture";
+"SORT_DATE_ADDED" = "Date d'ajout";
 "NONE" = "Aucun";
 "UNAVAILABLE" = "Indisponible";
 "DOWNLOAD_QUEUE" = "File d'attente de téléchargement";
@@ -143,7 +143,7 @@
 // Source
 "SOURCE_INFO" = "Infos sur la source";
 "LANGUAGES" = "Langues";
-"ONGOING" = "En cours";
+"STATUS_ONGOING" = "En cours";
 "AUTH_TO_DISABLE" = "S'authentifier pour désactiver.";
 "SHARE" = "Partager";
 
@@ -264,13 +264,13 @@
 "CACHE_SIZE_%@" = "Taille du cache : %@";
 "SUPPORT_VIA_KOFI" = "Soutenir via Ko-Fi";
 "STOP_TRACKING" = "Arrêter le suivi";
-"NOT_PUBLISHED" = "Non publié";
+"STATUS_NOT_PUBLISHED" = "Non publié";
 "MANGA" = "Manga";
-"UNREAD_CHAPTERS" = "Chapitres non lus";
+"SORT_UNREAD_CHAPTERS" = "Chapitres non lus";
 "RELOAD" = "Recharger";
 "ONE_PAGE_LEFT" = "1 page restante";
-"LAST_UPDATED" = "Dernière mise à jour";
-"TOTAL_CHAPTERS" = "Total des chapitres";
+"SORT_LAST_UPDATED" = "Dernière mise à jour";
+"SORT_TOTAL_CHAPTERS" = "Total des chapitres";
 "%i_OF_%i" = "%i sur %i";
 "%i_PAGES_LEFT" = "%i pages restantes";
 "FAILED_CHAPTER_LOAD" = "Échec du chargement du chapitre";
@@ -291,13 +291,10 @@
 "RENAME_CATEGORY_FAIL_INFO" = "Les noms de catégorie doivent être uniques.";
 "CATEGORY_NAME" = "Nom de la catégorie";
 "MIGRATE_SOURCES" = "Migrer les sources";
-"START_MATCHING" = "Démarrer la correspondance";
 "UPLOAD_DATE" = "Date de téléversement";
 "SYNC_LOCAL_HISTORY" = "Synchroniser l’historique local";
 "MIGRATE" = "Migrer";
-"MIGRATION" = "Migration";
 "OPTIONS" = "Options";
-"TITLES" = "Titres";
 "DESTINATION" = "Destination";
 "SELECTED" = "Sélectionnés";
 "AVAILABLE" = "Disponible";
@@ -455,14 +452,12 @@
 "ARTIST" = "Illustrateur";
 "SORT" = "Trier";
 "SORT_NAME" = "Nom";
-"SORT_DATE_ADDED" = "Date d’ajout";
 "SORT_DATE_UPDATED" = "Date de mise à jour";
 "SORT_DATE_READ" = "Date de lecture";
 "SORT_RELEASE_DATE" = "Date de publication";
 "SORT_FOLDER_NAME" = "Nom du répertoire";
 "SORT_BOOKS_COUNT" = "Nombre de livres";
 "SORT_RANDOM" = "Aléatoire";
-"STATUS_ONGOING" = "Aléatoire";
 "GENRE" = "Genre";
 "TAG" = "Tag";
 "PUBLISHER" = "Éditeur";
@@ -481,7 +476,7 @@
 "SORT_CHAPTER_ADDED" = "Chapitre ajouté";
 "SORT_TIME_TO_READ" = "Temps de lecture";
 "SORT_AVERAGE_RATING" = "Note moyenne";
-"ENDED" = "Terminer";
+"STATUS_ENDED" = "Terminer";
 "FORMAT" = "Format";
 "FORMAT_IMAGE" = "Image";
 "FORMAT_EPUB" = "EPUB";
@@ -662,7 +657,7 @@
 "REFRESH_LOGIN" = "Relancer la connexion";
 "IMPORT_BACKUP" = "Importer une sauvegarde";
 "SYNC_WITH_TRACKER" = "Synchroniser avec le traqueur";
-"SYNC_WITH_TRACKER_INFO_%i" = "Les chapitres %i ont été déterminés comme déjà lus par le traceur. Voulez-vous mettre à jour votre historique local pour correspondre ?";
+"SYNC_WITH_TRACKER_INFO_%i" = "Les chapitres %i ont été déterminés comme déjà lus par le traceur. Voulez-vous marquer ces chapitres comme lus ?";
 "UNAVAILABLE_TRACKER_ITEM" = "élément du traceur indisponible";
 "UNAVAILABLE_TRACKER_ITEM_INFO" = "L'élément de traceur lié est associé à un traceur qui n'est plus disponible. Vous devez soit enlever cet élément soit vous connecter à nouveau au traceur associé.";
 "EDIT" = "Editer";
@@ -704,3 +699,41 @@
 "PAGE_OFFSET" = "Décalage de page";
 "UNSET_AS_SINGLE_PAGE" = "Découper en pages uniques";
 "TOGGLE_PAGE_OFFSET" = "Régler les décalages de page";
+"REFRESH_NO_WIFI" = "Non connecté au Wi-Fi";
+"REFRESH_NO_WIFI_TEXT" = "Le réglage « Mise à jour seulement sur Wi-Fi » est activé, la bibliothèque ne peut donc être actualisée que lorsqu'une connexion Wi-Fi est disponible.";
+"REFRESH_ANYWAYS" = "Forcer l'actualisation";
+"REMOVE_FROM_LIBRARY_CONFIRM" = "Retirer de la bibliothèque ?";
+"REMOVE_FROM_LIBRARY_CONFIRM_TEXT" = "Retirer cette série de votre bibliothèque supprimera également tous les trackers liés. Etes-vous sûr de vouloir continuer ?";
+"INCOGNITO_FILTERS_NOTICE" = "Les filtres modifiés ne sont pas conservés en mode Incognito.";
+"API_KEY" = "Clé API";
+"OIDC" = "OIDC";
+"BASIC_LOGIN" = "Connection simple";
+"API_KEY_LOGIN_INFO" = "La fourniture manuelle d'une clé API pour la connection remplacera les autres méthodes de connexion. Vous pouvez laisser vide pour utiliser d'autres méthodes de connexion.";
+"REFRESH_DETAILS" = "Actualiser les détails";
+"LOGIN_METHOD" = "Méthode de connection";
+"BASIC" = "Basique";
+"LAYOUT" = "Affichage";
+"STANDARD" = "Standart";
+"COMPACT" = "Compacte";
+"CUSTOM" = "Personnalisé";
+"PORTRAIT_ROWS" = "Affichage portrait";
+"LANDSCAPE_ROWS" = "Affichage paysage";
+"DISABLE_DOUBLE_TAP_ZOOM" = "Désactiver le double appui pour zoomer";
+"CONTINUOUS_WITH_GAPS" = "Continu avec espaces";
+"SYNC_WITH_TRACKER_INFO_1" = "1 chapitre a été déterminé comme déjà lu par le traceur. Voulez-vous marquer ce chapitre comme lu ?";
+"CATEGORY_SEARCH" = "Trouver dans la catégorie";
+"TRACK_CHAPTER_OFFSET_TEXT" = "Réglez les mises à jour automatiques du tracker de chapitre pour cette oeuvre lorsque les numéros de chapitre de la source diffèrent des numéros de chapitre du tracker.";
+"MIGRATE_CONFIRM_TEXT" = "L'historique de lecture des entrées originales sera supprimée lors de la migration vers une source différente.";
+"SELECT_PINNED_SOURCES" = "Sélectionner des sources épinglées";
+"SEARCH_MANUALLY" = "Recherche manuelle";
+"DONT_MIGRATE" = "Ne pas migrer";
+"SELECTED_%i_OF_%i" = "Selectionné (%i/%i)";
+"MIGRATE_%i_OF_%i" = "Migrer (%i/%i)";
+"SHOW_ENTRY" = "Afficher l'entrée";
+"SET_TRACK_CHAPTER_OFFSET" = "Définir le décalage de chapitre";
+"1_NEW_CHAPTER_AVAILABLE" = "Nouveau chapitre disponible";
+"X_NEW_CHAPTERS_AVAILABLE" = "%d nouveaux chapitres disponibles";
+"NEW_CHAPTERS_AVAILABLE" = "Nouveaux chapitres disponibles";
+"X_SERIES_HAVE_NEW_CHAPTERS" = "%d séries ont de nouveaux chapitres";
+"NEW_CHAPTER_NOTIFICATIONS" = "Notifications de nouveaux chapitres";
+"NEW_CHAPTER_NOTIFICATIONS_TEXT" = "Envoyer des notifications lorsque la bibliothèque est actualisée en arrière-plan.";

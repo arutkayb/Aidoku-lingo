@@ -296,7 +296,7 @@ struct MangaDetailsHeaderView: View {
                     longHeldBookmark = false
                     return
                 }
-                if isTracking {
+                if bookmarked && isTracking {
                     // show confirm prompt
                     showLibraryRemoveConfirm = true
                 } else {
@@ -432,7 +432,6 @@ struct MangaDetailsHeaderView: View {
             } else { // add to library
                 bookmarked = true
                 await MangaManager.shared.addToLibrary(
-                    sourceId: sourceId,
                     manga: manga,
                     chapters: manga.chapters ?? []
                 )

@@ -186,18 +186,20 @@ struct HistoryView: View {
         .contentShape(Rectangle())
         .listRowSeparator(.hidden, edges: .top)
         .listRowSeparator(.visible, edges: .bottom)
-        .introspect(.listCell, on: .iOS(.v16, .v17, .v18, .v26)) { entity in
+        .introspect(.listCell, on: .iOS(.v16, .v17, .v18, .v26, .v27)) { entity in
             // match cell background color to list background color when not selected (plain cell style)
             guard let cell = entity as? UICollectionViewListCell, cell.tag != 1 else { return }
             cell.backgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
             cell.tag = 1
         }
         .swipeActions(edge: .trailing) {
-            Button(NSLocalizedString("DELETE")) {
+            Button {
                 entryToDelete = entry
                 showDeleteConfirm = true
+            } label: {
+                Label(NSLocalizedString("DELETE"), systemImage: "trash")
             }
-            .tint(.red)
+            .tint(.red) // adding destructive role breaks animation, so do this instead
         }
         .id(entry.chapterCacheKey)
         .tag(entry.chapterCacheKey)

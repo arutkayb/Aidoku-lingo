@@ -29,11 +29,11 @@
 "REMOVE_FROM_LIBRARY" = "Hapus dari Perpustakaan";
 "SORT_BY" = "Urutkan berdasarkan";
 "FILTER_BY" = "Saring Berdasarkan";
-"TITLE" = "Judul";
-"LAST_OPENED" = "Terakhir dibuka";
-"LAST_READ" = "Terakhir dibaca";
-"LATEST_CHAPTER" = "Bab Terbaru";
-"DATE_ADDED" = "Tanggal Ditambahkan";
+"SORT_TITLE" = "Judul";
+"SORT_LAST_OPENED" = "Terakhir dibuka";
+"SORT_LAST_READ" = "Terakhir dibaca";
+"SORT_LATEST_CHAPTER" = "Bab Terbaru";
+"SORT_DATE_ADDED" = "Tanggal Ditambahkan";
 
 // Categories
 "ALL" = "Semua";
@@ -63,10 +63,10 @@
 
 // Manga
 "UNTITLED" = "Tanpa Judul";
-"ONGOING" = "Sedang Berlangsung";
-"CANCELLED" = "Dibatalkan";
-"COMPLETED" = "Tamat";
-"HIATUS" = "Jeda";
+"STATUS_ONGOING" = "Sedang Berlangsung";
+"STATUS_CANCELLED" = "Dibatalkan";
+"STATUS_COMPLETED" = "Tamat";
+"STATUS_HIATUS" = "Jeda";
 "NSFW" = "NSFW";
 "BUILD" = "Bangun";
 "SOURCE_ORDER" = "Urutan Sumber";
@@ -90,7 +90,7 @@
 
 // History
 "HISTORY" = "Riwayat";
-"REMOVE_CHAPTER_HISTORY_TEXT" = "Ini akan menghapus riwayat untuk chapter ini. Apakah anda yakin ingin melanjutkan?";
+"REMOVE_CHAPTER_HISTORY_TEXT" = "Ini akan menghapus riwayat untuk bab ini. Apakah anda yakin ingin melanjutkan?";
 "HISTORY_LOCKED" = "Riwayat dikunci.";
 "VIEW_MORE" = "Lihat Lebih Banyak";
 "%@_AGO" = "%@ yang lalu";
@@ -155,7 +155,7 @@
 "TRACK_PLANNING" = "Perencanaan";
 "TRACK_DROPPED" = "Ditinggalkan";
 "ONESHOT" = "Komik Pendek";
-"NOT_PUBLISHED" = "Belum diterbitkan";
+"STATUS_NOT_PUBLISHED" = "Belum diterbitkan";
 "MANGA" = "Manga";
 "MANHWA" = "Manhwa";
 "LIGHT_NOVEL" = "Novel Ringan";
@@ -377,14 +377,12 @@
 "ARTIST" = "Seniman";
 "SORT" = "Sortir";
 "SORT_NAME" = "Nama";
-"SORT_DATE_ADDED" = "Tanggal ditambahkan";
 "SORT_DATE_UPDATED" = "Tanggal diperbarui";
 "SORT_DATE_READ" = "Tanggal dibaca";
 "SORT_RELEASE_DATE" = "Tanggal rilis";
 "SORT_FOLDER_NAME" = "Nama folder";
 "SORT_BOOKS_COUNT" = "Buku dihitung";
 "SORT_RANDOM" = "Acak";
-"STATUS_ONGOING" = "Acak";
 "GENRE" = "Genre";
 "TAG" = "Tag";
 "PUBLISHER" = "Penerbit";
@@ -481,7 +479,7 @@
 "UPDATE_AFTER_READING_INFO" = "Setelah membaca satu bab, perbarui pelacak agar sesuai dengan bab dan/atau volume yang sedang dibaca.";
 "AUTO_SYNC_HISTORY" = "Sinkronisasi Riwayat Secara Otomatis";
 "AUTO_SYNC_HISTORY_INFO" = "Ketika bab dan/atau volume yang lebih baru terdeteksi di tracker, perbarui riwayat lokal agar sesuai.";
-"UNREAD_CHAPTERS" = "Bab yang Belum Dibaca";
+"SORT_UNREAD_CHAPTERS" = "Bab yang Belum Dibaca";
 "SET_AS_SINGLE_PAGE" = "Atur sebagai Halaman Tunggal";
 "RELOAD" = "Muat ulang";
 "RELOAD_FAILED" = "Pemuatan Ulang Gagal";
@@ -490,8 +488,8 @@
 "%i_PAGES_LEFT" = "%i halaman tersisa";
 "ONE_PAGE_LEFT" = "Sisa 1 halaman";
 "FAILED_CHAPTER_LOAD" = "Gagal Memuat Bab";
-"LAST_UPDATED" = "Terakhir Diperbarui";
-"TOTAL_CHAPTERS" = "Jumlah Bab";
+"SORT_LAST_UPDATED" = "Terakhir Diperbarui";
+"SORT_TOTAL_CHAPTERS" = "Jumlah Bab";
 "FAILED_CHAPTER_LOAD_INFO" = "Anda mungkin sedang offline atau sumbernya mungkin mengalami masalah.";
 "WEBTOON" = "Webtoon";
 "REMOVE_FROM_CATEGORY" = "Hapus dari Kategori";
@@ -511,12 +509,9 @@
 "RENAME_CATEGORY_FAIL_INFO" = "Nama kategori harus unik.";
 "CATEGORY_NAME" = "Nama Kategori";
 "MIGRATE_SOURCES" = "Migrasi Sumber";
-"START_MATCHING" = "Mulai Pencocokan";
 "SYNC_LOCAL_HISTORY" = "Sinkronkan Riwayat Lokal";
 "MIGRATE" = "Migrasi";
-"MIGRATION" = "Migrasi";
 "OPTIONS" = "Pilihan";
-"TITLES" = "Judul";
 "DESTINATION" = "Tujuan";
 "SELECTED" = "Terpilih";
 "AVAILABLE" = "Tersedia";
@@ -573,7 +568,7 @@
 "SORT_CHAPTER_ADDED" = "Bab Ditambahkan";
 "SORT_TIME_TO_READ" = "Waktu untuk Membaca";
 "SORT_AVERAGE_RATING" = "Rating Rata-Rata";
-"ENDED" = "Sudah berakhir";
+"STATUS_ENDED" = "Sudah berakhir";
 "FORMAT" = "Format";
 "FORMAT_IMAGE" = "Gambar";
 "FORMAT_EPUB" = "EPUB";
@@ -680,7 +675,7 @@
 "HIDE_BARS_ON_SWIPE" = "Sembunyikan Bilah saat Geser";
 "IMPORT_BACKUP" = "Impor Cadangan";
 "SYNC_WITH_TRACKER" = "Sinkronkan dengan Pelacak";
-"SYNC_WITH_TRACKER_INFO_%i" = "%i chapter telah ditentukan sudah dibaca oleh pelacak. Apakah Anda ingin memperbarui riwayat lokal Anda agar sesuai?";
+"SYNC_WITH_TRACKER_INFO_%i" = "%i bab telah ditentukan sudah dibaca oleh pelacak. Apakah Anda ingin menandai bab-bab ini sebagai sudah dibaca?";
 "UNAVAILABLE_TRACKER_ITEM" = "Item Pelacak Tidak Tersedia";
 "UNAVAILABLE_TRACKER_ITEM_INFO" = "Item pelacak yang ditautkan ini terkait dengan pelacak yang tidak lagi tersedia. Anda harus menghapus item ini atau masuk kembali ke pelacak terkait.";
 "MIRRORS" = "Mirror";
@@ -697,3 +692,29 @@
 "ENHANCED_TRACKERS_INFO" = "Pelacak yang disempurnakan dapat secara otomatis menautkan ke item yang ditambahkan ke perpustakaan Anda dari sumber yang didukung, melacak riwayat membaca dua arah.";
 "ENHANCED_TRACKERS_TOGGLE_INFO" = "Menonaktifkan pelacakan untuk suatu sumber akan menghapus semua pelacak yang tertaut, dan mengaktifkannya akan secara otomatis menautkan semua item di perpustakaan Anda.";
 "TRACKER_LOGOUT_INFO" = "Keluar akan menghapus info pelacakan yang tertaut dari pelacak ini untuk semua seri.";
+"REFRESH_NO_WIFI" = "Tidak Terhubung ke Wi-Fi";
+"REFRESH_NO_WIFI_TEXT" = "Pengaturan \"Hanya Perbarui saat Wi-Fi\" diaktifkan, sehingga pustaka tidak dapat disegarkan hingga koneksi Wi-Fi tersedia.";
+"REFRESH_ANYWAYS" = "Segarkan Tetap Saja";
+"API_KEY" = "Kunci API";
+"OIDC" = "OIDC";
+"BASIC_LOGIN" = "Login Dasar";
+"API_KEY_LOGIN_INFO" = "Memberikan kunci API secara manual untuk login akan menimpa metode login lainnya. Anda dapat mengosongkannya untuk menggunakan metode login lain.";
+"LOGIN_METHOD" = "Metode Login";
+"BASIC" = "Dasar";
+"RESUME_LAST_OPENED_CHAPTER" = "Lanjutkan Bab Terakhir yang Dibuka";
+"DISABLE_DOUBLE_TAP_ZOOM" = "Nonaktifkan Zoom Ketuk Dua Kali";
+"PAGE_OFFSET" = "Offset Halaman";
+"UNSET_AS_SINGLE_PAGE" = "Batalkan Pengaturan sebagai Halaman Tunggal";
+"TOGGLE_PAGE_OFFSET" = "Aktifkan/nonaktifkan offset halaman";
+"REMOVE_FROM_LIBRARY_CONFIRM" = "Hapus dari Pustaka?";
+"REMOVE_FROM_LIBRARY_CONFIRM_TEXT" = "Menghapus seri ini dari pustaka Anda juga akan menghapus semua pelacak yang tertaut. Apakah Anda yakin ingin melanjutkan?";
+"INCOGNITO_FILTERS_NOTICE" = "Filter yang dimodifikasi tidak akan tersimpan di Mode Penyamaran.";
+"REFRESH_DETAILS" = "Segarkan Detail";
+"LAYOUT" = "Tata Letak";
+"STANDARD" = "Standar";
+"COMPACT" = "Ringkas";
+"CUSTOM" = "Kustom";
+"PORTRAIT_ROWS" = "Baris Potret";
+"LANDSCAPE_ROWS" = "Baris Lanskap";
+"SYNC_WITH_TRACKER_INFO_1" = "1 bab telah ditentukan sudah dibaca oleh pelacak. Apakah Anda ingin menandai bab ini sebagai sudah dibaca?";
+"CONTINUOUS_WITH_GAPS" = "Berkelanjutan dengan Jeda";
