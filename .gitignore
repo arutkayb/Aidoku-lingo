@@ -31,3 +31,41 @@ spikes/OCRSpike/DerivedData/
 .claude/
 agent-logs/
 CLAUDE.md
+# >>> agentic-files gitignore (managed) >>>
+# This block is managed by agentic-files/apply-agent-gitignore.sh.
+# Edits between the markers will be overwritten on the next run.
+# Add custom rules OUTSIDE the markers.
+
+# Agent runtime state — not history.
+# Plan bundles, ideas, validation reports, and review files under
+# agent-logs/ are tracked (they are the feature history that future
+# agents and reviewers rely on); only per-run orchestrator state and
+# verbose transcripts are ignored.
+agent-logs/plans/*/HARNESS.lock
+agent-logs/plans/.plan-pipeline.lock
+agent-logs/plans/*/.harness-autonomous
+agent-logs/plans/*/HARNESS-STATUS.md
+agent-logs/plans/*/execution-state.json
+agent-logs/plans/*/.pipeline-fp/
+agent-logs/plans/_sessions/
+# Derived on every push by hooks/pr-body.sh; tracking it adds a commit the
+# body's own commit count never includes.
+agent-logs/plans/*/PR-BODY.md
+agent-logs/log/executions/
+
+# Per-machine Claude Code state
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# Derived indexes (regenerable from tracked inputs)
+docs/project-map/
+.cursor-index/
+
+# Legacy reviewer output. Standalone reviews now write to the tracked
+# agent-logs/reviews/ directory. This rule only covers repo-root directories
+# left behind by older runs.
+review-logs/
+
+# Other agent tools
+.aider*
+# <<< agentic-files gitignore (managed) <<<
