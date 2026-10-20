@@ -19,12 +19,13 @@ class TabBarController: UITabBarController {
     private weak var learnerViewController: UIHostingController<LearnerTabView>?
 
     private lazy var libraryProgressView = CircularProgressView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+    private let libraryRefreshLabel = UILabel()
 
     private lazy var libraryRefreshAccessory: UIView = {
         let view = UIView()
 
-        let label = UILabel()
-        label.text = NSLocalizedString("REFRESHING_LIBRARY")
+        let label = libraryRefreshLabel
+        label.text = NSLocalizedString("CHECKING_MANGA")
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
 
@@ -310,6 +311,7 @@ class TabBarController: UITabBarController {
 extension TabBarController {
     func showLibraryRefreshView() {
         libraryProgressView.setProgress(value: 0, withAnimation: false)
+        libraryRefreshLabel.text = NSLocalizedString("CHECKING_MANGA")
 
         if #available(iOS 26.0, *) {
             setBottomAccessory(.init(contentView: libraryRefreshAccessory), animated: true)
@@ -322,8 +324,10 @@ extension TabBarController {
         }
     }
 
-    func setLibraryRefreshProgress(_ progress: Float) {
+    func setLibraryRefreshProgress(completed: Int64, total: Int64) {
+        let progress = total > 0 ? Float(completed) / Float(total) : 0
         libraryProgressView.setProgress(value: progress, withAnimation: true)
+        libraryRefreshLabel.text = String(format: NSLocalizedString("CHECKING_MANGA_PROGRESS"), Int(completed), Int(total))
     }
 
     func hideAccessoryView() {

@@ -8,6 +8,50 @@
 import Foundation
 
 extension Sequence where Self: Sendable, Element: Sendable {
+    func concurrentMap<Key: Hashable & Sendable, T: Sendable>(
+        maxConcurrentTasks: Int,
+        serializingBy key: @Sendable (Element) -> Key,
+        _ transform: @Sendable @escaping (Element) async -> T
+    ) async -> [T] {
+        let groups = Array(Dictionary(grouping: Array(enumerated()), by: { key($0.element) }).values)
+        let groupedResults = await groups.concurrentMap(maxConcurrentTasks: maxConcurrentTasks) { elements in
+            var results: [(Int, T)] = []
+            for (index, element) in elements {
+                guard !Task.isCancelled else { break }
+                results.append((index, await transform(element)))
+            }
+            return results
+        }
+        return groupedResults.flatMap { $0 }.sorted { $0.0 < $1.0 }.map(\.1)
+    }
+
+    func concurrentMap<T: Sendable>(
+        maxConcurrentTasks: Int,
+        _ transform: @Sendable @escaping (Element) async -> T
+    ) async -> [T] {
+        let elements = Array(self)
+        return await withTaskGroup(of: (Int, T).self) { group in
+            var iterator = elements.enumerated().makeIterator()
+            for _ in 0..<Swift.min(elements.count, Swift.max(1, maxConcurrentTasks)) {
+                guard !Task.isCancelled, let (index, element) = iterator.next() else { break }
+                group.addTask { (index, await transform(element)) }
+            }
+
+            var results: [(Int, T)] = []
+            for await result in group {
+                results.append(result)
+                guard !Task.isCancelled else {
+                    group.cancelAll()
+                    continue
+                }
+                if let (index, element) = iterator.next() {
+                    group.addTask { (index, await transform(element)) }
+                }
+            }
+            return results.sorted { $0.0 < $1.0 }.map(\.1)
+        }
+    }
+
     func concurrentMap<T: Sendable>(
         _ transform: @Sendable @escaping (Element) async throws -> T
     ) async rethrows -> [T] {

@@ -44,13 +44,10 @@ actor DownloadTask: Identifiable {
         case pageProcessorFailed
     }
 
-    init(id: String, cache: DownloadCache, downloads: [Download]) {
+    init(id: String, cache: DownloadCache, downloads: [Download], delegate: DownloadTaskDelegate) {
         self.id = id
         self.cache = cache
         self.downloads = downloads
-    }
-
-    func setDelegate(delegate: DownloadTaskDelegate?) {
         self.delegate = delegate
     }
 

@@ -23,7 +23,7 @@ class MangaListCell: UICollectionViewCell {
             badgeView.badgeNumber = newValue
             if newValue > 0 {
                 setBadgeVisible(!isEditing)
-            } else if badgeNumber2 <= 0 {
+            } else if badgeNumber2 <= 0 && badgeNumber3 <= 0 {
                 setBadgeVisible(false)
             }
             badgeWidthConstraint?.constant = badgeView.intrinsicContentSize.width
@@ -35,9 +35,18 @@ class MangaListCell: UICollectionViewCell {
             badgeView.badgeNumber2 = newValue
             if newValue > 0 {
                 setBadgeVisible(!isEditing)
-            } else if badgeNumber <= 0 {
+            } else if badgeNumber <= 0 && badgeNumber3 <= 0 {
                 setBadgeVisible(false)
             }
+            badgeWidthConstraint?.constant = badgeView.intrinsicContentSize.width
+        }
+    }
+
+    var badgeNumber3: Int {
+        get { badgeView.badgeNumber3 }
+        set {
+            badgeView.badgeNumber3 = newValue
+            setBadgeVisible(!isEditing && (badgeNumber > 0 || badgeNumber2 > 0 || newValue > 0))
             badgeWidthConstraint?.constant = badgeView.intrinsicContentSize.width
         }
     }
@@ -197,7 +206,7 @@ extension MangaListCell {
         if editing {
             selectionView.setSelected(false, animated: false)
         }
-        let shouldShowBadge = editing ? false : badgeView.badgeNumber > 0 || badgeView.badgeNumber2 > 0
+        let shouldShowBadge = !editing && (badgeNumber > 0 || badgeNumber2 > 0 || badgeNumber3 > 0)
         if animated {
             if editing {
                 self.selectionView.isHidden = false

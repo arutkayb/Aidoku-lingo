@@ -39,6 +39,10 @@ class MangaGridCell: UICollectionViewCell {
         get { badgeView.badgeNumber2 }
         set { badgeView.badgeNumber2 = newValue }
     }
+    var badgeNumber3: Int {
+        get { badgeView.badgeNumber3 }
+        set { badgeView.badgeNumber3 = newValue }
+    }
 
     let imageView = GIFImageView()
     private let titleLabel = UILabel()

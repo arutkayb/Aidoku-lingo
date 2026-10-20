@@ -22,6 +22,7 @@ actor DownloadQueue {
 
     private var paused = false
     private var registeredTask = false
+    private var backgroundTaskPending = false
     private var totalDownloads: Int = 0
     private var completedDownloads: Int = 0
     private var bgTask: ProgressReporting?
@@ -50,17 +51,20 @@ actor DownloadQueue {
             UserDefaults.standard.bool(forKey: "Downloads.background"),
             !ProcessInfo.processInfo.isMacCatalystApp
         {
+            guard !backgroundTaskPending else { return }
+            backgroundTaskPending = true
             await register()
 
             let request = BGContinuedProcessingTaskRequest(
                 identifier: Self.taskIdentifier,
-                title: NSLocalizedString("DOWNLOADING"),
-                subtitle: NSLocalizedString("PROCESSING_QUEUE")
+                title: NSLocalizedString("DOWNLOADING_CHAPTERS"),
+                subtitle: String(format: NSLocalizedString("CHAPTER_DOWNLOAD_PROGRESS"), 0, queue.values.reduce(0) { $0 + $1.count })
             )
             do {
                 try BGTaskScheduler.shared.submit(request)
                 return
             } catch {
+                backgroundTaskPending = false
                 LogManager.logger.error("Failed to start background downloading: \(error)")
             }
         }
@@ -72,8 +76,7 @@ actor DownloadQueue {
     private func initAndResumeTasks() async {
         for (sourceKey, downloads) in queue {
             if tasks[sourceKey] == nil {
-                let task = DownloadTask(id: sourceKey, cache: cache, downloads: downloads)
-                await task.setDelegate(delegate: self)
+                let task = DownloadTask(id: sourceKey, cache: cache, downloads: downloads, delegate: self)
                 tasks[sourceKey] = task
             }
             await tasks[sourceKey]?.resume()
@@ -103,7 +106,7 @@ actor DownloadQueue {
         if #available(iOS 26.0, *) {
             if let task = bgTask as? BGContinuedProcessingTask {
                 task.updateTitle(
-                    NSLocalizedString("DOWNLOADING"),
+                    NSLocalizedString("DOWNLOADING_CHAPTERS"),
                     subtitle: NSLocalizedString("PAUSED")
                 )
             }
@@ -243,10 +246,19 @@ actor DownloadQueue {
 
 extension DownloadQueue {
     private func setBackgroundTask(_ task: ProgressReporting?) {
+        backgroundTaskPending = false
         bgTask = task
         totalDownloads = queue.values.reduce(0) { $0 + $1.count }
         completedDownloads = 0
         bgTask?.progress.totalUnitCount = Int64(totalDownloads)
+#if !os(macOS)
+        if #available(iOS 26.0, *), let task = task as? BGContinuedProcessingTask {
+            task.updateTitle(
+                NSLocalizedString("DOWNLOADING_CHAPTERS"),
+                subtitle: String(format: NSLocalizedString("CHAPTER_DOWNLOAD_PROGRESS"), completedDownloads, totalDownloads)
+            )
+        }
+#endif
     }
 
 #if !os(macOS) && !targetEnvironment(simulator)
@@ -328,8 +340,8 @@ extension DownloadQueue: DownloadTaskDelegate {
         if #available(iOS 26.0, *) {
             if !paused, let task = bgTask as? BGContinuedProcessingTask {
                 task.updateTitle(
-                    NSLocalizedString("DOWNLOADING"),
-                    subtitle: String(format: NSLocalizedString("%i_OF_%i"), completedDownloads, totalDownloads)
+                    NSLocalizedString("DOWNLOADING_CHAPTERS"),
+                    subtitle: String(format: NSLocalizedString("CHAPTER_DOWNLOAD_PROGRESS"), completedDownloads, totalDownloads)
                 )
             }
         }

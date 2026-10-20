@@ -21,6 +21,7 @@ struct MangaInfo: Hashable, Sendable {
 
     var unread: Int = 0
     var downloads: Int = 0
+    var newDownloads: Int = 0
 
     func toManga() -> Manga {
         Manga(

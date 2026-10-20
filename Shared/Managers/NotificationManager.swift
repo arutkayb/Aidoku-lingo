@@ -9,7 +9,7 @@ import UserNotifications
 actor NotificationManager {
     static let shared = NotificationManager()
 
-    struct NewChaptersSummary {
+    struct NewChaptersSummary: Sendable {
         let mangaIdentifier: MangaIdentifier
         let mangaTitle: String
         let chapterCount: Int

@@ -33,13 +33,27 @@ extension CoreDataManager {
     }
 
     /// Get all library manga objects.
-    func getLibraryManga(category: String? = nil, context: NSManagedObjectContext? = nil) -> [LibraryMangaObject] {
+    func getLibraryManga(
+        category: String? = nil,
+        identifiers: Set<MangaIdentifier>? = nil,
+        context: NSManagedObjectContext? = nil
+    ) -> [LibraryMangaObject] {
         let context = context ?? self.context
         let request = LibraryMangaObject.fetchRequest()
         if let category = category {
             request.predicate = NSPredicate(format: "manga != nil AND any categories.title = %@", category)
         } else {
             request.predicate = NSPredicate(format: "manga != nil")
+        }
+        if let identifiers {
+            guard !identifiers.isEmpty else { return [] }
+            let identifiersBySource = Dictionary(grouping: identifiers, by: \.sourceKey)
+            let identifiersPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: identifiersBySource.map { source, identifiers in
+                NSPredicate(format: "manga.sourceId == %@ AND manga.id IN %@", source, identifiers.map(\.mangaKey))
+            })
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                request.predicate ?? NSPredicate(value: true), identifiersPredicate
+            ])
         }
         return (try? context.fetch(request)) ?? []
     }

@@ -13,6 +13,10 @@ import AidokuRunner
 class LibraryViewController: OldMangaCollectionViewController {
     let viewModel = LibraryViewModel()
 
+    var refreshMangaIdentifiers: Set<MangaIdentifier> {
+        Set(dataSource.snapshot().itemIdentifiers.map(\.identifier))
+    }
+
     // MARK: Bar Buttons
     private lazy var downloadBarButton = makeBarButton(
         systemName: "square.and.arrow.down",
@@ -301,6 +305,13 @@ class LibraryViewController: OldMangaCollectionViewController {
         }
         addObserver(forName: .downloadRemoved, using: updateDownloadCounts)
         addObserver(forName: .downloadsRemoved, using: updateDownloadCounts)
+        addObserver(forName: "mangaUpdatesViewed") { [weak self] _ in
+            guard let self else { return }
+            Task {
+                await self.viewModel.fetchDownloadCounts()
+                self.updateDataSource()
+            }
+        }
 
         addObserver(forName: .updateLibrary) { [weak self] _ in
             guard let self else { return }
@@ -474,6 +485,7 @@ class LibraryViewController: OldMangaCollectionViewController {
 
         cell.badgeNumber = viewModel.badgeType.contains(.unread) ? info.unread : 0
         cell.badgeNumber2 = viewModel.badgeType.contains(.downloaded) ? info.downloads : 0
+        cell.badgeNumber3 = info.newDownloads
 
         cell.setEditing(self.isEditing, animated: false)
     }
@@ -483,6 +495,7 @@ class LibraryViewController: OldMangaCollectionViewController {
 
         cell.badgeNumber = viewModel.badgeType.contains(.unread) ? info.unread : 0
         cell.badgeNumber2 = viewModel.badgeType.contains(.downloaded) ? info.downloads : 0
+        cell.badgeNumber3 = info.newDownloads
 
         cell.setEditing(isEditing, animated: false)
     }
@@ -638,39 +651,44 @@ extension LibraryViewController {
     }
 
     @objc func updateLibraryRefresh(refreshControl: UIRefreshControl? = nil) {
-        let isBlockedByNoWifi = UserDefaults.standard.bool(forKey: "Library.updateOnlyOnWifi") && Reachability.getConnectionType() != .wifi
-
-        Task {
-            // delay hiding refresh control to avoid buggy animation
-            try? await Task.sleep(nanoseconds: 1_000_000_000)
+        let identifiers = refreshMangaIdentifiers
+        guard !locked, !identifiers.isEmpty else {
             refreshControl?.endRefreshing()
-
-            if isBlockedByNoWifi {
-                self.presentAlert(
-                    title: NSLocalizedString("REFRESH_NO_WIFI"),
-                    message: NSLocalizedString("REFRESH_NO_WIFI_TEXT"),
-                    actions: [
-                        UIAlertAction(title: NSLocalizedString("OK"), style: .cancel),
-                        UIAlertAction(title: NSLocalizedString("REFRESH_ANYWAYS"), style: .default) { _ in
-                            Task {
-                                await MangaManager.shared.backgroundRefreshLibrary(
-                                    category: self.viewModel.isInRealCategory ? self.viewModel.currentCategory : nil,
-                                    skipReachabilityCheck: true
-                                )
-                            }
+            return
+        }
+        let requiresWifi = UserDefaults.standard.bool(forKey: "Library.updateOnlyOnWifi")
+            || UserDefaults.standard.bool(forKey: "Library.downloadOnlyOnWifi")
+        if requiresWifi && Reachability.getConnectionType() != .wifi {
+            refreshControl?.endRefreshing()
+            presentAlert(
+                title: NSLocalizedString("REFRESH_NO_WIFI"),
+                message: NSLocalizedString("REFRESH_NO_WIFI_TEXT"),
+                actions: [
+                    UIAlertAction(title: NSLocalizedString("OK"), style: .cancel),
+                    UIAlertAction(title: NSLocalizedString("REFRESH_ANYWAYS"), style: .default) { [weak self] _ in
+                        Task {
+                            await self?.refreshVisibleLibrary(identifiers: identifiers, skipReachabilityCheck: true)
                         }
-                    ]
-                )
-            }
-        }
-
-        // trigger library refresh
-        guard !isBlockedByNoWifi else { return }
-        Task {
-            await MangaManager.shared.backgroundRefreshLibrary(
-                category: viewModel.isInRealCategory ? viewModel.currentCategory : nil
+                    }
+                ]
             )
+            return
         }
+        Task {
+            await refreshVisibleLibrary(identifiers: identifiers)
+            refreshControl?.endRefreshing()
+        }
+    }
+
+    private func refreshVisibleLibrary(identifiers: Set<MangaIdentifier>, skipReachabilityCheck: Bool = false) async {
+        await MangaManager.shared.backgroundRefreshLibrary(
+            mangaIdentifiers: identifiers,
+            downloadNewChapters: true,
+            skipReachabilityCheck: skipReachabilityCheck
+        )
+        await viewModel.loadLibrary()
+        updateEmptyStack()
+        updateDataSource()
     }
 
     @objc func openDownloadQueue() {
