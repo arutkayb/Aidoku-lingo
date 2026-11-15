@@ -73,18 +73,23 @@ struct MangaUpdatesView: View {
         .navigationTitle(NSLocalizedString("MANGA_UPDATES"))
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("mangaUpdatesViewed"))) { notification in
             guard let objects = notification.object as? [MangaUpdateItem] else { return }
+            entries = Self.markingViewed(entries, items: objects)
+        }
+    }
 
-            for section in 0..<entries.count {
-                for item in 0..<entries[section].items.count {
-                    guard let manga = entries[section].items[item].updates.first?.manga else { continue }
-                    if objects.contains(where: { $0.sourceId == manga.sourceKey && $0.mangaId == manga.key }) {
-                        for i in 0..<entries[section].items[item].updates.count {
-                            entries[section].items[item].updates[i].viewed = true
-                        }
+    static func markingViewed(_ entries: [UpdateSection], items objects: [MangaUpdateItem]) -> [UpdateSection] {
+        var entries = entries
+        for section in 0..<entries.count {
+            for item in 0..<entries[section].items.count {
+                guard let manga = entries[section].items[item].updates.first?.manga else { continue }
+                if objects.contains(where: { $0.sourceId == manga.sourceKey && $0.mangaId == manga.key }) {
+                    for i in 0..<entries[section].items[item].updates.count {
+                        entries[section].items[item].updates[i].viewed = true
                     }
                 }
             }
         }
+        return entries
     }
 
     var listItemsWithSections: some View {
