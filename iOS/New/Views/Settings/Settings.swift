@@ -282,7 +282,10 @@ extension Settings {
                         value: .multiselect(.init(
                             values: ["hasUnread", "completed", "notStarted"],
                             titles: [
-                                NSLocalizedString("WITH_UNREAD_CHAPTERS"),
+                                String(
+                                    format: NSLocalizedString("WITH_MORE_THAN_%i_UNREAD_CHAPTERS"),
+                                    MangaManager.maxUnreadChaptersToCheck
+                                ),
                                 NSLocalizedString("WITH_COMPLETED_STATUS"),
                                 NSLocalizedString("THAT_HAVENT_BEEN_READ")
                             ]

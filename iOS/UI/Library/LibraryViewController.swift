@@ -680,6 +680,7 @@ extension LibraryViewController {
 
     func refreshVisibleLibrary(identifiers: Set<MangaIdentifier>, skipReachabilityCheck: Bool = false) async {
         await MangaManager.shared.backgroundRefreshLibrary(
+            category: viewModel.isInRealCategory ? viewModel.currentCategory : nil,
             mangaIdentifiers: identifiers,
             skipReachabilityCheck: skipReachabilityCheck
         )

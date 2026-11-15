@@ -32,6 +32,8 @@ actor MangaManager {
     private var pendingLibraryRefresh: LibraryRefreshRequest?
 
     private static let maxConcurrentLibraryUpdateTasks = 10
+    /// The "hasUnread" skip option still checks titles with up to this many unread chapters.
+    static let maxUnreadChaptersToCheck = 3
 
     nonisolated func getNextChapter(
         manga: AidokuRunner.Manga,
@@ -462,14 +464,14 @@ extension MangaManager {
         if options.contains("completed") && manga.status == .completed {
             return true
         }
-        // has unread chapters
+        // has more unread chapters than the limit
         if options.contains("hasUnread") && CoreDataManager.shared.unreadCount(
             sourceId: manga.sourceId,
             mangaId: manga.id,
             lang: manga.langFilter,
             scanlators: manga.scanlatorFilter,
             context: context
-        ) > 0 {
+        ) > Self.maxUnreadChaptersToCheck {
             return true
         }
         // has no read chapters
@@ -553,10 +555,7 @@ extension MangaManager {
         // filter items that we should skip
         let filteredManga = await CoreDataManager.shared.container.performBackgroundTask { context in
             allManga.filter { manga in
-                if mangaIdentifiers != nil {
-                    return true
-                }
-                return !self.shouldSkip(
+                !self.shouldSkip(
                     manga: manga,
                     options: skipOptions,
                     excludedCategories: excludedCategories,

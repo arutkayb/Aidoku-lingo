@@ -188,6 +188,8 @@ struct LibraryRefreshTests {
     @Test func pullToRefreshSavesNewChaptersWithoutQueueingDownloads() async {
         let manga = AidokuRunner.Manga(sourceKey: "test-pull-source", key: "test-pull-manga", title: "Pull Test")
         let identifier = manga.identifier
+        let previousSkipTitles = UserDefaults.standard.object(forKey: "Library.skipTitles")
+        UserDefaults.standard.set([String](), forKey: "Library.skipTitles")
         await SourceManager.shared.waitForSourcesLoad()
         SourceManager.shared.sources.append(AidokuRunner.Source(
             key: manga.sourceKey,
@@ -205,6 +207,7 @@ struct LibraryRefreshTests {
         }
         let container = CoreDataManager.shared.container
         defer {
+            UserDefaults.standard.set(previousSkipTitles, forKey: "Library.skipTitles")
             NotificationCenter.default.removeObserver(observer)
             SourceManager.shared.sources.removeAll { $0.key == manga.sourceKey }
             let context = container.newBackgroundContext()
@@ -236,6 +239,67 @@ struct LibraryRefreshTests {
         #expect(chapterKeys == ["new", "old"])
         #expect(newChapters == 1)
         #expect(queued.chapterKeys.isEmpty)
+    }
+
+    @Test func pullToRefreshSkipsTitlesWithMoreThanThreeUnreadChapters() async {
+        let sourceKey = "test-skip-source"
+        let threeUnread = AidokuRunner.Manga(sourceKey: sourceKey, key: "three-unread", title: "Three Unread")
+        let fourUnread = AidokuRunner.Manga(sourceKey: sourceKey, key: "four-unread", title: "Four Unread")
+        let existing = ["c1", "c2", "c3", "c4", "c5"]
+        let previousSkipTitles = UserDefaults.standard.object(forKey: "Library.skipTitles")
+        UserDefaults.standard.set(["hasUnread"], forKey: "Library.skipTitles")
+        await SourceManager.shared.waitForSourcesLoad()
+        SourceManager.shared.sources.append(AidokuRunner.Source(
+            key: sourceKey,
+            name: "Skip Test",
+            version: 1,
+            contentRating: .safe,
+            runner: ChapterListRunner(chapterKeys: ["new"] + existing.reversed())
+        ))
+        let container = CoreDataManager.shared.container
+        defer {
+            UserDefaults.standard.set(previousSkipTitles, forKey: "Library.skipTitles")
+            SourceManager.shared.sources.removeAll { $0.key == sourceKey }
+            let context = container.newBackgroundContext()
+            context.performAndWait {
+                for manga in [threeUnread, fourUnread] {
+                    CoreDataManager.shared.removeHistory(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                    CoreDataManager.shared.removeChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                    if let libraryObject = CoreDataManager.shared.getLibraryManga(
+                        sourceId: manga.sourceKey, mangaId: manga.key, context: context
+                    ) {
+                        context.delete(libraryObject)
+                    }
+                    CoreDataManager.shared.removeManga(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                }
+                try? context.save()
+            }
+        }
+        await container.performBackgroundTask { context in
+            for (manga, readCount) in [(threeUnread, 2), (fourUnread, 1)] {
+                CoreDataManager.shared.addToLibrary(manga: manga, chapters: existing.map { .init(key: $0) }, context: context)
+                _ = CoreDataManager.shared.setCompleted(
+                    sourceId: manga.sourceKey,
+                    mangaId: manga.key,
+                    chapterIds: Array(existing.prefix(readCount)),
+                    date: .now,
+                    context: context
+                )
+            }
+            try? context.save()
+        }
+
+        await makeController().refreshVisibleLibrary(
+            identifiers: [threeUnread.identifier, fourUnread.identifier], skipReachabilityCheck: true
+        )
+
+        let checked = await container.performBackgroundTask { context in
+            [threeUnread, fourUnread].map { manga in
+                CoreDataManager.shared.getChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                    .contains { $0.id == "new" }
+            }
+        }
+        #expect(checked == [true, false])
     }
 
     @Test func readingOrCompletingAChapterClearsOnlyItsNewChapterCount() async {
