@@ -14,16 +14,11 @@ import CoreData
 /// Returns a fully configured NSPersistentContainer backed by an in-memory SQLite store.
 /// Suitable for unit tests that need Core Data without a persistent store.
 func makeInMemoryContainer() -> NSPersistentContainer {
-    let bundle = Bundle(for: CoreDataManager.self)
-    let container: NSPersistentContainer
-    if let modelURL = bundle.url(forResource: "Aidoku", withExtension: "momd") {
-        guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
-            fatalError("Cannot load model from \(modelURL)")
-        }
-        container = NSPersistentContainer(name: "Aidoku", managedObjectModel: model)
-    } else {
-        container = NSPersistentContainer(name: "Aidoku")
-    }
+    // Reuse the host app's model. A second model instance makes entity lookup by class ambiguous, and saves crash.
+    let container = NSPersistentContainer(
+        name: "Aidoku",
+        managedObjectModel: CoreDataManager.shared.container.managedObjectModel
+    )
     // NSInMemoryStoreType rejects the model's derived attributes. SQLite at /dev/null also stays in memory.
     let description = NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))
     description.type = NSSQLiteStoreType
