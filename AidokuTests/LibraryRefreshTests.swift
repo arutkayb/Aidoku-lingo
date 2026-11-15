@@ -238,6 +238,77 @@ struct LibraryRefreshTests {
         #expect(queued.chapterKeys.isEmpty)
     }
 
+    @Test func readingOrCompletingAChapterClearsOnlyItsNewChapterCount() async {
+        let manga = AidokuRunner.Manga(sourceKey: "test-read-source", key: "test-read-manga", title: "Read Test")
+        let identifier = manga.identifier
+        let container = CoreDataManager.shared.container
+        defer {
+            let context = container.newBackgroundContext()
+            context.performAndWait {
+                CoreDataManager.shared.removeHistory(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                CoreDataManager.shared.removeChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                if let libraryObject = CoreDataManager.shared.getLibraryManga(
+                    sourceId: manga.sourceKey, mangaId: manga.key, context: context
+                ) {
+                    context.delete(libraryObject)
+                }
+                CoreDataManager.shared.removeManga(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                try? context.save()
+            }
+        }
+        let read = AidokuRunner.Chapter(key: "read")
+        let completed = AidokuRunner.Chapter(key: "completed")
+        await container.performBackgroundTask { context in
+            CoreDataManager.shared.addToLibrary(manga: manga, chapters: [read, completed, .init(key: "unread")], context: context)
+            for chapter in CoreDataManager.shared.getChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context) {
+                CoreDataManager.shared.createMangaUpdate(
+                    sourceId: manga.sourceKey, mangaId: manga.key, chapterObject: chapter, context: context
+                )
+            }
+            try? context.save()
+        }
+        func newChapterCount() async -> Int {
+            await container.performBackgroundTask { MangaUpdateManager.shared.newChapterCount(for: identifier, context: $0) }
+        }
+
+        await HistoryManager.shared.setProgress(
+            chapter: read.toOld(sourceId: manga.sourceKey, mangaId: manga.key), progress: 2, totalPages: 10, completed: false
+        )
+        let afterReading = await newChapterCount()
+        await HistoryManager.shared.addHistory(sourceId: manga.sourceKey, mangaId: manga.key, chapters: [completed])
+        let afterCompleting = await newChapterCount()
+
+        #expect(afterReading == 2)
+        #expect(afterCompleting == 1)
+    }
+
+    @Test func updatesTabMarksOnlyTheNotifiedChaptersViewed() {
+        let manga = AidokuRunner.Manga(sourceKey: "source", key: "manga", title: "Title")
+        let updates = ["read", "unread"].map { key in
+            MangaUpdatesView.UpdateInfo(
+                id: key,
+                chapterIdentifier: .init(sourceKey: "source", mangaKey: "manga", chapterKey: key),
+                date: .now,
+                manga: manga,
+                chapter: nil,
+                viewed: false
+            )
+        }
+        let entries = [MangaUpdatesView.UpdateSection(day: 0, items: [.init(mangaKey: "manga", updates: updates)])]
+
+        let result = MangaUpdatesView.markingViewed(
+            entries, items: [MangaUpdateItem(sourceId: "source", chapterId: "read", mangaId: "manga", viewed: true)]
+        )
+
+        #expect(result[0].items[0].updates.map(\.viewed) == [true, false])
+
+        let allViewed = MangaUpdatesView.markingViewed(entries, items: ["read", "unread"].map {
+            MangaUpdateItem(sourceId: "source", chapterId: $0, mangaId: "manga", viewed: true)
+        })
+
+        #expect(allViewed[0].items[0].updates.map(\.viewed) == [true, true])
+    }
+
     private func makeController() -> LibraryViewController {
         let controller = LibraryViewController()
         controller.collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())

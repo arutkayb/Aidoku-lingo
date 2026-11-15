@@ -81,9 +81,11 @@ struct MangaUpdatesView: View {
         var entries = entries
         for section in 0..<entries.count {
             for item in 0..<entries[section].items.count {
-                guard let manga = entries[section].items[item].updates.first?.manga else { continue }
-                if objects.contains(where: { $0.sourceId == manga.sourceKey && $0.mangaId == manga.key }) {
-                    for i in 0..<entries[section].items[item].updates.count {
+                for i in 0..<entries[section].items[item].updates.count {
+                    let chapter = entries[section].items[item].updates[i].chapterIdentifier
+                    if objects.contains(where: {
+                        $0.sourceId == chapter.sourceKey && $0.mangaId == chapter.mangaKey && $0.chapterId == chapter.chapterKey
+                    }) {
                         entries[section].items[item].updates[i].viewed = true
                     }
                 }
