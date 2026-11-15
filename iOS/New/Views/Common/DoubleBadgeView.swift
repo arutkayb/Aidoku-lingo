@@ -185,6 +185,8 @@ class DoubleBadgeView: UIView {
         }
         NSLayoutConstraint.activate(badgeConstraints)
         invalidateIntrinsicContentSize()
+        // Swapping constraints does not mark this view for layout, so a same-size update keeps stale frames.
+        setNeedsLayout()
     }
 }
 

@@ -175,8 +175,12 @@ struct LibraryRefreshTests {
             badge.layoutIfNeeded()
             let visible = badge.subviews.filter { !$0.isHidden }
             #expect(visible.count == counts.0 + counts.1 + counts.2)
+            if let first = visible.first, let last = visible.last {
+                #expect(abs(first.frame.minX) < 0.5, "counts \(counts)")
+                #expect(abs(last.frame.maxX - badge.bounds.width) < 0.5, "counts \(counts)")
+            }
             for (left, right) in zip(visible, visible.dropFirst()) {
-                #expect(abs(left.frame.maxX - right.frame.minX) < 0.5)
+                #expect(abs(left.frame.maxX - right.frame.minX) < 0.5, "counts \(counts)")
             }
         }
     }
