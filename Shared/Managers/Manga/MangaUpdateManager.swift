@@ -13,20 +13,12 @@ struct MangaUpdateManager {
 }
 
 extension MangaUpdateManager {
-    func newlyDownloadedChapterCount(
-        for identifier: MangaIdentifier,
-        context: NSManagedObjectContext,
-        isDownloaded: (ChapterIdentifier) -> Bool = { DownloadManager.shared.getDownloadStatus(for: $0) == .finished }
-    ) -> Int {
+    func newChapterCount(for identifier: MangaIdentifier, context: NSManagedObjectContext) -> Int {
         CoreDataManager.shared.getUnviewedMangaUpdates(
             sourceId: identifier.sourceKey,
             mangaId: identifier.mangaKey,
             context: context
-        ).reduce(into: 0) { count, update in
-            if isDownloaded(update.identifier) {
-                count += 1
-            }
-        }
+        ).count
     }
 
     func viewAllUpdates(of manga: AidokuRunner.Manga) async {

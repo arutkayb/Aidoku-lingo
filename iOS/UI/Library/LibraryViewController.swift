@@ -485,7 +485,7 @@ class LibraryViewController: OldMangaCollectionViewController {
 
         cell.badgeNumber = viewModel.badgeType.contains(.unread) ? info.unread : 0
         cell.badgeNumber2 = viewModel.badgeType.contains(.downloaded) ? info.downloads : 0
-        cell.badgeNumber3 = info.newDownloads
+        cell.badgeNumber3 = info.newChapters
 
         cell.setEditing(self.isEditing, animated: false)
     }
@@ -495,7 +495,7 @@ class LibraryViewController: OldMangaCollectionViewController {
 
         cell.badgeNumber = viewModel.badgeType.contains(.unread) ? info.unread : 0
         cell.badgeNumber2 = viewModel.badgeType.contains(.downloaded) ? info.downloads : 0
-        cell.badgeNumber3 = info.newDownloads
+        cell.badgeNumber3 = info.newChapters
 
         cell.setEditing(isEditing, animated: false)
     }
@@ -656,9 +656,7 @@ extension LibraryViewController {
             refreshControl?.endRefreshing()
             return
         }
-        let requiresWifi = UserDefaults.standard.bool(forKey: "Library.updateOnlyOnWifi")
-            || UserDefaults.standard.bool(forKey: "Library.downloadOnlyOnWifi")
-        if requiresWifi && Reachability.getConnectionType() != .wifi {
+        if UserDefaults.standard.bool(forKey: "Library.updateOnlyOnWifi") && Reachability.getConnectionType() != .wifi {
             refreshControl?.endRefreshing()
             presentAlert(
                 title: NSLocalizedString("REFRESH_NO_WIFI"),
@@ -683,7 +681,6 @@ extension LibraryViewController {
     private func refreshVisibleLibrary(identifiers: Set<MangaIdentifier>, skipReachabilityCheck: Bool = false) async {
         await MangaManager.shared.backgroundRefreshLibrary(
             mangaIdentifiers: identifiers,
-            downloadNewChapters: true,
             skipReachabilityCheck: skipReachabilityCheck
         )
         await viewModel.loadLibrary()

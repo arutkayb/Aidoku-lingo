@@ -106,21 +106,7 @@ struct LibraryRefreshTests {
         #expect(targets.map(\.identifier) == [identifier])
     }
 
-    @Test func downloadSelectionRespectsChapterFiltersAndLockedChapters() {
-        let chapters: [AidokuRunner.Chapter] = [
-            .init(key: "match", scanlators: ["Group"], language: "en"),
-            .init(key: "language", scanlators: ["Group"], language: "ja"),
-            .init(key: "scanlator", scanlators: ["Other"], language: "en"),
-            .init(key: "locked", scanlators: ["Group"], language: "en", locked: true)
-        ]
-
-        let result = MangaManager.newChaptersToDownload(chapters, language: "en", scanlators: ["Group"])
-
-        #expect(result.map(\.key) == ["match"])
-        #expect(MangaManager.newChaptersToDownload(chapters, language: nil, scanlators: []).count == 3)
-    }
-
-    @Test func repeatedRefreshDoesNotDownloadExistingChapters() {
+    @Test func repeatedRefreshReportsOnlyUnseenChaptersAsNew() {
         let container = makeInMemoryContainer()
         let context = container.viewContext
         let manga = AidokuRunner.Manga(sourceKey: "source", key: "manga", title: "Title")
@@ -131,37 +117,20 @@ struct LibraryRefreshTests {
         let inserted = CoreDataManager.shared.setChapters(
             [latest, existing], sourceId: manga.sourceKey, mangaId: manga.key, context: context
         )
-        let downloads = MangaManager.newChaptersToDownload(inserted.map { $0.toNewChapter() }, language: nil, scanlators: [])
 
-        #expect(downloads.map(\.key) == ["latest"])
+        #expect(inserted.map(\.id) == ["latest"])
         #expect(CoreDataManager.shared.setChapters(
             [latest, existing], sourceId: manga.sourceKey, mangaId: manga.key, context: context
         ).isEmpty)
     }
 
-    @Test func cancellationAfterSavingDoesNotDiscardTheDownloadRequest() async {
-        let recorder = RefreshDownloadRecorder()
-        let task = Task {
-            withUnsafeCurrentTask { $0?.cancel() }
-            await MangaManager.enqueueRefreshedChapters(
-                [.init(key: "chapter")],
-                manga: .init(sourceKey: "test-refresh-source", key: "test-refresh-manga", title: "Title"),
-                skipReachabilityCheck: true,
-                enqueue: { _, chapters in await recorder.record(chapters.map(\.key)) }
-            )
-        }
-        await task.value
-
-        #expect(await recorder.chapters == ["chapter"])
-    }
-
-    @Test func newDownloadCountExcludesPendingViewedAndOtherTitles() {
+    @Test func newChapterCountIncludesUndownloadedAndExcludesViewedAndOtherTitles() {
         let container = makeInMemoryContainer()
         let context = container.viewContext
         let identifier = MangaIdentifier(sourceKey: "source", mangaKey: "manga")
         for (source, manga, chapter, viewed) in [
-            ("source", "manga", "downloaded", false),
-            ("source", "manga", "pending", false),
+            ("source", "manga", "first", false),
+            ("source", "manga", "second", false),
             ("source", "manga", "viewed", true),
             ("other", "manga", "otherSource", false),
             ("source", "other", "otherManga", false)
@@ -173,19 +142,11 @@ struct LibraryRefreshTests {
             update.viewed = viewed
         }
 
-        let count = MangaUpdateManager.shared.newlyDownloadedChapterCount(
-            for: identifier,
-            context: context,
-            isDownloaded: { $0.chapterKey != "pending" }
-        )
-
-        #expect(count == 1)
+        #expect(MangaUpdateManager.shared.newChapterCount(for: identifier, context: context) == 2)
 
         CoreDataManager.shared.setMangaUpdatesViewed(sourceId: "source", mangaId: "manga", context: context)
 
-        #expect(MangaUpdateManager.shared.newlyDownloadedChapterCount(
-            for: identifier, context: context, isDownloaded: { _ in true }
-        ) == 0)
+        #expect(MangaUpdateManager.shared.newChapterCount(for: identifier, context: context) == 0)
     }
 
     @Test func thirdBadgeCanAppearAloneAndAlongsideExistingCounts() {
@@ -225,13 +186,5 @@ struct LibraryRefreshTests {
         controller.collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         controller.dataSource = UICollectionViewDiffableDataSource(collectionView: controller.collectionView) { _, _, _ in nil }
         return controller
-    }
-}
-
-private actor RefreshDownloadRecorder {
-    private(set) var chapters: [String] = []
-
-    func record(_ chapters: [String]) {
-        self.chapters += chapters
     }
 }
