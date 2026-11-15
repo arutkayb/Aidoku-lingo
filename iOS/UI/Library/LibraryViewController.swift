@@ -678,7 +678,7 @@ extension LibraryViewController {
         }
     }
 
-    private func refreshVisibleLibrary(identifiers: Set<MangaIdentifier>, skipReachabilityCheck: Bool = false) async {
+    func refreshVisibleLibrary(identifiers: Set<MangaIdentifier>, skipReachabilityCheck: Bool = false) async {
         await MangaManager.shared.backgroundRefreshLibrary(
             mangaIdentifiers: identifiers,
             skipReachabilityCheck: skipReachabilityCheck

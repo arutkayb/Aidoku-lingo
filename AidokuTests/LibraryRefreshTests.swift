@@ -185,10 +185,99 @@ struct LibraryRefreshTests {
         }
     }
 
+    @Test func pullToRefreshSavesNewChaptersWithoutQueueingDownloads() async {
+        let manga = AidokuRunner.Manga(sourceKey: "test-pull-source", key: "test-pull-manga", title: "Pull Test")
+        let identifier = manga.identifier
+        await SourceManager.shared.waitForSourcesLoad()
+        SourceManager.shared.sources.append(AidokuRunner.Source(
+            key: manga.sourceKey,
+            name: "Pull Test",
+            version: 1,
+            contentRating: .safe,
+            runner: ChapterListRunner(chapterKeys: ["new", "old"])
+        ))
+        let queued = QueuedDownloadRecorder()
+        let observer = NotificationCenter.default.addObserver(
+            forName: .downloadsQueued, object: nil, queue: nil
+        ) { notification in
+            let downloads = notification.object as? [Download] ?? []
+            queued.record(downloads.filter { $0.mangaIdentifier == identifier }.map(\.chapterIdentifier.chapterKey))
+        }
+        let container = CoreDataManager.shared.container
+        defer {
+            NotificationCenter.default.removeObserver(observer)
+            SourceManager.shared.sources.removeAll { $0.key == manga.sourceKey }
+            let context = container.newBackgroundContext()
+            context.performAndWait {
+                CoreDataManager.shared.removeChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                if let libraryObject = CoreDataManager.shared.getLibraryManga(
+                    sourceId: manga.sourceKey, mangaId: manga.key, context: context
+                ) {
+                    context.delete(libraryObject)
+                }
+                CoreDataManager.shared.removeManga(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                try? context.save()
+            }
+        }
+        await container.performBackgroundTask { context in
+            CoreDataManager.shared.addToLibrary(manga: manga, chapters: [.init(key: "old")], context: context)
+            try? context.save()
+        }
+
+        await makeController().refreshVisibleLibrary(identifiers: [identifier], skipReachabilityCheck: true)
+
+        let (chapterKeys, newChapters) = await container.performBackgroundTask { context in
+            (
+                CoreDataManager.shared.getChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                    .map(\.id).sorted(),
+                MangaUpdateManager.shared.newChapterCount(for: identifier, context: context)
+            )
+        }
+        #expect(chapterKeys == ["new", "old"])
+        #expect(newChapters == 1)
+        #expect(queued.chapterKeys.isEmpty)
+    }
+
     private func makeController() -> LibraryViewController {
         let controller = LibraryViewController()
         controller.collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         controller.dataSource = UICollectionViewDiffableDataSource(collectionView: controller.collectionView) { _, _, _ in nil }
         return controller
+    }
+}
+
+private struct ChapterListRunner: AidokuRunner.Runner {
+    let chapterKeys: [String]
+    let features = AidokuRunner.SourceFeatures()
+
+    func getSearchMangaList(
+        query: String?, page: Int, filters: [AidokuRunner.FilterValue]
+    ) async throws -> AidokuRunner.MangaPageResult {
+        AidokuRunner.MangaPageResult(entries: [], hasNextPage: false)
+    }
+
+    func getMangaUpdate(
+        manga: AidokuRunner.Manga, needsDetails: Bool, needsChapters: Bool
+    ) async throws -> AidokuRunner.Manga {
+        var manga = manga
+        manga.chapters = chapterKeys.map { AidokuRunner.Chapter(key: $0) }
+        return manga
+    }
+
+    func getPageList(manga: AidokuRunner.Manga, chapter: AidokuRunner.Chapter) async throws -> [AidokuRunner.Page] {
+        []
+    }
+}
+
+private final class QueuedDownloadRecorder: @unchecked Sendable {
+    private let lock = NSLock()
+    private var keys: [String] = []
+
+    var chapterKeys: [String] {
+        lock.withLock { keys }
+    }
+
+    func record(_ chapterKeys: [String]) {
+        lock.withLock { keys += chapterKeys }
     }
 }
