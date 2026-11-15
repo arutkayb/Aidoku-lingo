@@ -11,27 +11,22 @@ import CoreData
 
 // MARK: — In-memory CoreData container
 
-/// Returns a fully configured NSPersistentContainer backed by NSInMemoryStoreType.
+/// Returns a fully configured NSPersistentContainer backed by an in-memory SQLite store.
 /// Suitable for unit tests that need Core Data without a persistent store.
 func makeInMemoryContainer() -> NSPersistentContainer {
     let bundle = Bundle(for: CoreDataManager.self)
-    guard let modelURL = bundle.url(forResource: "Aidoku", withExtension: "momd") else {
-        let container = NSPersistentContainer(name: "Aidoku")
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { _, error in
-            if let error { fatalError("In-memory store error: \(error)") }
+    let container: NSPersistentContainer
+    if let modelURL = bundle.url(forResource: "Aidoku", withExtension: "momd") {
+        guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Cannot load model from \(modelURL)")
         }
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        return container
+        container = NSPersistentContainer(name: "Aidoku", managedObjectModel: model)
+    } else {
+        container = NSPersistentContainer(name: "Aidoku")
     }
-    guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
-        fatalError("Cannot load model from \(modelURL)")
-    }
-    let container = NSPersistentContainer(name: "Aidoku", managedObjectModel: model)
-    let description = NSPersistentStoreDescription()
-    description.type = NSInMemoryStoreType
+    // NSInMemoryStoreType rejects the model's derived attributes. SQLite at /dev/null also stays in memory.
+    let description = NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))
+    description.type = NSSQLiteStoreType
     container.persistentStoreDescriptions = [description]
     container.loadPersistentStores { _, error in
         if let error { fatalError("In-memory store error: \(error)") }

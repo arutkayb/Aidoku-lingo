@@ -34,7 +34,7 @@ struct LibraryRefreshTests {
         snapshot.appendSections([.pinned, .regular])
         snapshot.appendItems(viewModel.pinnedManga, toSection: .pinned)
         snapshot.appendItems(viewModel.manga, toSection: .regular)
-        controller.dataSource.apply(snapshot, animatingDifferences: false)
+        await controller.dataSource.apply(snapshot, animatingDifferences: false)
 
         #expect(controller.refreshMangaIdentifiers == [visible.identifier, pinned.identifier])
     }
