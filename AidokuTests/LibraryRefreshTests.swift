@@ -34,7 +34,7 @@ struct LibraryRefreshTests {
         snapshot.appendSections([.pinned, .regular])
         snapshot.appendItems(viewModel.pinnedManga, toSection: .pinned)
         snapshot.appendItems(viewModel.manga, toSection: .regular)
-        controller.dataSource.apply(snapshot, animatingDifferences: false)
+        await controller.dataSource.apply(snapshot, animatingDifferences: false)
 
         #expect(controller.refreshMangaIdentifiers == [visible.identifier, pinned.identifier])
     }
@@ -106,21 +106,7 @@ struct LibraryRefreshTests {
         #expect(targets.map(\.identifier) == [identifier])
     }
 
-    @Test func downloadSelectionRespectsChapterFiltersAndLockedChapters() {
-        let chapters: [AidokuRunner.Chapter] = [
-            .init(key: "match", scanlators: ["Group"], language: "en"),
-            .init(key: "language", scanlators: ["Group"], language: "ja"),
-            .init(key: "scanlator", scanlators: ["Other"], language: "en"),
-            .init(key: "locked", scanlators: ["Group"], language: "en", locked: true)
-        ]
-
-        let result = MangaManager.newChaptersToDownload(chapters, language: "en", scanlators: ["Group"])
-
-        #expect(result.map(\.key) == ["match"])
-        #expect(MangaManager.newChaptersToDownload(chapters, language: nil, scanlators: []).count == 3)
-    }
-
-    @Test func repeatedRefreshDoesNotDownloadExistingChapters() {
+    @Test func repeatedRefreshReportsOnlyUnseenChaptersAsNew() {
         let container = makeInMemoryContainer()
         let context = container.viewContext
         let manga = AidokuRunner.Manga(sourceKey: "source", key: "manga", title: "Title")
@@ -131,37 +117,20 @@ struct LibraryRefreshTests {
         let inserted = CoreDataManager.shared.setChapters(
             [latest, existing], sourceId: manga.sourceKey, mangaId: manga.key, context: context
         )
-        let downloads = MangaManager.newChaptersToDownload(inserted.map { $0.toNewChapter() }, language: nil, scanlators: [])
 
-        #expect(downloads.map(\.key) == ["latest"])
+        #expect(inserted.map(\.id) == ["latest"])
         #expect(CoreDataManager.shared.setChapters(
             [latest, existing], sourceId: manga.sourceKey, mangaId: manga.key, context: context
         ).isEmpty)
     }
 
-    @Test func cancellationAfterSavingDoesNotDiscardTheDownloadRequest() async {
-        let recorder = RefreshDownloadRecorder()
-        let task = Task {
-            withUnsafeCurrentTask { $0?.cancel() }
-            await MangaManager.enqueueRefreshedChapters(
-                [.init(key: "chapter")],
-                manga: .init(sourceKey: "test-refresh-source", key: "test-refresh-manga", title: "Title"),
-                skipReachabilityCheck: true,
-                enqueue: { _, chapters in await recorder.record(chapters.map(\.key)) }
-            )
-        }
-        await task.value
-
-        #expect(await recorder.chapters == ["chapter"])
-    }
-
-    @Test func newDownloadCountExcludesPendingViewedAndOtherTitles() {
+    @Test func newChapterCountIncludesUndownloadedAndExcludesViewedAndOtherTitles() {
         let container = makeInMemoryContainer()
         let context = container.viewContext
         let identifier = MangaIdentifier(sourceKey: "source", mangaKey: "manga")
         for (source, manga, chapter, viewed) in [
-            ("source", "manga", "downloaded", false),
-            ("source", "manga", "pending", false),
+            ("source", "manga", "first", false),
+            ("source", "manga", "second", false),
             ("source", "manga", "viewed", true),
             ("other", "manga", "otherSource", false),
             ("source", "other", "otherManga", false)
@@ -173,19 +142,11 @@ struct LibraryRefreshTests {
             update.viewed = viewed
         }
 
-        let count = MangaUpdateManager.shared.newlyDownloadedChapterCount(
-            for: identifier,
-            context: context,
-            isDownloaded: { $0.chapterKey != "pending" }
-        )
-
-        #expect(count == 1)
+        #expect(MangaUpdateManager.shared.newChapterCount(for: identifier, context: context) == 2)
 
         CoreDataManager.shared.setMangaUpdatesViewed(sourceId: "source", mangaId: "manga", context: context)
 
-        #expect(MangaUpdateManager.shared.newlyDownloadedChapterCount(
-            for: identifier, context: context, isDownloaded: { _ in true }
-        ) == 0)
+        #expect(MangaUpdateManager.shared.newChapterCount(for: identifier, context: context) == 0)
     }
 
     @Test func thirdBadgeCanAppearAloneAndAlongsideExistingCounts() {
@@ -214,10 +175,138 @@ struct LibraryRefreshTests {
             badge.layoutIfNeeded()
             let visible = badge.subviews.filter { !$0.isHidden }
             #expect(visible.count == counts.0 + counts.1 + counts.2)
+            if let first = visible.first, let last = visible.last {
+                #expect(abs(first.frame.minX) < 0.5, "counts \(counts)")
+                #expect(abs(last.frame.maxX - badge.bounds.width) < 0.5, "counts \(counts)")
+            }
             for (left, right) in zip(visible, visible.dropFirst()) {
-                #expect(abs(left.frame.maxX - right.frame.minX) < 0.5)
+                #expect(abs(left.frame.maxX - right.frame.minX) < 0.5, "counts \(counts)")
             }
         }
+    }
+
+    @Test func pullToRefreshSavesNewChaptersWithoutQueueingDownloads() async {
+        let manga = AidokuRunner.Manga(sourceKey: "test-pull-source", key: "test-pull-manga", title: "Pull Test")
+        let identifier = manga.identifier
+        await SourceManager.shared.waitForSourcesLoad()
+        SourceManager.shared.sources.append(AidokuRunner.Source(
+            key: manga.sourceKey,
+            name: "Pull Test",
+            version: 1,
+            contentRating: .safe,
+            runner: ChapterListRunner(chapterKeys: ["new", "old"])
+        ))
+        let queued = QueuedDownloadRecorder()
+        let observer = NotificationCenter.default.addObserver(
+            forName: .downloadsQueued, object: nil, queue: nil
+        ) { notification in
+            let downloads = notification.object as? [Download] ?? []
+            queued.record(downloads.filter { $0.mangaIdentifier == identifier }.map(\.chapterIdentifier.chapterKey))
+        }
+        let container = CoreDataManager.shared.container
+        defer {
+            NotificationCenter.default.removeObserver(observer)
+            SourceManager.shared.sources.removeAll { $0.key == manga.sourceKey }
+            let context = container.newBackgroundContext()
+            context.performAndWait {
+                CoreDataManager.shared.removeChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                if let libraryObject = CoreDataManager.shared.getLibraryManga(
+                    sourceId: manga.sourceKey, mangaId: manga.key, context: context
+                ) {
+                    context.delete(libraryObject)
+                }
+                CoreDataManager.shared.removeManga(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                try? context.save()
+            }
+        }
+        await container.performBackgroundTask { context in
+            CoreDataManager.shared.addToLibrary(manga: manga, chapters: [.init(key: "old")], context: context)
+            try? context.save()
+        }
+
+        await makeController().refreshVisibleLibrary(identifiers: [identifier], skipReachabilityCheck: true)
+
+        let (chapterKeys, newChapters) = await container.performBackgroundTask { context in
+            (
+                CoreDataManager.shared.getChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                    .map(\.id).sorted(),
+                MangaUpdateManager.shared.newChapterCount(for: identifier, context: context)
+            )
+        }
+        #expect(chapterKeys == ["new", "old"])
+        #expect(newChapters == 1)
+        #expect(queued.chapterKeys.isEmpty)
+    }
+
+    @Test func readingOrCompletingAChapterClearsOnlyItsNewChapterCount() async {
+        let manga = AidokuRunner.Manga(sourceKey: "test-read-source", key: "test-read-manga", title: "Read Test")
+        let identifier = manga.identifier
+        let container = CoreDataManager.shared.container
+        defer {
+            let context = container.newBackgroundContext()
+            context.performAndWait {
+                CoreDataManager.shared.removeHistory(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                CoreDataManager.shared.removeChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                if let libraryObject = CoreDataManager.shared.getLibraryManga(
+                    sourceId: manga.sourceKey, mangaId: manga.key, context: context
+                ) {
+                    context.delete(libraryObject)
+                }
+                CoreDataManager.shared.removeManga(sourceId: manga.sourceKey, mangaId: manga.key, context: context)
+                try? context.save()
+            }
+        }
+        let read = AidokuRunner.Chapter(key: "read")
+        let completed = AidokuRunner.Chapter(key: "completed")
+        await container.performBackgroundTask { context in
+            CoreDataManager.shared.addToLibrary(manga: manga, chapters: [read, completed, .init(key: "unread")], context: context)
+            for chapter in CoreDataManager.shared.getChapters(sourceId: manga.sourceKey, mangaId: manga.key, context: context) {
+                CoreDataManager.shared.createMangaUpdate(
+                    sourceId: manga.sourceKey, mangaId: manga.key, chapterObject: chapter, context: context
+                )
+            }
+            try? context.save()
+        }
+        func newChapterCount() async -> Int {
+            await container.performBackgroundTask { MangaUpdateManager.shared.newChapterCount(for: identifier, context: $0) }
+        }
+
+        await HistoryManager.shared.setProgress(
+            chapter: read.toOld(sourceId: manga.sourceKey, mangaId: manga.key), progress: 2, totalPages: 10, completed: false
+        )
+        let afterReading = await newChapterCount()
+        await HistoryManager.shared.addHistory(sourceId: manga.sourceKey, mangaId: manga.key, chapters: [completed])
+        let afterCompleting = await newChapterCount()
+
+        #expect(afterReading == 2)
+        #expect(afterCompleting == 1)
+    }
+
+    @Test func updatesTabMarksOnlyTheNotifiedChaptersViewed() {
+        let manga = AidokuRunner.Manga(sourceKey: "source", key: "manga", title: "Title")
+        let updates = ["read", "unread"].map { key in
+            MangaUpdatesView.UpdateInfo(
+                id: key,
+                chapterIdentifier: .init(sourceKey: "source", mangaKey: "manga", chapterKey: key),
+                date: .now,
+                manga: manga,
+                chapter: nil,
+                viewed: false
+            )
+        }
+        let entries = [MangaUpdatesView.UpdateSection(day: 0, items: [.init(mangaKey: "manga", updates: updates)])]
+
+        let result = MangaUpdatesView.markingViewed(
+            entries, items: [MangaUpdateItem(sourceId: "source", chapterId: "read", mangaId: "manga", viewed: true)]
+        )
+
+        #expect(result[0].items[0].updates.map(\.viewed) == [true, false])
+
+        let allViewed = MangaUpdatesView.markingViewed(entries, items: ["read", "unread"].map {
+            MangaUpdateItem(sourceId: "source", chapterId: $0, mangaId: "manga", viewed: true)
+        })
+
+        #expect(allViewed[0].items[0].updates.map(\.viewed) == [true, true])
     }
 
     private func makeController() -> LibraryViewController {
@@ -228,10 +317,38 @@ struct LibraryRefreshTests {
     }
 }
 
-private actor RefreshDownloadRecorder {
-    private(set) var chapters: [String] = []
+private struct ChapterListRunner: AidokuRunner.Runner {
+    let chapterKeys: [String]
+    let features = AidokuRunner.SourceFeatures()
 
-    func record(_ chapters: [String]) {
-        self.chapters += chapters
+    func getSearchMangaList(
+        query: String?, page: Int, filters: [AidokuRunner.FilterValue]
+    ) async throws -> AidokuRunner.MangaPageResult {
+        AidokuRunner.MangaPageResult(entries: [], hasNextPage: false)
+    }
+
+    func getMangaUpdate(
+        manga: AidokuRunner.Manga, needsDetails: Bool, needsChapters: Bool
+    ) async throws -> AidokuRunner.Manga {
+        var manga = manga
+        manga.chapters = chapterKeys.map { AidokuRunner.Chapter(key: $0) }
+        return manga
+    }
+
+    func getPageList(manga: AidokuRunner.Manga, chapter: AidokuRunner.Chapter) async throws -> [AidokuRunner.Page] {
+        []
+    }
+}
+
+private final class QueuedDownloadRecorder: @unchecked Sendable {
+    private let lock = NSLock()
+    private var keys: [String] = []
+
+    var chapterKeys: [String] {
+        lock.withLock { keys }
+    }
+
+    func record(_ chapterKeys: [String]) {
+        lock.withLock { keys += chapterKeys }
     }
 }

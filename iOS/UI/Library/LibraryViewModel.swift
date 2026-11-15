@@ -566,9 +566,9 @@ extension LibraryViewModel {
         var downloadCounts: [MangaIdentifier: Int] = [:]
         let currentManga = manga + pinnedManga + (storedManga ?? []) + (storedPinnedManga ?? [])
         let identifiers = identifier.map { [$0] } ?? Array(Set(currentManga.map(\.identifier)))
-        let newDownloadCounts = await CoreDataManager.shared.container.performBackgroundTask { context in
+        let newChapterCounts = await CoreDataManager.shared.container.performBackgroundTask { context in
             Dictionary(uniqueKeysWithValues: identifiers.map { identifier in
-                (identifier, MangaUpdateManager.shared.newlyDownloadedChapterCount(for: identifier, context: context))
+                (identifier, MangaUpdateManager.shared.newChapterCount(for: identifier, context: context))
             })
         }
         for identifier in identifiers {
@@ -577,25 +577,25 @@ extension LibraryViewModel {
         for (i, manga) in self.pinnedManga.enumerated() {
             if let count = downloadCounts[manga.identifier] {
                 self.pinnedManga[i].downloads = count
-                self.pinnedManga[i].newDownloads = newDownloadCounts[manga.identifier] ?? 0
+                self.pinnedManga[i].newChapters = newChapterCounts[manga.identifier] ?? 0
             }
         }
         for (i, manga) in self.manga.enumerated() {
             if let count = downloadCounts[manga.identifier] {
                 self.manga[i].downloads = count
-                self.manga[i].newDownloads = newDownloadCounts[manga.identifier] ?? 0
+                self.manga[i].newChapters = newChapterCounts[manga.identifier] ?? 0
             }
         }
         for (i, manga) in (storedPinnedManga ?? []).enumerated() {
             if let count = downloadCounts[manga.identifier] {
                 storedPinnedManga?[i].downloads = count
-                storedPinnedManga?[i].newDownloads = newDownloadCounts[manga.identifier] ?? 0
+                storedPinnedManga?[i].newChapters = newChapterCounts[manga.identifier] ?? 0
             }
         }
         for (i, manga) in (storedManga ?? []).enumerated() {
             if let count = downloadCounts[manga.identifier] {
                 storedManga?[i].downloads = count
-                storedManga?[i].newDownloads = newDownloadCounts[manga.identifier] ?? 0
+                storedManga?[i].newChapters = newChapterCounts[manga.identifier] ?? 0
             }
         }
     }

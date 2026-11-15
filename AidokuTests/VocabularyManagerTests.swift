@@ -93,7 +93,7 @@ import Testing
             language: "de-DE", lemma: "katze", surfaceForm: "Katze",
             translation: "cat", sourceMangaId: nil, sourceMangaSourceId: nil, context: ctx
         )
-        let progressId = entry.progress?.objectID
+        #expect(entry.progress != nil)
 
         CoreDataManager.shared.removeVocabularyEntry(entry, context: ctx)
 
@@ -102,10 +102,7 @@ import Testing
         #expect(fetched == nil)
 
         // Progress gone (cascade delete from VocabularyEntry → progress)
-        if let progressId {
-            let progressFetch = try ctx.existingObject(with: progressId)
-            #expect(progressFetch.isDeleted || progressFetch.managedObjectContext == nil)
-        }
+        #expect(try ctx.count(for: FamiliarityProgressObject.fetchRequest()) == 0)
     }
 
     // MARK: Test 5 — backup round-trip

@@ -70,7 +70,7 @@ class DoubleBadgeView: UIView {
         badgeView.backgroundColor = .systemGreen
         badgeView.layer.cornerRadius = 5
         badgeView.isAccessibilityElement = true
-        badgeView.accessibilityLabel = NSLocalizedString("NEWLY_DOWNLOADED_CHAPTERS")
+        badgeView.accessibilityLabel = NSLocalizedString("NEW_CHAPTERS")
         badgeView.addSubview(badgeLabel3)
         return badgeView
     }()
@@ -185,6 +185,8 @@ class DoubleBadgeView: UIView {
         }
         NSLayoutConstraint.activate(badgeConstraints)
         invalidateIntrinsicContentSize()
+        // Swapping constraints does not mark this view for layout, so a same-size update keeps stale frames.
+        setNeedsLayout()
     }
 }
 

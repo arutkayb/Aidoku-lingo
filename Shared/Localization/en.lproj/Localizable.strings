@@ -107,7 +107,7 @@
 "CHECKING_MANGA_PROGRESS" = "Checking manga: %i of %i";
 "DOWNLOADING_CHAPTERS" = "Downloading chapters";
 "CHAPTER_DOWNLOAD_PROGRESS" = "%i of %i chapters";
-"NEWLY_DOWNLOADED_CHAPTERS" = "Newly downloaded chapters";
+"NEW_CHAPTERS" = "New chapters";
 "REFRESH_NO_WIFI" = "Not Connected to Wi-Fi";
 "REFRESH_NO_WIFI_TEXT" = "The \"Only Update on Wi-Fi\" setting is enabled, so the library cannot be refreshed until a Wi-Fi connection is available.";
 "REFRESH_ANYWAYS" = "Refresh Anyways";

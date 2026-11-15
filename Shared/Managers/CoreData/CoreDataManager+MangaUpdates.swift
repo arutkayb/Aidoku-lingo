@@ -120,6 +120,27 @@ extension CoreDataManager {
         return (try? context.fetch(request)) ?? []
     }
 
+    /// Mark the updates of specific chapters as viewed, without saving.
+    /// - Returns: The updates that were unviewed before
+    func setMangaUpdatesViewed(
+        sourceId: String,
+        mangaId: String,
+        chapterIds: [String],
+        context: NSManagedObjectContext? = nil
+    ) -> [MangaUpdateObject] {
+        let context = context ?? self.context
+        let request = MangaUpdateObject.fetchRequest()
+        request.predicate = NSPredicate(
+            format: "mangaId == %@ AND sourceId == %@ AND chapterId IN %@ AND viewed == false",
+            mangaId, sourceId, chapterIds
+        )
+        let updates = (try? context.fetch(request)) ?? []
+        for update in updates {
+            update.viewed = true
+        }
+        return updates
+    }
+
     /// Mark all updates of a manga as viewed
     /// - Returns: The Manga Updates marked as read
     @discardableResult
